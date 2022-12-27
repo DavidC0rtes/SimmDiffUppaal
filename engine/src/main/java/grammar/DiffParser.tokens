@@ -1,0 +1,9 @@
+AT=1
+COMMENT=2
+Newlines=3
+PLUS=4
+NEG=5
+DIGIT=6
+SEA_WS=7
+TEXT=8
+'@@'=1

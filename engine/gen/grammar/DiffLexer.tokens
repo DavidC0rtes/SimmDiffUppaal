@@ -1,0 +1,7 @@
+DIGIT=1
+PLUS=2
+NEG=3
+TEXT=4
+SEA_WS=5
+'+++'=2
+'---'=3
