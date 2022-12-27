@@ -16,7 +16,7 @@ import java.util.List;
 @Command(name = "NTASimmDiff", version = "NTASimmDiff 0.1", mixinStandardHelpOptions = true)
 public class Main implements Runnable {
 
-    @Parameters(paramLabel = "<model>", arity = "2", description = "Path to model and mutant", index = "0")
+    @Parameters(paramLabel = "<model>", arity = "2", description = "Path to model and mutant, respectively", index = "0")
     List<File> models;
 
 
@@ -26,22 +26,25 @@ public class Main implements Runnable {
         File mutant = models.get(1);
 
         try {
-            FileLoader fl = new FileLoader(model);
-            FileLoader fl2 = new FileLoader(mutant);
+            FileLoader flModel = new FileLoader(model);
+            FileLoader flMutant = new FileLoader(mutant);
 
             String outputFolder = "src/main/resources";
 
-            Path resultFile1 = Files.writeString(Path.of(outputFolder, "parsed1.xml"), fl.getParsedContent());
-            Path resultFile2 = Files.writeString(Path.of(outputFolder, "parsed2.xml"), fl2.getParsedContent());
+            Path resultModel = Files.writeString(Path.of(outputFolder, "parsedModel.xml"), flModel.getParsedContent());
+            Path resultMutant = Files.writeString(Path.of(outputFolder, "parsedMutant.xml"), flMutant.getParsedContent());
 
             List<String> params = new ArrayList<>(Arrays.asList(
                     "diff",
-                    "-u",
-                    resultFile1.toString(),
-                    resultFile2.toString()
+                    "-ub",
+                    "--suppress-common-lines",
+                    resultMutant.toString(),
+                    resultModel.toString()
             ));
-            ProcessBuilder pb = new ProcessBuilder(params).inheritIO();
-            pb.start();
+            ProcessBuilder pb = new ProcessBuilder(params);
+            Process proc = pb.start();
+
+            String diff = new String(proc.getInputStream().readAllBytes());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
