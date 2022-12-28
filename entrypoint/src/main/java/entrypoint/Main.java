@@ -46,7 +46,7 @@ public class Main implements Runnable {
             Process proc = pb.start();
 
             String diff = new String(proc.getInputStream().readAllBytes());
-            Bootstrapper bootstrapper = new Bootstrapper();
+            Bootstrapper bootstrapper = new Bootstrapper(mutant, diff);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

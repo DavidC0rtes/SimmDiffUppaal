@@ -18,15 +18,25 @@ public interface DiffParserListener extends ParseTreeListener {
 	 */
 	void exitDocument(DiffParser.DocumentContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DiffParser#line}.
+	 * Enter a parse tree produced by {@link DiffParser#annotation}.
 	 * @param ctx the parse tree
 	 */
-	void enterLine(DiffParser.LineContext ctx);
+	void enterAnnotation(DiffParser.AnnotationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DiffParser#line}.
+	 * Exit a parse tree produced by {@link DiffParser#annotation}.
 	 * @param ctx the parse tree
 	 */
-	void exitLine(DiffParser.LineContext ctx);
+	void exitAnnotation(DiffParser.AnnotationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DiffParser#lineRange}.
+	 * @param ctx the parse tree
+	 */
+	void enterLineRange(DiffParser.LineRangeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DiffParser#lineRange}.
+	 * @param ctx the parse tree
+	 */
+	void exitLineRange(DiffParser.LineRangeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DiffParser#chardata}.
 	 * @param ctx the parse tree

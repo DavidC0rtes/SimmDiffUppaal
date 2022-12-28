@@ -17,11 +17,17 @@ public interface DiffParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDocument(DiffParser.DocumentContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link DiffParser#line}.
+	 * Visit a parse tree produced by {@link DiffParser#annotation}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLine(DiffParser.LineContext ctx);
+	T visitAnnotation(DiffParser.AnnotationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DiffParser#lineRange}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLineRange(DiffParser.LineRangeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DiffParser#chardata}.
 	 * @param ctx the parse tree

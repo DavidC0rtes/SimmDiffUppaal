@@ -28,13 +28,25 @@ public class DiffParserBaseListener implements DiffParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLine(DiffParser.LineContext ctx) { }
+	@Override public void enterAnnotation(DiffParser.AnnotationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLine(DiffParser.LineContext ctx) { }
+	@Override public void exitAnnotation(DiffParser.AnnotationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLineRange(DiffParser.LineRangeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLineRange(DiffParser.LineRangeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
