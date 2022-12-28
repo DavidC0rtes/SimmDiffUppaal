@@ -1,6 +1,7 @@
 package entrypoint;
 
 import Parser.FileLoader;
+import bootstrap.Bootstrapper;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
@@ -45,7 +46,7 @@ public class Main implements Runnable {
             Process proc = pb.start();
 
             String diff = new String(proc.getInputStream().readAllBytes());
-
+            Bootstrapper bootstrapper = new Bootstrapper();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

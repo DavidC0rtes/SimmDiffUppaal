@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrypoint/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/src/main/java/entrypoint/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +74,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="entrypoint.Main" />
-      <module name="entrypoint" />
+      <module name="diffCalculator" />
       <option name="PROGRAM_PARAMETERS" value="src/main/resources/edges.xml src/main/resources/edges-mutation.xml" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/entrypoint" />
       <method v="2">
