@@ -15,3 +15,4 @@ COMMA       :   ',' ;
 MINUS       :   '-' ;
 SUM         :   '+' ;
 DIGIT       :   [0-9]+;
+WS          :   (' ' | '\t') -> skip;

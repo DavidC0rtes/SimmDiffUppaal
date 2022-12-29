@@ -19,10 +19,10 @@ public class Bootstrapper {
     private ParseTree diffTree;
     private ExtendedDiffListener diffListener;
     private File mutantFile;
-    public Bootstrapper(File mutant, String diffMutant) throws IOException {
-        System.out.println(diffMutant);
+    public Bootstrapper(File mutant, String diffStr) throws IOException {
+        System.out.println(diffStr);
         mutantFile = mutant;
-        CharStream input = CharStreams.fromString(diffMutant);
+        CharStream input = CharStreams.fromString(diffStr);
         diffLexer = new DiffLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(diffLexer);
 

@@ -4,7 +4,7 @@ options { tokenVocab=DiffLexer; }
 
 document    :   (annotation+ anything)+ ;
 
-annotation  :   AT MINUS(lineRange) SUM(lineRange) AT_CLOSE ;
+annotation  :   AT WS? MINUS(lineRange) WS? SUM(lineRange) WS? AT_CLOSE ;
 lineRange   :   DIGIT(','DIGIT)?    ;
 
 chardata    : TEXT | SEA_WS ;

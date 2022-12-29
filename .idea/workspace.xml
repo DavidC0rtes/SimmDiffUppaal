@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/entrypoint/src/main/java/entrypoint/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
