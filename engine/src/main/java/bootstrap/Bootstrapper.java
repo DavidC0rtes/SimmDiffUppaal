@@ -20,7 +20,6 @@ public class Bootstrapper {
     private ExtendedDiffListener diffListener;
     private File mutantFile;
     public Bootstrapper(File mutant, String diffStr) throws IOException {
-        System.out.println(diffStr);
         mutantFile = mutant;
         CharStream input = CharStreams.fromString(diffStr);
         diffLexer = new DiffLexer(input);

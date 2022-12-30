@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/ExtendedDiffListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammar/ExtendedDiffListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +97,7 @@
       <workItem from="1671917192202" duration="5161000" />
       <workItem from="1672064198905" duration="14044000" />
       <workItem from="1672149880984" duration="4234000" />
+      <workItem from="1672343567349" duration="3512000" />
     </task>
     <servers />
   </component>
