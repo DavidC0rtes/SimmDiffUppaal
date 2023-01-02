@@ -1,5 +1,5 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammar/DiffLexer.g4 by ANTLR 4.10.1
-package grammar;
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/DiffLexer.g4 by ANTLR 4.10.1
+package grammars;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

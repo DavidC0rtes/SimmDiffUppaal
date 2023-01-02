@@ -1,8 +1,11 @@
 package bootstrap;
 
-import grammar.DiffLexer;
-import grammar.DiffParser;
-import grammar.ExtendedDiffListener;
+import grammars.diff.DiffLexer;
+import grammars.diff.DiffParser;
+import grammars.diff.ExtendedDiffListener;
+import grammars.uppaal.NTAListener;
+import grammars.uppaal.antlr.UppaalLexer;
+import grammars.uppaal.antlr.UppaalParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -21,7 +24,30 @@ public class Bootstrapper {
     private File mutantFile;
     public Bootstrapper(File mutant, String diffStr) throws IOException {
         mutantFile = mutant;
-        CharStream input = CharStreams.fromString(diffStr);
+
+        // Parse the diff
+        parse(diffStr);
+        // Then parse the generated mutant
+        parse(mutantFile);
+    }
+
+    public void parse(File file) throws IOException {
+        CharStream input = CharStreams.fromFileName(file.getPath());
+        UppaalLexer mutantLexer = new UppaalLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(mutantLexer);
+
+        UppaalParser parser = new UppaalParser(tokens);
+        ParseTree tree = parser.model();
+
+        // Create walker
+        ParseTreeWalker walker = new ParseTreeWalker();
+        // Create listener then feed to walker.
+        NTAListener listener = new NTAListener();
+        walker.walk(listener, tree);
+    }
+
+    public void parse(String strContent) throws IOException {
+        CharStream input = CharStreams.fromString(strContent);
         diffLexer = new DiffLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(diffLexer);
 

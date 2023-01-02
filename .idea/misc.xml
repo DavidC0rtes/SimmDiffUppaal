@@ -51,7 +51,6 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/entrypoint/pom.xml" />
         <option value="$PROJECT_DIR$/engine/pom.xml" />
         <option value="$PROJECT_DIR$/com.davidcortes.engine/pom.xml" />
       </list>
