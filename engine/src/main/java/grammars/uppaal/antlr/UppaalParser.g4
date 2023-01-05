@@ -1,4 +1,3 @@
-
 parser grammars UppaalParser;
 options { tokenVocab=UppaalLexer; }
 

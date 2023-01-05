@@ -5,60 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/gen/grammar/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/gen/grammar/DiffLexer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/DiffParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammar/ExtendedDiffListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/ExtendedDiffListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/gen/Parser/Antlr/UppaalParserVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalLexer.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParser.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Antlr/UppaalParserVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/FileLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/Listener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/NTAVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/Parser/helper/VisitorHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/entrypoint/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/edges-mutation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/edges.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/parsed1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/parsed2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/parsedModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entrypoint/src/main/resources/parsedMutant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,10 +18,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="module-info" />
-        <option value="Class" />
         <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -161,7 +111,11 @@
       <workItem from="1672149880984" duration="4234000" />
       <workItem from="1672343567349" duration="6586000" />
       <workItem from="1672675896029" duration="2004000" />
-      <workItem from="1672694234306" duration="2735000" />
+      <workItem from="1672694234306" duration="4626000" />
+      <workItem from="1672792407409" duration="4533000" />
+      <workItem from="1672863314427" duration="10492000" />
+      <workItem from="1672936005332" duration="605000" />
+      <workItem from="1672950739214" duration="3405000" />
     </task>
     <servers />
   </component>

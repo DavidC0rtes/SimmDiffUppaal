@@ -14,6 +14,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Bootstrapper {
 
@@ -28,10 +29,10 @@ public class Bootstrapper {
         // Parse the diff
         parse(diffStr);
         // Then parse the generated mutant
-        parse(mutantFile);
+        parse(mutantFile, diffListener.getChangedLines());
     }
 
-    public void parse(File file) throws IOException {
+    public void parse(File file, ArrayList<Integer> bias) throws IOException {
         CharStream input = CharStreams.fromFileName(file.getPath());
         UppaalLexer mutantLexer = new UppaalLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(mutantLexer);
@@ -42,7 +43,7 @@ public class Bootstrapper {
         // Create walker
         ParseTreeWalker walker = new ParseTreeWalker();
         // Create listener then feed to walker.
-        NTAListener listener = new NTAListener();
+        NTAListener listener = new NTAListener(bias);
         walker.walk(listener, tree);
     }
 
