@@ -9,8 +9,6 @@ public class Location {
         isBias = bias;
         this.id = id;
     }
-
-
     public boolean hasBias() {
         return isBias;
     }

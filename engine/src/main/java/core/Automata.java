@@ -1,5 +1,7 @@
 package core;
 
+import core.types.Clock;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,11 +15,13 @@ public class Automata {
     private Location initLocation;
     private ArrayList<Transition> edges;
     private ArrayList<Location> locations;
+    private HashMap<String, Clock> localClocks;
 
     public Automata(String name) {
         this.name = name;
         edges = new ArrayList<>();
         locations = new ArrayList<>();
+        localClocks = new HashMap<>();
     }
 
     public void setInitLocation(Location l) { initLocation = l; }
@@ -29,6 +33,7 @@ public class Automata {
     public void addLocation(Location loc) {
         locations.add(loc);
     }
+    public void addClock(Clock c) { localClocks.put(c.getId(), c); }
 
     public String getName() {
         return name;

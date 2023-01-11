@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Automata.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Automata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Transition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/entrypoint/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +117,11 @@
       <workItem from="1672792407409" duration="4533000" />
       <workItem from="1672863314427" duration="10492000" />
       <workItem from="1672936005332" duration="605000" />
-      <workItem from="1672950739214" duration="3405000" />
+      <workItem from="1672950739214" duration="4929000" />
+      <workItem from="1672963558143" duration="2253000" />
+      <workItem from="1673019820086" duration="5048000" />
+      <workItem from="1673111194379" duration="2351000" />
+      <workItem from="1673452042140" duration="3536000" />
     </task>
     <servers />
   </component>
