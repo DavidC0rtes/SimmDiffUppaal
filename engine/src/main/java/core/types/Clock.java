@@ -1,6 +1,6 @@
 package core.types;
 
-public class Clock {
+public class Clock implements Runnable {
     private float value;
     private long t1;
     private String id;
@@ -8,10 +8,6 @@ public class Clock {
     public Clock(String identifier) {
         value = 0;
         id = identifier;
-    }
-
-    public void start() {
-        t1 = System.currentTimeMillis();
     }
 
     public void stop() {
@@ -28,5 +24,10 @@ public class Clock {
 
     public void setValue(float value) {
         this.value = value;
+    }
+
+    @Override
+    public void run() {
+        t1 = System.currentTimeMillis();
     }
 }

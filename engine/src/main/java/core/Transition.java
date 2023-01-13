@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * Todo:
- *  Guards, actions, clocks to be reset.
+ *  actions
  */
 public class Transition {
     private Location source;
@@ -15,7 +15,8 @@ public class Transition {
     private boolean bias;
     private HashMap<String, Float> clocksDict;
     private ArrayList<Clock> clocksToReset;
-    private ArrayList<String> guards, actions;
+    private ArrayList<String> actions;
+    private ArrayList<Guard> guards;
     public Transition(Location s, Location t, boolean bias) {
         source = s; target = t;
         this.bias = bias;
@@ -49,11 +50,12 @@ public class Transition {
         return bias;
     }
 
-    /**
-     * Receives a guard in its string representation and adds it to guards array.
-     * @param guard a string of the form x op n, where x is a clock, op a comparison operator
-     * and n a float value.
-     */
-    public void addGuard(String guard) { guards.add(guard); }
+    public void addGuard(String clockRef, String comparisonOp, float value) {
+        guards.add(new Guard(clockRef, comparisonOp, value));
+    }
     public void addAction(String guard) { actions.add(guard); }
+
+    public ArrayList<Guard> getGuards() {
+        return guards;
+    }
 }
