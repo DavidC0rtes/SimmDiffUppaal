@@ -10,7 +10,6 @@ public class Location {
     private String id;
     // todo: invariants
     public Location( String id, boolean bias) {
-        isBias = bias;
         this.id = id;
         sources = new ArrayList<>();
         targets = new ArrayList<>();
