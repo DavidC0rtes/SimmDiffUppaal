@@ -1,5 +1,5 @@
 
-lexer grammars UppaalLexer;
+lexer grammar UppaalLexer;
 
 // Default "mode": Everything OUTSIDE of a tag
 COMMENT     :   '<!--' .*? '-->' ;
@@ -99,7 +99,7 @@ STRING      :   '"' ~[<"]* '"'
             |   '\'' ~[<']* '\''
             ;
 Name        :   NameStartChar NameChar* ;
-S           :   [ \t\r\n]               -> skip ;
+S           :   [ \t\r\n]                ;
 
 fragment
 HEXDIGIT    :   [a-fA-F0-9] ;

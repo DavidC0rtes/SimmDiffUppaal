@@ -1,4 +1,4 @@
-parser grammars UppaalParser;
+parser grammar UppaalParser;
 options { tokenVocab=UppaalLexer; }
 
 //document    :   prolog? misc* element misc*;
@@ -195,7 +195,7 @@ location    :   '<' 'location'
                     ('<' (URGENT_LOC | 'committed') '/>' misc*)?
 
                     '</' 'location' '>' ;
-name        :   '<' 'name'
+name        :   '<' 'name' S
                     coordinate?
                     '>' anything '</' 'name' '>' ;
 

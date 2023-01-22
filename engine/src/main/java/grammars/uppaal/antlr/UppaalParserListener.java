@@ -1,6 +1,5 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/src/main/java/Parser/Antlr/UppaalParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4 by ANTLR 4.10.1
 package grammars.uppaal.antlr;
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

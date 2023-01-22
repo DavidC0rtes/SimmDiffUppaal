@@ -1,6 +1,8 @@
 package core;
 
+import core.labels.Guard;
 import core.types.Clock;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,21 +11,35 @@ import java.util.HashMap;
  * Todo:
  *  actions
  */
-public class Transition {
+public class Transition extends UppaalElement {
     private Location source;
     private Location target;
-    private boolean bias;
+    private boolean bias, visited;
     private HashMap<String, Float> clocksDict;
     private ArrayList<Clock> clocksToReset;
     private ArrayList<String> actions;
     private ArrayList<Guard> guards;
-    public Transition(Location s, Location t, boolean bias) {
+    private ParserRuleContext ctx;
+    public Transition(Location s, Location t, boolean bias, ParserRuleContext ctx) {
+        super(ctx);
         source = s; target = t;
         this.bias = bias;
         clocksToReset = new ArrayList<>();
         clocksDict = new HashMap<>();
         guards = new ArrayList<>();
         actions = new ArrayList<>();
+        visited = false;
+    }
+
+    public Transition(Location s, Location t, ParserRuleContext ctx) {
+        super(ctx);
+        source = s; target = t;
+        this.bias = false;
+        clocksToReset = new ArrayList<>();
+        clocksDict = new HashMap<>();
+        guards = new ArrayList<>();
+        actions = new ArrayList<>();
+        visited = false;
     }
     public Location getSource() {
         return source;
@@ -50,12 +66,15 @@ public class Transition {
         return bias;
     }
 
-    public void addGuard(String clockRef, String comparisonOp, float value) {
-        guards.add(new Guard(clockRef, comparisonOp, value));
+    public void addGuard(String[] clockRef, String comparisonOp, String[] left) {
+        guards.add(new Guard(clockRef, comparisonOp, left));
     }
     public void addAction(String guard) { actions.add(guard); }
+    public ArrayList<Guard> getGuards() { return guards; }
 
-    public ArrayList<Guard> getGuards() {
-        return guards;
+    public boolean isVisited() {
+        return visited;
     }
+
+    public void setVisited() { visited = true; }
 }

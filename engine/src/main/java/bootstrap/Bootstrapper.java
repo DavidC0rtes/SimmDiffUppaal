@@ -1,5 +1,7 @@
 package bootstrap;
 
+import core.Runner;
+import core.types.Clock;
 import grammars.diff.DiffLexer;
 import grammars.diff.DiffParser;
 import grammars.diff.ExtendedDiffListener;
@@ -15,6 +17,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bootstrapper {
 
@@ -22,6 +25,8 @@ public class Bootstrapper {
     private DiffLexer diffLexer;
     private ParseTree diffTree;
     private ExtendedDiffListener diffListener;
+    private NTAListener NTAlistener;
+    private Runner runner;
     private File mutantFile;
     public Bootstrapper(File mutant, String diffStr) throws IOException {
         mutantFile = mutant;
@@ -30,6 +35,8 @@ public class Bootstrapper {
         parse(diffStr);
         // Then parse the generated mutant
         parse(mutantFile, diffListener.getChangedLines());
+        runner = new Runner(NTAlistener.getNameToTemplate(), NTAlistener.getGlobalClocks());
+        runner.start();
     }
 
     public void parse(File file, ArrayList<Integer> bias) throws IOException {
@@ -43,8 +50,8 @@ public class Bootstrapper {
         // Create walker
         ParseTreeWalker walker = new ParseTreeWalker();
         // Create listener then feed to walker.
-        NTAListener listener = new NTAListener(bias);
-        walker.walk(listener, tree);
+        NTAlistener = new NTAListener(bias);
+        walker.walk(NTAlistener, tree);
     }
 
     public void parse(String strContent) throws IOException {
@@ -61,4 +68,6 @@ public class Bootstrapper {
         diffListener = new ExtendedDiffListener();
         walker.walk(diffListener, diffTree);
     }
+
+    public Runner getRunner() { return runner; }
 }

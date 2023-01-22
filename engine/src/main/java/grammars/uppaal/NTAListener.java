@@ -16,30 +16,43 @@ public class NTAListener extends UppaalParserBaseListener {
 
     private StringBuilder content = new StringBuilder();
     private final ArrayList<Integer> bias;
+
+    public HashMap<String, Automata> getNameToTemplate() {
+        return nameToTemplate;
+    }
+
     private HashMap<String, Automata> nameToTemplate;
     private HashMap<String, Location> locationsMap;
+
+    public HashMap<String, Clock> getGlobalClocks() {
+        return globalClocks;
+    }
+
+    private HashMap<String, Clock> globalClocks;
     private String currentAutomata;
 
     public NTAListener(ArrayList<Integer> changedLines) {
         bias = new ArrayList<>(changedLines);
         nameToTemplate = new HashMap<>();
         locationsMap = new HashMap<>();
+        globalClocks = new HashMap<>();
     }
+
     @Override
     public void enterTempContent(UppaalParser.TempContentContext ctx) {
-        Automata bipbop = new Automata(ctx.name().anything().getText());
+        Automata bipbop = new Automata(ctx.name().anything().getText(), ctx);
         currentAutomata = bipbop.getName();
         nameToTemplate.put(currentAutomata, bipbop);
     }
     @Override
     public void exitTempContent(UppaalParser.TempContentContext ctx) {
-        System.out.println(nameToTemplate.get(currentAutomata).getName());
+        //System.out.println(nameToTemplate.get(currentAutomata).getName());
     }
 
     @Override
     public void enterLocation(UppaalParser.LocationContext ctx) {
-        Location loc = new Location(ctx.ID().getText(), hasBias(ctx));
-        locationsMap.put(ctx.ID().getText(), loc);
+        Location loc = new Location(ctx.ID().getText(), hasBias(ctx), ctx);
+        locationsMap.put(ctx.STRING().getText(), loc);
         nameToTemplate.get(currentAutomata).addLocation(loc);
     }
 
@@ -48,7 +61,8 @@ public class NTAListener extends UppaalParserBaseListener {
         Transition tran = new Transition(
                 locationsMap.get(ctx.source().STRING().getText()),
                 locationsMap.get(ctx.target().STRING().getText()),
-                hasBias(ctx)
+                hasBias(ctx),
+                ctx
         );
         nameToTemplate.get(currentAutomata).addEdge(tran);
     }
@@ -62,10 +76,15 @@ public class NTAListener extends UppaalParserBaseListener {
 
     @Override
     public void enterVariableDecl(UppaalParser.VariableDeclContext ctx) {
-        if (ctx.type().typeId().getText().equals("clock") && currentAutomata != null) {
+        if (ctx.type().typeId().getText().equals("clock")) {
             for (UppaalParser.VariableIDContext varID : ctx.variableID()) {
                 Clock foo = new Clock(varID.IDENTIFIER().getText());
-                nameToTemplate.get(currentAutomata).addClock(foo);
+                if (currentAutomata != null) {
+                    nameToTemplate.get(currentAutomata).addClock(foo);
+                } else {
+                    globalClocks.put(varID.IDENTIFIER().getText(), foo);
+                }
+
             }
         }
     }

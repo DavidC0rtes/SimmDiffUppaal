@@ -2,7 +2,6 @@ package core;
 
 import core.types.Clock;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,7 +11,7 @@ public class Runner {
     private HashMap<String, Automata> automataHashMap;
     private HashMap<String, Clock> globalClocks;
 
-    public void Runner(HashMap<String, Automata> automatas, HashMap<String, Clock> clocks) {
+    public Runner(HashMap<String, Automata> automatas, HashMap<String, Clock> clocks) {
         automataHashMap = automatas;
         globalClocks = clocks;
     }
@@ -25,16 +24,30 @@ public class Runner {
      * ...
      */
     public void start() {
-        globalClocks.values().forEach(Clock::run);
+        //globalClocks.values().forEach(Clock::run);
         int i = 0;
         for (Automata taio : automataHashMap.values()) {
             // Todo: This should be done in a thread for every TAIO.
-            if (i == 0) taio.setCurrLocation(taio.getInitLocation());
-            taio.getEnabledTransitions(globalClocks);
-
-
+            if (i == 0) {
+                System.out.println(taio.getInitLocation());
+                taio.setCurrLocation(taio.getInitLocation());
+            }
+            taio.setBiasedPaths(globalClocks, 64);
             i++;
         }
+    }
+
+    public String getXMLContent() {
+        StringBuilder xml = new StringBuilder();
+        System.out.println(automataHashMap.size());
+        for (Automata taio : automataHashMap.values()) {
+
+            xml.append("<template>\n");
+            xml.append(taio.getXMLContent());
+            xml.append("</template>\n");
+        }
+
+        return xml.toString();
     }
 
 }
