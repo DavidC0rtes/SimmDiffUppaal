@@ -1,4 +1,4 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/DiffParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/diff/DiffParser.g4 by ANTLR 4.10.1
 package grammars.diff;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -57,4 +57,14 @@ public interface DiffParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAnything(DiffParser.AnythingContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link DiffParser#lineChange}.
+	 * @param ctx the parse tree
+	 */
+	void enterLineChange(DiffParser.LineChangeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DiffParser#lineChange}.
+	 * @param ctx the parse tree
+	 */
+	void exitLineChange(DiffParser.LineChangeContext ctx);
 }

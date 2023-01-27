@@ -28,11 +28,9 @@ public class Runner {
         int i = 0;
         for (Automata taio : automataHashMap.values()) {
             // Todo: This should be done in a thread for every TAIO.
-            if (i == 0) {
-                System.out.println(taio.getInitLocation());
+            if (i == 0)
                 taio.setCurrLocation(taio.getInitLocation());
-            }
-            taio.setBiasedPaths(globalClocks, 64);
+            taio.setBiasedPaths(globalClocks, 10);
             i++;
         }
     }

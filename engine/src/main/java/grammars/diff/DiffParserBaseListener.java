@@ -1,4 +1,4 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/DiffParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/diff/DiffParser.g4 by ANTLR 4.10.1
 package grammars.diff;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -71,6 +71,18 @@ public class DiffParserBaseListener implements DiffParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAnything(DiffParser.AnythingContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLineChange(DiffParser.LineChangeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLineChange(DiffParser.LineChangeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

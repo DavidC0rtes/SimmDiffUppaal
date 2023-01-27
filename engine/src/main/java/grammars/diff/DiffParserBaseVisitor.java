@@ -1,4 +1,4 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/DiffParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/diff/DiffParser.g4 by ANTLR 4.10.1
 package grammars.diff;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -46,4 +46,11 @@ public class DiffParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAnything(DiffParser.AnythingContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLineChange(DiffParser.LineChangeContext ctx) { return visitChildren(ctx); }
 }

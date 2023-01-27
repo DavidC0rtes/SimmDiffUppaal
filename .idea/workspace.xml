@@ -7,16 +7,34 @@
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/gen/grammar/DiffLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/gen/grammar/DiffLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/gen/grammar/DiffLexer.tokens" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/bootstrap/Bootstrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Automata.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Automata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Guard.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/labels/Guard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/core/Transition.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/core/Transition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/entrypoint/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParser.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/DiffParserVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/ExtendedDiffListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/diff/ExtendedDiffListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/NTAListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalLexer.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/grammars/uppaal/antlr/UppaalParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/edges-mutation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/edges-mutation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/edges.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/edges.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/output.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/output.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsedModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/parsedModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsedMutant.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/parsedMutant.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +80,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/david/eclipse-workspace/juppaal&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
@@ -138,7 +156,8 @@
       <workItem from="1673963022755" duration="6824000" />
       <workItem from="1674098674367" duration="4090000" />
       <workItem from="1674187394106" duration="10382000" />
-      <workItem from="1674341723143" duration="1295000" />
+      <workItem from="1674341723143" duration="14325000" />
+      <workItem from="1674813991365" duration="1252000" />
     </task>
     <servers />
   </component>

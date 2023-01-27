@@ -49,6 +49,8 @@ public class Main implements Runnable {
             Process proc = pb.start();
 
             String diff = new String(proc.getInputStream().readAllBytes());
+
+            System.out.println(diff);
             Bootstrapper bootstrapper = new Bootstrapper(mutant, diff);
 
             String content = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -56,8 +58,8 @@ public class Main implements Runnable {
                     "<nta>\n" +
                     "<declaration></declaration>\n";
 
-            Runner runner = bootstrapper.getRunner();
-            content = content.concat(runner.getXMLContent());
+            //Runner runner = bootstrapper.getRunner();
+            /*content = content.concat(runner.getXMLContent());
             content = content.concat("<system>// Place template instantiations here.\n" +
                     "Process = Template();\n" +
                     "// List one or more processes to be composed into a system.\n" +
@@ -72,7 +74,7 @@ public class Main implements Runnable {
                     "</nta>");
 
             writeContents(content);
-
+*/
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

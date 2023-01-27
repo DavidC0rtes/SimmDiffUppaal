@@ -1,4 +1,4 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/DiffParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/grammars/diff/DiffParser.g4 by ANTLR 4.10.1
 package grammars.diff;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -40,4 +40,10 @@ public interface DiffParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAnything(DiffParser.AnythingContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link DiffParser#lineChange}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLineChange(DiffParser.LineChangeContext ctx);
 }

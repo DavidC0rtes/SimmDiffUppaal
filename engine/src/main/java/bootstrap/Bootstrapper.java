@@ -34,9 +34,9 @@ public class Bootstrapper {
         // Parse the diff
         parse(diffStr);
         // Then parse the generated mutant
-        parse(mutantFile, diffListener.getChangedLines());
+       /* parse(mutantFile, diffListener.getChangedLines());
         runner = new Runner(NTAlistener.getNameToTemplate(), NTAlistener.getGlobalClocks());
-        runner.start();
+        runner.start();*/
     }
 
     public void parse(File file, ArrayList<Integer> bias) throws IOException {

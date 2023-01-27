@@ -46,14 +46,19 @@ public class NTAListener extends UppaalParserBaseListener {
     }
     @Override
     public void exitTempContent(UppaalParser.TempContentContext ctx) {
-        //System.out.println(nameToTemplate.get(currentAutomata).getName());
+        // Order each automata's transitions according to bias.
+        ArrayList<Location> locations = nameToTemplate.get(currentAutomata).getLocations();
+        locations.forEach(Location::orderTransitions);
     }
 
     @Override
     public void enterLocation(UppaalParser.LocationContext ctx) {
-        Location loc = new Location(ctx.ID().getText(), hasBias(ctx), ctx);
+        boolean hasBias = hasBias(ctx);
+        Location loc = new Location(ctx.STRING().getText(), hasBias, ctx);
+        System.out.printf("location %s has bias? %s\n", ctx.STRING().getText(), hasBias);
         locationsMap.put(ctx.STRING().getText(), loc);
         nameToTemplate.get(currentAutomata).addLocation(loc);
+
     }
 
     @Override
@@ -92,6 +97,7 @@ public class NTAListener extends UppaalParserBaseListener {
     private boolean hasBias(ParserRuleContext ctx) {
         for (int i = 0; i < bias.size() - 1; i+=2) {
             int line = ctx.getStart().getLine();
+            System.out.printf("Checking if line %d is inside %d-%d\n", line, bias.get(i), bias.get(i+1));
             if ( (line - bias.get(i)) * (line - bias.get(i+1)) <= 0) {
                 return true;
             }

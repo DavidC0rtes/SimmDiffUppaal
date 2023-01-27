@@ -1,4 +1,4 @@
-lexer grammars DiffLexer;
+lexer grammar DiffLexer;
 
 AT      :   '@@' -> pushMode(ANNOTATION);
 COMMENT :   '<!--' .*? '-->' ;
@@ -10,9 +10,14 @@ TEXT        :   ~[@]+ ;        // match any 16 bit char other than  and
 
 // Everything inside of @@ @@
 mode ANNOTATION ;
-AT_CLOSE    :   '@@' -> popMode;
+AT_CLOSE    :   '@@' -> pushMode(CHANGE);
 COMMA       :   ',' ;
 MINUS       :   '-' ;
 SUM         :   '+' ;
 DIGIT       :   [0-9]+;
 WS          :   (' ' | '\t') -> skip;
+
+mode CHANGE ;
+PREFIX  :   ('-' | '+');
+ANY :    ~[\r\n-]+ ;
+S   :   [\r\n]+ -> skip;

@@ -63,7 +63,7 @@ public class Transition extends UppaalElement {
         clocksDict.put(c.getId(), value);
     }
     public boolean hasBias() {
-        return bias;
+        return bias || target.hasBias();
     }
 
     public void addGuard(String[] clockRef, String comparisonOp, String[] left) {

@@ -1,11 +1,9 @@
 package core;
 
-import core.labels.Guard;
 import core.types.Clock;
-import org.antlr.v4.runtime.ParserRuleContext;
 
+import org.antlr.v4.runtime.ParserRuleContext;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -64,18 +62,17 @@ public class Automata extends UppaalElement {
      * @param maxDepth
      */
     public void setBiasedPaths (HashMap<String, Clock> globalClocks, int maxDepth) {
-        biasedPaths = new HashMap<>(initLocation.getOutgoings().size());
         ArrayList<Location> A = new ArrayList<>(Collections.singletonList(initLocation));
 
         int depth = 0;
-        while (depth <= maxDepth) {
-            for (Location loc : A){
+
+            for (Location loc : A) {
                 for (Transition tran : loc.getOutgoings()) {
-                    if (!tran.isVisited())
+                    if (!tran.isVisited() && tran.hasBias())
                         A.add(tran.getTarget());
                 }
             }
-            depth++;
-        }
     }
+
+    public ArrayList<Location> getLocations() { return locations; }
 }
