@@ -32,7 +32,7 @@ public class Bootstrapper {
         mutantFile = mutant;
 
         // Parse the diff
-        parse(diffStr);
+        //parse(diffStr);
         // Then parse the generated mutant
        /* parse(mutantFile, diffListener.getChangedLines());
         runner = new Runner(NTAlistener.getNameToTemplate(), NTAlistener.getGlobalClocks());

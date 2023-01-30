@@ -5,7 +5,7 @@ options { tokenVocab=UppaalLexer; }
 
 model       :   prolog? misc* nta misc* ;
 
-prolog      :   XMLDeclOpen attribute* SPECIAL_CLOSE ;
+prolog      :   XMLDeclOpen (attribute S?)* SPECIAL_CLOSE ;
 
 
 content     :   chardata?
@@ -183,7 +183,7 @@ parameter   :   OPEN_PARAMETER funcParameters CLOSE_PARAMETER ;
 
 coordinate  :   ('x'|'y') EQUALS STRING ('x'|'y') EQUALS STRING ;
 
-initLoc    :   '<' 'init' 'ref' EQUALS STRING '/>' ;
+initLoc    :   '<' 'init' S? 'ref' EQUALS STRING '/>' ;
 
 branchpoint :   '<' 'branchpoint' 'id' EQUALS STRING
                     coordinate? '>' misc*
@@ -276,10 +276,10 @@ guardTypeId
             |   'scalar' '[' guardExpr ']'                 # GuardTypeScalar
             ;
 
-source      :   ('<' 'source' 'ref' EQUALS STRING '/>')
+source      :   ('<' 'source' S? 'ref' EQUALS STRING '/>')
                 ;
 
-target      :   '<' 'target' 'ref' EQUALS STRING '/>'
+target      :   '<' 'target' S? 'ref' EQUALS STRING '/>'
 
                 ;
 

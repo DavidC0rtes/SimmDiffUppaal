@@ -66,6 +66,8 @@ public class Automata extends UppaalElement {
 
         int depth = 0;
 
+        System.out.printf("Number of locations %d\n", locations.size());
+
             for (Location loc : A) {
                 for (Transition tran : loc.getOutgoings()) {
                     if (!tran.isVisited() && tran.hasBias())
