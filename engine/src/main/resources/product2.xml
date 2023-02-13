@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nta><template><name>NTAProduct</name><location id="id0_id2"/><location id="id1_id2"/><init ref="id0_id2"/><transition><source ref="id0_id2"/><target ref="id0_id2"/></transition><transition><source ref="id0_id2"/><target ref="id1_id2"/><label kind="synchronization">go?</label></transition><transition><label kind="synchronization">go!</label></transition><transition><label kind="synchronization">go!</label></transition></template><system>system NTAProduct();
+</system></nta>

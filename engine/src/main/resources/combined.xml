@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<nta>
+  <declaration>clock x,y; chan press;</declaration>
+  <template>
+    <name>NTAProduct</name>
+    <location id="id0_id3"/>
+    <location id="id0_id4"/>
+    <location id="id0_id5"/>
+    <location id="id0_id6"/>
+    <location id="id1_id3"/>
+    <location id="id1_id4"/>
+    <location id="id1_id5"/>
+    <location id="id1_id6"/>
+    <location id="id2_id3"/>
+    <location id="id2_id4"/>
+    <location id="id2_id5"/>
+    <location id="id2_id6"/>
+    <init ref="id0_id3"/>
+    <transition>
+      <source ref="id1_id3"/>
+      <target ref="id0_id3"/>
+      <label kind="guard">x&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id4"/>
+      <target ref="id0_id4"/>
+      <label kind="guard">x&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id5"/>
+      <target ref="id0_id5"/>
+      <label kind="guard">x&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id6"/>
+      <target ref="id0_id6"/>
+      <label kind="guard">x&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id2_id3"/>
+      <target ref="id0_id3"/>
+    </transition>
+    <transition>
+      <source ref="id2_id4"/>
+      <target ref="id0_id4"/>
+    </transition>
+    <transition>
+      <source ref="id2_id5"/>
+      <target ref="id0_id5"/>
+    </transition>
+    <transition>
+      <source ref="id2_id6"/>
+      <target ref="id0_id6"/>
+    </transition>
+    <transition>
+      <source ref="id1_id3"/>
+      <target ref="id2_id3"/>
+      <label kind="guard">x&lt;=10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id4"/>
+      <target ref="id2_id4"/>
+      <label kind="guard">x&lt;=10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id5"/>
+      <target ref="id2_id5"/>
+      <label kind="guard">x&lt;=10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id6"/>
+      <target ref="id2_id6"/>
+      <label kind="guard">x&lt;=10</label>
+    </transition>
+    <transition>
+      <source ref="id0_id3"/>
+      <target ref="id1_id3"/>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="id0_id4"/>
+      <target ref="id1_id4"/>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="id0_id5"/>
+      <target ref="id1_id5"/>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="id0_id6"/>
+      <target ref="id1_id6"/>
+      <label kind="assignment">x:=0</label>
+    </transition>
+    <transition>
+      <source ref="id0_id6"/>
+      <target ref="id0_id3"/>
+      <label kind="guard">y&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id1_id6"/>
+      <target ref="id1_id3"/>
+      <label kind="guard">y&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id2_id6"/>
+      <target ref="id2_id3"/>
+      <label kind="guard">y&gt;10</label>
+    </transition>
+    <transition>
+      <source ref="id0_id3"/>
+      <target ref="id0_id6"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+    <transition>
+      <source ref="id1_id3"/>
+      <target ref="id1_id6"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+    <transition>
+      <source ref="id2_id3"/>
+      <target ref="id2_id6"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+    <transition>
+      <source ref="id0_id5"/>
+      <target ref="id0_id3"/>
+    </transition>
+    <transition>
+      <source ref="id1_id5"/>
+      <target ref="id1_id3"/>
+    </transition>
+    <transition>
+      <source ref="id2_id5"/>
+      <target ref="id2_id3"/>
+    </transition>
+    <transition>
+      <source ref="id0_id5"/>
+      <target ref="id0_id5"/>
+    </transition>
+    <transition>
+      <source ref="id1_id5"/>
+      <target ref="id1_id5"/>
+    </transition>
+    <transition>
+      <source ref="id2_id5"/>
+      <target ref="id2_id5"/>
+    </transition>
+    <transition>
+      <source ref="id0_id4"/>
+      <target ref="id0_id5"/>
+    </transition>
+    <transition>
+      <source ref="id1_id4"/>
+      <target ref="id1_id5"/>
+    </transition>
+    <transition>
+      <source ref="id2_id4"/>
+      <target ref="id2_id5"/>
+    </transition>
+    <transition>
+      <source ref="id0_id3"/>
+      <target ref="id0_id4"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+    <transition>
+      <source ref="id1_id3"/>
+      <target ref="id1_id4"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+    <transition>
+      <source ref="id2_id3"/>
+      <target ref="id2_id4"/>
+      <label kind="assignment">y:=0</label>
+    </transition>
+  </template>
+  <system>system NTAProduct;</system>
+</nta>
