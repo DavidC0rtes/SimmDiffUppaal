@@ -1,109 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-<declaration>clock x, y;
-chan press;
-</declaration>
+<declaration></declaration>
 <template>
 <name x="5" y="5">Template</name>
 <declaration></declaration>
-<location id="id0" x="0" y="0">
-<name x="-10" y="-34">off</name>
+<location id="id0" x="-297" y="-178">
+<name x="-307" y="-212">L0</name>
 </location>
-<location id="id1" x="8" y="110">
-<name x="25" y="85">dim</name>
+<location id="id1" x="-178" y="-187">
+<name x="-188" y="-221">A</name>
 </location>
-<location id="id2" x="8" y="229">
-<name x="-2" y="195">bright</name>
+<location id="id2" x="-68" y="-187">
+<name x="-78" y="-221">B</name>
+</location>
+<location id="id3" x="-170" y="-59">
+<name x="-180" y="-93">D</name>
 </location>
 <init ref="id0"/>
 <transition>
-<source ref="id1"/>
-<target ref="id0"/>
-<label kind="synchronisation" x="-51" y="42">press?</label>
-<label kind="guard" x="-51" y="25">x&gt;10</label>
-<nail  x="-51" y="85"/>
-<nail  x="-51" y="34"/>
-<nail  x="-51" y="25"/>
-</transition>
-<transition>
-<source ref="id2"/>
-<target ref="id0"/>
-<label kind="synchronisation" x="26" y="169">press?</label>
-<nail  x="102" y="144"/>
-<nail  x="93" y="25"/>
+<source ref="id0"/>
+<target ref="id3"/>
 </transition>
 <transition>
 <source ref="id1"/>
 <target ref="id2"/>
-<label kind="synchronisation" x="8" y="152">press?</label>
-<label kind="guard" x="8" y="135">x&lt;=10</label>
 </transition>
 <transition>
 <source ref="id0"/>
 <target ref="id1"/>
-<label kind="synchronisation" x="4" y="38">press?</label>
-<label kind="assignment" x="4" y="55">x:=0</label>
-</transition>
-</template>
-<template>
-<name>Template0</name>
-<location id="id3" x="-17" y="0">
-<name x="-27" y="-34">idle</name>
-</location>
-<location id="id4" x="-93" y="-119">
-<name x="-103" y="-153">t</name>
-<label kind=<label kind="invariant" x="-103" y="-102">>y &lt; 5</label>
-</location>
-<location id="id5" x="51" y="-119">
-<name x="41" y="-153">study</name>
-</location>
-<location id="id6" x="-17" y="136">
-<name x="-27" y="102">relax</name>
-</location>
-<init ref="id3"/>
-<transition>
-<source ref="id6"/>
-<target ref="id3"/>
-<label kind="synchronisation" x="8" y="80">press!</label>
-<label kind="guard" x="8" y="63">y&gt;10</label>
-<nail  x="34" y="59"/>
-</transition>
-<transition>
-<source ref="id3"/>
-<target ref="id6"/>
-<label kind="synchronisation" x="-17" y="51">press!</label>
-<label kind="assignment" x="-17" y="68">y:=0</label>
-</transition>
-<transition>
-<source ref="id5"/>
-<target ref="id3"/>
-<label kind="synchronisation" x="1" y="-76">press!</label>
-</transition>
-<transition>
-<source ref="id5"/>
-<target ref="id5"/>
-<nail  x="119" y="-144"/>
-<nail  x="119" y="-144"/>
-<nail  x="119" y="-85"/>
-</transition>
-<transition>
-<source ref="id4"/>
-<target ref="id5"/>
-<label kind="synchronisation" x="-75" y="-136">press!</label>
-</transition>
-<transition>
-<source ref="id3"/>
-<target ref="id4"/>
-<label kind="synchronisation" x="-75" y="-76">press!</label>
-<label kind="assignment" x="-75" y="-59">y:=0</label>
 </transition>
 </template>
 <system>// Place template instantiations here.
 Process = Template();
-Process2 = Template0();
 // List one or more processes to be composed into a system.
-system Process, Process2;
+system Process;
     </system>
 <queries>
 <query>

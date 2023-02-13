@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+<declaration></declaration>
+<template>
+<name x="5" y="5">Template</name>
+		<declaration></declaration>
+		<location id="id0" x="-297" y="-178">
+			<name x="-307" y="-212">L0</name>
+		</location>
+		<location id="id1" x="-178" y="-187">
+			<name x="-188" y="-221">A</name>
+		</location>
+		<location id="id2" x="-68" y="-187">
+			<name x="-78" y="-221">B</name>
+		</location>
+		<location id="id3" x="-170" y="-59">
+			<name x="-180" y="-93">D</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id3"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+		</transition>
+	</template>
+<system>// Place template instantiations here.
+Process = Template();
+// List one or more processes to be composed into a system.
+system Process;
+    </system>
+<queries>
+<query>
+<formula></formula>
+<comment></comment>
+</query>
+</queries>
+</nta>
