@@ -1,10 +1,11 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
 import de.tudarmstadt.es.juppaal.NTA;
+import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 
 public class Engine {
-    private NTA model, mutant;
-    public Engine(NTA model, NTA mutant) {
+    private ExtendedNTA model, mutant;
+    public Engine(ExtendedNTA model, ExtendedNTA mutant) {
         this.mutant=mutant; this.model=model;
     }
 
@@ -16,5 +17,6 @@ public class Engine {
         save elements which are different
         add method to generate XML only with different elements in each TA(?)
          */
+        mutant.compareNTA(model);
     }
 }

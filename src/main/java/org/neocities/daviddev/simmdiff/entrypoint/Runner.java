@@ -1,6 +1,7 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
 import de.tudarmstadt.es.juppaal.NTA;
+import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.workers.Model;
 
 import java.io.File;
@@ -20,10 +21,11 @@ public class Runner {
 
     public void parseModels() {
         try {
-            Future<NTA> modelObj = modelExecutor.submit(new Model(model));
-            Future<NTA> mutantObj = modelExecutor.submit(new Model(mutant));
+            Future<ExtendedNTA> modelObj = modelExecutor.submit(new Model(model));
+            Future<ExtendedNTA> mutantObj = modelExecutor.submit(new Model(mutant));
 
             Engine engine = new Engine(modelObj.get(), mutantObj.get());
+            engine.start();
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }

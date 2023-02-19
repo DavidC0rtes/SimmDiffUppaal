@@ -1,6 +1,7 @@
 package org.neocities.daviddev.simmdiff.workers;
 
 import de.tudarmstadt.es.juppaal.NTA;
+import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.grammars.diff.DiffParser;
 import org.neocities.daviddev.simmdiff.grammars.diff.ExtendedDiffListener;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.NTAListener;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
-public class Model implements Callable<NTA> {
+public class Model implements Callable<ExtendedNTA> {
 
     private DiffParser diffParser;
     private DiffLexer diffLexer;
@@ -32,7 +33,7 @@ public class Model implements Callable<NTA> {
         modelFile = model;
     }
     @Override
-    public NTA call() throws Exception {
-        return new NTA(modelFile.getPath());
+    public ExtendedNTA call() throws Exception {
+        return new ExtendedNTA(modelFile.getPath());
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+clock x;
+chan signal;</declaration>
+	<template>
+		<name x="5" y="5">Template</name>
+		<declaration>// Place local declarations here.</declaration>
+		<location id="id0" x="-297" y="-178">
+			<name x="-307" y="-212">L0</name>
+		</location>
+		<location id="id1" x="-306" y="-59">
+			<name x="-316" y="-93">C</name>
+		</location>
+		<location id="id2" x="-170" y="-59">
+			<name x="-180" y="-93">D</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<nail x="-382" y="-144"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-297" y="-127">x &gt;2</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-229" y="-136">x&lt;=1</label>
+			<label kind="synchronisation" x="-229" y="-161">signal!</label>
+		</transition>
+	</template>
+	<template>
+		<name>Template0</name>
+		<location id="id3" x="-688" y="-110">
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-670" y="-127">signal?</label>
+			<nail x="-518" y="-110"/>
+			<nail x="-637" y="-221"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Process = Template();
+Process2 = Template0();
+// List one or more processes to be composed into a system.
+system Process,Process2;
+    </system>
+	<queries>
+		<query>
+			<formula></formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
