@@ -33,7 +33,7 @@ public class Model implements Callable<ExtendedNTA> {
         modelFile = model;
     }
     @Override
-    public ExtendedNTA call() throws Exception {
+    public ExtendedNTA call() {
         return new ExtendedNTA(modelFile.getPath());
     }
 }

@@ -21,24 +21,37 @@ public class ExtendedNTA extends NTA {
         for (Automaton taio : model.getAutomata()) {
             System.out.printf("Getting counterpart with name %s \n", taio.getName().getName());
             Automaton mutant = this.getAutomaton(taio.getName().getName());
-
+            System.out.println(taio.getInit().getOutgoingTransitions().size());
             List<Location> locsMutant = new ArrayList<>(mutant.getLocations());
             List<Location> locsModel = new ArrayList<>(taio.getLocations());
-
+            System.out.println(locsMutant.get(0).getIncommingTransitions().size());
             Set<ExtendedLocation> locationSetMutant = ImmutableSet.copyOf(
                     locsMutant.stream()
-                            .map(loc -> new ExtendedLocation(loc.getAutomaton(), loc.generateXMLElement()))
+                            .map(loc -> new ExtendedLocation(
+                                    loc.getAutomaton(),
+                                    loc.getName(),
+                                    loc.getType(),
+                                    0, 0,
+                                    loc.getOutgoingTransitions(),
+                                    loc.getIncommingTransitions()
+                            ))
                             .collect(Collectors.toSet())
             );
 
             Set<ExtendedLocation> locationSetModel = ImmutableSet.copyOf(
                     locsModel.stream()
-                            .map(loc -> new ExtendedLocation(loc.getAutomaton(), loc.generateXMLElement()))
+                            .map(loc -> new ExtendedLocation(
+                                    loc.getAutomaton(),
+                                    loc.getName(),
+                                    loc.getType(),
+                                    0, 0,
+                                    loc.getOutgoingTransitions(),
+                                    loc.getIncommingTransitions()))
                             .collect(Collectors.toSet())
             );
 
+            System.out.println(difference(locationSetModel, locationSetMutant));
             System.out.println(intersection(locationSetMutant, locationSetModel));
-            //System.out.println(difference(locationSetModel, locationSetMutant));
 
             /*for (Location loc : counterpart.getLocations()) {
 
@@ -62,18 +75,5 @@ public class ExtendedNTA extends NTA {
             }*/
 
         }
-    }
-
-    private boolean equalLocations(Location loc1, Location loc2) {
-
-        if (loc1.getType() != loc2.getType()) return false;
-
-        if (loc1.getAutomaton() != loc2.getAutomaton()) return false;
-
-        if (!new HashSet<>(loc1.getOutgoingTransitions()).containsAll(loc2.getOutgoingTransitions())) return false;
-
-        if (!new HashSet<>(loc1.getIncommingTransitions()).containsAll(loc2.getIncommingTransitions())) return false;
-
-        return loc1.getInvariant() == loc2.getInvariant();
     }
 }

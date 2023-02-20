@@ -6,69 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/diff.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/Automata.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/Location.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/Runner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/Transition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/UppaalElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Guard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Invariant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Label.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Select.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Sync.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/labels/Update.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/core/types/Clock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffLexer.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParser.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/DiffParserVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/diff/ExtendedDiffListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/FileLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.g4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.interp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.tokens" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/helper/VisitorHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/workers/Diff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/combined.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/edges-mutation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/edges.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/output.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsed1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsed2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsedModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/parsedMutant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/product.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/product2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/urgentchan-mut.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/urgentchan.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +27,10 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/Descargas/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/Automaton.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Descargas/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/Location.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -150,7 +94,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.neocities.daviddev.simmdiff.entrypoint.Main" />
       <module name="SimmDiffUppaal" />
-      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/edges.xml --mutant=src/main/resources/edges.xml" />
+      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/edges.xml --mutant=src/main/resources/edges-mutation.xml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -229,6 +173,8 @@
       <workItem from="1676312008703" duration="18597000" />
       <workItem from="1676452389703" duration="61000" />
       <workItem from="1676458058674" duration="2427000" />
+      <workItem from="1676823539268" duration="4957000" />
+      <workItem from="1676837155794" duration="8714000" />
     </task>
     <servers />
   </component>

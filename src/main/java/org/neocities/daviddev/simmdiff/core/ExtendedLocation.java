@@ -3,9 +3,12 @@ package org.neocities.daviddev.simmdiff.core;
 import de.tudarmstadt.es.juppaal.Automaton;
 import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Name;
+import de.tudarmstadt.es.juppaal.Transition;
 import org.jdom.Element;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 
 public class ExtendedLocation extends Location {
     public ExtendedLocation(Automaton automaton) {
@@ -16,42 +19,72 @@ public class ExtendedLocation extends Location {
         super(automaton, locationElement);
     }
 
-    public ExtendedLocation(Automaton automaton, Name name, LocationType type, int x, int y) {
+    public ExtendedLocation(Automaton automaton, Name name, LocationType type, int x, int y, List<Transition> outgoingTransitions, List<Transition> incomingTransitions) {
         super(automaton, name, type, x, y);
-    }
 
-    public ExtendedLocation(Automaton automaton, String name) {
-        super(automaton, name);
+        for (Transition transition : outgoingTransitions) {
+            this.addOutgoingTransition(transition);
+        }
+
+        for (Transition transition : incomingTransitions) {
+            this.addIncomingTransition(transition);
+        }
     }
 
     @Override
     public boolean equals(Object o) {
-        System.out.printf("Comparing %s with %s\n", o.toString(), this.toString());
-        if (!(o instanceof Location)) return false;
-        System.out.println("A");
-        if (((Location) o).getType() != this.getType()) return false;
-        System.out.println("B");
-        if (!new HashSet<>(((Location) o).getOutgoingTransitions()).containsAll(this.getOutgoingTransitions())) return false;
-        System.out.println("C");
-        if (!new HashSet<>(((Location) o).getIncommingTransitions()).containsAll(this.getIncommingTransitions())) return false;
-        System.out.println("D");
-        if (!(((Location) o).getInvariant() == this.getInvariant())) return false;
-        System.out.println("equal");
-        return true;
-    }
-
-  /*  @Override
-    public int hashCode() {
-        int code = 1;
-
-        switch (this.getType()) {
-            case NORMAL: code *= 2; break;
-            case URGENT: code *= 3; break;
-            case COMMITTED: code *= 4; break;
+        if (o == this) {
+            System.out.println("TRUE");
+            return true;
         }
 
-        return code;
-    }*/
+        if (!(o instanceof Location)) {
+            System.out.println("DANGER!!!");
+            return false;
+        }
+        ExtendedLocation loc = (ExtendedLocation) o;
+        //System.out.printf("%s != %s ", loc.getName().getName(), this.getName().getName());
+        if (!loc.getName().getName().equals(this.getName().getName()))
+            return false;
+
+        //System.out.printf("%d != %d ", loc.getIncommingTransitions().size(), this.getIncommingTransitions().size());
+        if (loc.getIncommingTransitions().size() != this.getIncommingTransitions().size()) {
+            return false;
+        }
+
+        //System.out.printf("%d != %d ", loc.getOutgoingTransitions().size(), this.getOutgoingTransitions().size());
+        if (loc.getOutgoingTransitions().size() != this.getOutgoingTransitions().size()) {
+            return false;
+        }
+
+        if (loc.getType() != this.getType())
+            return false;
+
+        //System.out.printf("%s != %s ", loc.getAutomaton().getName().getName(), this.getAutomaton().getName().getName());
+        if (!loc.getAutomaton().getName().getName().equals(this.getAutomaton().getName().getName()))
+            return false;
+
+        //System.out.printf("%s == %s \n", loc.getInvariantAsString(), this.getInvariantAsString());
+        return loc.getInvariantAsString().equals(this.getInvariantAsString());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.getAutomaton().getName().getName().hashCode();
+
+        result = 31 * result + LocationType.NORMAL.hashCode();
+        result = 31 * result + Integer.hashCode(this.getIncommingTransitions().size());
+        result = 31 * result + Integer.hashCode(this.getOutgoingTransitions().size());
+        result = 31 * result + this.getName().getName().hashCode();
+        if (this.getInvariant() == null) {
+            result *= 31;
+        } else {
+            result = 31 * result + this.getInvariantAsString().hashCode();
+        }
+
+        System.out.printf("hash code is %d for %s\n", result, this.getName().getName());
+        return result;
+    }
 
     public void magic() {System.out.println("edjdedjei");}
 }
