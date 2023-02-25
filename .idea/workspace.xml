@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +172,10 @@
       <workItem from="1676452389703" duration="61000" />
       <workItem from="1676458058674" duration="2427000" />
       <workItem from="1676823539268" duration="4957000" />
-      <workItem from="1676837155794" duration="8714000" />
+      <workItem from="1676837155794" duration="9709000" />
+      <workItem from="1676884539801" duration="5000" />
+      <workItem from="1676884635067" duration="96000" />
+      <workItem from="1677242646801" duration="5566000" />
     </task>
     <servers />
   </component>

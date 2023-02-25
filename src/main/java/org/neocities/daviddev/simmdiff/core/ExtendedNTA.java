@@ -51,28 +51,7 @@ public class ExtendedNTA extends NTA {
             );
 
             System.out.println(difference(locationSetModel, locationSetMutant));
-            System.out.println(intersection(locationSetMutant, locationSetModel));
-
-            /*for (Location loc : counterpart.getLocations()) {
-
-            }
-
-            Set<ExtendedLocation> bar = new HashSet<ExtendedLocation>((Collection<? extends ExtendedLocation>) counterpart.getLocations());
-            System.out.printf("Locations in mutant: %d, locations in model: %d\n", bar.size(), foo.size());
-            Set<ExtendedLocation> diff2 = new HashSet<>(bar);
-            diff2.removeIf(foo::contains);
-            for (ExtendedLocation extendedLocation : diff2) {
-                System.out.printf("loc %s not in original\n", extendedLocation.toString());
-            }
-            Set<Transition> transitionSet = new HashSet<Transition>(counterpart.getTransitions());
-            Set<Transition> transitionSetB = new HashSet<Transition>(taio.getTransitions());
-            System.out.printf("Transitions in mutant: %d, transitions in model: %d\n", transitionSet.size(), transitionSetB.size());
-            Set<Transition> diff = new HashSet<>(transitionSet);
-            diff.removeIf(transitionSetB::contains);
-
-            for (Transition difT : diff) {
-                System.out.printf("tran %s not in original\n", difT.toString());
-            }*/
+            System.out.println(difference(locationSetMutant, locationSetModel));
 
         }
     }
