@@ -9,6 +9,21 @@ public class ExtendedTransition extends Transition {
 
     public ExtendedTransition(Automaton automaton, Location source, Location destination) {
         super(automaton, source, destination);
+        if (source != null){
+            super.setSource(new ExtendedLocation(automaton, source.getName(),
+                    source.getType(),
+                    0, 0,
+                    source.getOutgoingTransitions(),
+                    source.getIncommingTransitions()));
+        }
+
+        if (destination != null){
+            super.setTarget(new ExtendedLocation(automaton, destination.getName(),
+                    destination.getType(),
+                    0, 0,
+                    destination.getOutgoingTransitions(),
+                    destination.getIncommingTransitions()));
+        }
     }
 
     public ExtendedTransition(Automaton automaton, Location source) {
@@ -33,7 +48,7 @@ public class ExtendedTransition extends Transition {
 
         ExtendedTransition tran = (ExtendedTransition) o;
 
-        if (tran.getSource() != this.getSource() || tran.getTarget() != this.getTarget() ) {
+        if ( tran.getSource() != this.getSource() || tran.getTarget() != this.getTarget() ) {
             return false;
         }
 
@@ -69,8 +84,11 @@ public class ExtendedTransition extends Transition {
         if (this.getSync() != null)
             result = 31 * result + this.getSync().hashCode();
 
-
-
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s -> %s", this.getSource(), this.getTarget());
     }
 }
