@@ -31,10 +31,20 @@ public class ExtendedLocation extends Location {
         }
     }
 
+    public ExtendedLocation(Location location) {
+        super(location.getAutomaton(), location.getName(), location.getType(), location.getPosX(), location.getPosY());
+
+        for (Transition transition : location.getOutgoingTransitions()) {
+            this.addOutgoingTransition(transition);
+        }
+
+        for (Transition transition : location.getIncommingTransitions()) {
+            this.addIncomingTransition(transition);
+        }
+    }
     @Override
     public boolean equals(Object o) {
         if (o == this) {
-            System.out.println("TRUE");
             return true;
         }
 
@@ -81,8 +91,6 @@ public class ExtendedLocation extends Location {
         } else {
             result = 31 * result + this.getInvariantAsString().hashCode();
         }
-
-        System.out.printf("hash code is %d for %s\n", result, this.getName().getName());
         return result;
     }
 

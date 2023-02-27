@@ -1,9 +1,11 @@
 package org.neocities.daviddev.simmdiff.core;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
-import de.tudarmstadt.es.juppaal.Automaton;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
+import de.tudarmstadt.es.juppaal.*;
 import de.tudarmstadt.es.juppaal.Location;
-import de.tudarmstadt.es.juppaal.NTA;
 import de.tudarmstadt.es.juppaal.Transition;
 
 import java.util.*;
@@ -13,26 +15,39 @@ import static com.google.common.collect.Sets.*;
 
 public class ExtendedNTA extends NTA {
 
+    private ListMultimap<String, ExtendedLocation> diffLocations;
+    private ListMultimap<String, ExtendedTransition> diffTransitions;
+    private String pathToFile;
+
     public ExtendedNTA(String pathToFile) {
         super(pathToFile);
+        diffLocations = ArrayListMultimap.create();
+        diffTransitions = ArrayListMultimap.create();
+        this.pathToFile = pathToFile;
     }
 
     public void compareNTA(NTA model) {
         for (Automaton taio : model.getAutomata()) {
-            System.out.printf("Getting counterpart with name %s \n", taio.getName().getName());
             Automaton mutant = this.getAutomaton(taio.getName().getName());
 
             Set<ExtendedLocation> locationSetMutant = getExtendedLocations(new ArrayList<>(mutant.getLocations()));
             Set<ExtendedLocation> locationSetModel = getExtendedLocations(new ArrayList<>(taio.getLocations()));
 
-            System.out.println(difference(locationSetModel, locationSetMutant));
-            System.out.println(difference(locationSetMutant, locationSetModel));
+            diffLocations.putAll(taio.getName().getName(),difference(locationSetMutant, locationSetModel));
 
             Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()));
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()));
 
-            System.out.println(difference(transitionSetMutant, transitionSetModel));
+            diffTransitions.putAll(taio.getName().getName(), difference(transitionSetMutant, transitionSetModel));
         }
+    }
+
+    public ListMultimap<String, ExtendedLocation> getDiffLocations() {
+        return diffLocations;
+    }
+
+    public ListMultimap<String, ExtendedTransition> getDiffTransitions() {
+        return diffTransitions;
     }
 
     private Set<ExtendedLocation> getExtendedLocations(List<Location> locations) {
@@ -60,5 +75,18 @@ public class ExtendedNTA extends NTA {
                         ))
                         .collect(Collectors.toSet())
         );
+    }
+
+    public String getPathToFile() {
+        return pathToFile;
+    }
+
+    public String getProcessName(String template) {
+        for(String decl : this.getSystemDeclaration().getDeclarations()) {
+            if (decl.contains(template)) {
+                return decl.split("=")[0].trim();
+            }
+        }
+        return null;
     }
 }
