@@ -22,6 +22,10 @@
 		</location>
 		<init ref="id0"/>
 		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+		</transition>
+		<transition>
 			<source ref="id4"/>
 			<target ref="id3"/>
 		</transition>

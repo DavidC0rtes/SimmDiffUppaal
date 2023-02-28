@@ -26,8 +26,7 @@ public class Runner {
 
             Engine engine = new Engine(modelObj.get(), mutantObj.get());
             engine.start();
-            engine.computePaths();
-            //engine.getPaths();
+            engine.getPaths();
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }

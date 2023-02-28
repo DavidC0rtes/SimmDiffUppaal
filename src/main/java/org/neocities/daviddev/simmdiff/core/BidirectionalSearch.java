@@ -41,11 +41,10 @@ public class BidirectionalSearch {
             }
             // Perform one step of the forward search
             ExtendedLocation current = forwardQ.poll();
-            Set<ExtendedLocation> neighbors = automaton
-                    .getOutgoingTransitions(current)
-                    .stream()
-                    .map(transition ->  new ExtendedLocation(transition.getTarget()))
-                    .collect(Collectors.toSet());
+            assert current != null;
+            // Expand node
+            List<ExtendedLocation> neighbors = getNeighbors(current, true);
+            System.out.printf("forward neighbors %s \t", neighbors);
 
             for (ExtendedLocation neighbor : neighbors) {
                 if (!forwardVisited.contains(neighbor)) {
@@ -55,20 +54,17 @@ public class BidirectionalSearch {
             }
 
             // Perform one step of the backward search
-            current = backwardQ.poll();
+            /*current = backwardQ.poll();
             assert current != null;
-            neighbors = current
-                    .getIncommingTransitions()
-                    .stream()
-                    .map(transition ->  new ExtendedLocation(transition.getSource()))
-                    .collect(Collectors.toSet());
-
+            // Expand node
+            neighbors = getNeighbors(current, false);
+            System.out.printf("backward neighbors %s \n", neighbors);
             for (ExtendedLocation neighbor : neighbors) {
                 if (!backwardVisited.contains(neighbor)) {
                     backwardVisited.add(neighbor);
                     backwardQ.add(neighbor);
                 }
-            }
+            }*/
         }
         System.out.println("No path was found");
         return null;
@@ -80,15 +76,15 @@ public class BidirectionalSearch {
         path.add(intersect);
 
         ExtendedLocation current = intersect;
-
+        System.out.println(current);
         while (!current.equals(forwardVisited.iterator().next())) {
-            for (ExtendedLocation  neighbor : getNeighbors(current, false)) {
+            for (ExtendedLocation  neighbor : getNeighbors(current, true)) {
                 System.out.printf("neighbor %s \n", neighbor);
                 if (forwardVisited.contains(neighbor)) {
                     path.add(neighbor);
-                    //break;
+                    current = neighbor;
+                    break;
                 }
-                current = neighbor;
             }
         }
 
@@ -110,6 +106,7 @@ public class BidirectionalSearch {
 
     private List<ExtendedLocation> getNeighbors(ExtendedLocation location, boolean forward) {
         if (forward) {
+            System.out.println(location.getOutgoingTransitions().size());
             return location.getOutgoingTransitions()
                     .stream()
                     .map(transition -> new ExtendedLocation(transition.getTarget()))

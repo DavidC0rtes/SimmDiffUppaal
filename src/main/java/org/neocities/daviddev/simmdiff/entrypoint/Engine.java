@@ -1,6 +1,7 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ListMultimap;
 import de.tudarmstadt.es.juppaal.Automaton;
 import org.neocities.daviddev.simmdiff.core.BidirectionalSearch;
@@ -51,14 +52,13 @@ public class Engine {
             }
         }
     }
-
-    public void getPaths() {
-
+    public ListMultimap<String, String> getPaths() {
+        ListMultimap<String, String> traces = ArrayListMultimap.create();
         ProcessBuilder verifyPb = new ProcessBuilder();
-
+        Random rand = new Random();
         for (var entry : diffLocations.entries()) {
             String reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
-            System.out.printf("Reach: %s", reachFormula);
+            System.out.printf("Formula: %s", reachFormula);
 
             try  (FileWriter writer = new FileWriter("src/main/resources/prop.q")) {
                 writer.write(reachFormula);
@@ -66,7 +66,6 @@ public class Engine {
                 e.printStackTrace();
             }
             try {
-                Random rand = new Random();
                 verifyPb.command(
                         "/home/david/.local/etc/uppaal64-4.1.26-2/bin-Linux/verifyta",
                         "-t" , "0",
@@ -77,14 +76,13 @@ public class Engine {
                         "src/main/resources/prop.q"
                 );
                 Process p = verifyPb.start();
-                String result = new String(p.getErrorStream().readAllBytes());
-                System.out.println(result);
-
+                traces.put(entry.getKey(), new String(p.getErrorStream().readAllBytes()));
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
+        return traces;
     }
 
 }
