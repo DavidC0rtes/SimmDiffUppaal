@@ -86,19 +86,20 @@ public class BidirectionalSearch {
                 System.out.printf("neighbor %s \n", neighbor);
                 if (forwardVisited.contains(neighbor)) {
                     path.add(neighbor);
-                    break;
+                    //break;
                 }
                 current = neighbor;
             }
         }
 
-        while (!current.equals(backwardVisited.iterator().next())) {
+        while (!current.equals(forwardVisited.iterator().next())) {
             for (ExtendedLocation  neighbor : getNeighbors(current, true)) {
                 System.out.printf("neighbor! %s \n", neighbor);
                 if (backwardVisited.contains(neighbor)) {
+                    System.out.println("contains");
                     path.add(neighbor);
                     current = neighbor;
-                    break;
+                    //break;
                 }
                 current = neighbor;
             }

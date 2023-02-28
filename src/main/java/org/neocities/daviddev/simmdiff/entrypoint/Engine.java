@@ -8,10 +8,7 @@ import org.neocities.daviddev.simmdiff.core.ExtendedLocation;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.ExtendedTransition;
 
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
@@ -61,23 +58,26 @@ public class Engine {
 
         for (var entry : diffLocations.entries()) {
             String reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
-            System.out.printf("Reach: %s\n", reachFormula);
-            try (FileWriter writer = new FileWriter("src/main/resources/prop.q")) {
-                writer.write(reachFormula);
+            System.out.printf("Reach: %s", reachFormula);
 
+            try  (FileWriter writer = new FileWriter("src/main/resources/prop.q")) {
+                writer.write(reachFormula);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
                 Random rand = new Random();
                 verifyPb.command(
-                        "verifyta",
+                        "/home/david/.local/etc/uppaal64-4.1.26-2/bin-Linux/verifyta",
                         "-t" , "0",
                         "-r", Integer.toString(rand.nextInt()),
                         "-y",
+                        "-q",
                         mutant.getPathToFile(),
                         "src/main/resources/prop.q"
                 );
-                verifyPb.redirectErrorStream(true);
                 Process p = verifyPb.start();
-
-                String result = new String(p.getInputStream().readAllBytes());
+                String result = new String(p.getErrorStream().readAllBytes());
                 System.out.println(result);
 
             } catch (IOException e) {
