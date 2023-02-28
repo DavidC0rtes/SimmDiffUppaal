@@ -36,12 +36,12 @@ public class Engine {
         diffTransitions = mutant.getDiffTransitions();
         diffLocations = mutant.getDiffLocations();
     }
+
     /*
     Compute the shortest path for every TAIO to diff loc. (A*) -> create new automata at the same time
     Discard everything else... create a new automata only with those paths
     add new automata to nta.
      */
-
     public void computePaths() {
         BidirectionalSearch search = new BidirectionalSearch(null);
         for(Automaton ta : mutant.getAutomata()) {
