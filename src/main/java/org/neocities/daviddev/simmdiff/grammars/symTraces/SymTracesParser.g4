@@ -2,7 +2,7 @@ parser grammar SymTracesParser;
 options { tokenVocab=SymTracesLexer; }
 trace       : state (transition state)*;
 
-state       :   'State'
+state       :   'State'':'
                 location
                 values?
                 clocks?

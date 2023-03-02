@@ -70,7 +70,6 @@ public class Engine {
                         "/home/david/.local/etc/uppaal64-4.1.26-2/bin-Linux/verifyta",
                         "-t" , "0",
                         "-r", Integer.toString(rand.nextInt()),
-                        "-y",
                         "-q",
                         mutant.getPathToFile(),
                         "src/main/resources/prop.q"
