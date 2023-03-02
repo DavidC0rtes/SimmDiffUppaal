@@ -9,11 +9,14 @@ import org.neocities.daviddev.simmdiff.grammars.symTraces.SymTracesParser;
 import org.neocities.daviddev.simmdiff.grammars.symTraces.TracesTranslator;
 
 import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Callable;
 
 public class Trace implements Callable<String> {
 
     private final String symbolicTrace;
+
+    private Set<String> channels;
 
     public Trace(String symbolicTrace) {
         this.symbolicTrace = symbolicTrace;
@@ -27,6 +30,14 @@ public class Trace implements Callable<String> {
         ParseTree tree = parser.trace();
 
         TracesTranslator eval = new TracesTranslator(new HashSet<>());
-        return eval.visit(tree);
+
+        String translatedTrace = eval.visit(tree);
+        channels = eval.getChannels();
+        return translatedTrace;
     }
+
+    public Set<String> getChannels() {
+        return channels;
+    }
+
 }

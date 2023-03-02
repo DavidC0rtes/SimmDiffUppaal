@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.interp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/symTraces/SymTracesParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Diff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Trace.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/prop.q" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Trace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Trace.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +191,7 @@
       <workItem from="1677623887534" duration="3013000" />
       <workItem from="1677662072278" duration="28000" />
       <workItem from="1677703713010" duration="798000" />
-      <workItem from="1677749044868" duration="3113000" />
+      <workItem from="1677749044868" duration="6389000" />
     </task>
     <servers />
   </component>

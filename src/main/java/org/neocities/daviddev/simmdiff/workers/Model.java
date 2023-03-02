@@ -4,7 +4,6 @@ import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class Model implements Callable<ExtendedNTA> {
