@@ -20,12 +20,14 @@ public class Runner {
     private final ExecutorService modelExecutor;
     private ExecutorService diffExecutor;
 
-    private static final String TRACES_DIR = "src/main/resources/traces/";
+    private String tracesDir = "src/main/resources/traces/";
 
     public Runner(File model, File mutant) {
         this.model=model;
         this.mutant=mutant;
         modelExecutor = Executors.newCachedThreadPool();
+        System.out.println(mutant.getName());
+        tracesDir += mutant.getName().replace((".xml"),"" ).concat("/");
     }
 
     public void parseModels() {
@@ -42,7 +44,7 @@ public class Runner {
     }
 
     public void parseTraces(ListMultimap<String, String> symTraces) throws IOException, ExecutionException, InterruptedException {
-        Files.createDirectories(Paths.get(TRACES_DIR));
+        Files.createDirectories(Paths.get(tracesDir));
         diffExecutor = Executors.newCachedThreadPool();
 
         for (var trace : symTraces.entries()) {
@@ -51,13 +53,13 @@ public class Runner {
             Trace traceWorker = new Trace(trace.getValue());
 
             Future<String> translatedTrace =  diffExecutor.submit(traceWorker);
-            FileWriter writer = new FileWriter(TRACES_DIR.concat(trace.getKey()));
+            FileWriter writer = new FileWriter(tracesDir.concat(trace.getKey()));
             writer.write(translatedTrace.get());
             writer.close();
 
             // Create preamble
             String preambleFilename = "Preamble_" +  trace.getKey() + ".trn";
-            FileWriter pWriter = new FileWriter(TRACES_DIR.concat(preambleFilename));
+            FileWriter pWriter = new FileWriter(tracesDir.concat(preambleFilename));
             Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", "60000");
 
             pWriter.write(preamble.getPreamble());
