@@ -21,7 +21,8 @@ public class Runner {
 
     private final ExecutorService modelExecutor;
     private ExecutorService diffExecutor;
-    private HashMap<String, String[]> tracesMap;
+    private final HashMap<String, String[]> tracesMap;
+    private final HashMap<String, Boolean> tracesResult;
     private ListMultimap<String, String> symTraces;
     private String tracesDir = "src/main/resources/traces/";
 
@@ -32,6 +33,7 @@ public class Runner {
         System.out.println(mutant.getName());
         tracesDir += mutant.getName().replace((".xml"),"" ).concat("/");
         tracesMap = new HashMap<>();
+        tracesResult = new HashMap<>();
     }
 
     public void parseModels() {
@@ -50,9 +52,6 @@ public class Runner {
 
     /**
      * Parses symbolic UPPAAL traces and translates them to TRON format.
-     * @throws IOException
-     * @throws ExecutionException
-     * @throws InterruptedException
      */
     public void parseTraces()  {
         try {
@@ -64,26 +63,13 @@ public class Runner {
         float timeout = 0;
         int i = 1;
         for (var trace : symTraces.entries()) {
-            System.out.println("Translating traces " + trace.getKey());
-
             Trace traceWorker = new Trace(trace.getValue());
-
             Future<String> translatedTrace =  diffExecutor.submit(traceWorker);
+
             String traceFileName = trace.getKey() + i+".trn";
-            FileWriter writer = null;
-            try {
-                writer = new FileWriter(tracesDir.concat(traceFileName));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
+            try (FileWriter writer = new FileWriter(tracesDir.concat(traceFileName))){
                 writer.write(translatedTrace.get());
             } catch (IOException | InterruptedException | ExecutionException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                writer.close();
-            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
@@ -94,7 +80,6 @@ public class Runner {
 
             // Create preamble
             String preambleFilename = "Preamble_" +  trace.getKey() + i + ".trn";
-
             Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", Integer.toString(Math.round(timeout) + 1));
 
             try (FileWriter pWriter = new FileWriter(tracesDir.concat(preambleFilename))){
@@ -107,9 +92,9 @@ public class Runner {
             tracesMap.put(tracesDir + trace.getKey() + i,
                     new String[]{tracesDir.concat(preambleFilename), tracesDir.concat(traceFileName)}
             );
+            System.out.println("Translated trace for " + trace.getKey());
             i++;
         }
-        //diffExecutor.shutdown();
     }
 
     public void simulateTraces() {
@@ -125,11 +110,12 @@ public class Runner {
             ));
 
             try {
-                System.out.printf("Result  was %s\n", result.get());
+                tracesResult.put(entry.getKey(), result.get());
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         }
+        diffExecutor.shutdown();
     }
 
     private String getTronPath() {
