@@ -3,7 +3,7 @@ lexer grammar SymTracesLexer;
 WS          :   [ \t\r\n]               -> skip ;
 
 STATE       :   'State';
-DELAY       :   'delay';
+DELAY       :   'Delay';
 TRANSITION  :   'Transitions' ;
 
 TAU         :   'tau' ;

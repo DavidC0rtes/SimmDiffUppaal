@@ -61,7 +61,11 @@ public class TracesTranslator extends SymTracesParserBaseVisitor<String> {
 
     @Override
     public String visitDelay(SymTracesParser.DelayContext ctx) {
-        String delayString = ctx.POINT().toString();
+
+        String delayString = ctx.POINT() != null
+                ? ctx.POINT().getText()
+                : ctx.NAT().getText();
+
         double delayDouble = Double.parseDouble(delayString);
 
 

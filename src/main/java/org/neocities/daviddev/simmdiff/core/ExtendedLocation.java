@@ -85,7 +85,10 @@ public class ExtendedLocation extends Location {
         result = 31 * result + LocationType.NORMAL.hashCode();
         result = 31 * result + Integer.hashCode(this.getIncommingTransitions().size());
         result = 31 * result + Integer.hashCode(this.getOutgoingTransitions().size());
-        result = 31 * result + this.getName().getName().hashCode();
+        if (this.getName() != null) {
+            result = 31 * result + this.getName().getName().hashCode();
+        }
+
         if (this.getInvariant() == null) {
             result *= 31;
         } else {

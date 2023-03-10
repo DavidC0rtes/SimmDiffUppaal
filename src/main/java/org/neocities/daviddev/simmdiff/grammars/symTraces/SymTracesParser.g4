@@ -18,7 +18,7 @@ values      :   (varFieldDecl '=' expr)* ;
 
 clocks      :   '[' ('#'? IDENTIFIER '=' (POINT | NAT) )+ ']' ;
 
-delay       :   'delay' POINT;
+delay       :   'Delay' ':' (NAT | POINT);
 
 discrete    :   'Transitions'':'
                 aDiscrete+
@@ -87,7 +87,7 @@ type        :   IDENTIFIER  # IdentifierType
 
 fieldDecl   :   type varFieldDecl (',' varFieldDecl)* ';' ;
 
-varFieldDecl:   IDENTIFIER arrayDecl* ;
+varFieldDecl:   (loc | IDENTIFIER) arrayDecl* ;
 
 arrayDecl   :   '[' expr ']'    # ArrayDeclExpr
             |   '[' type ']'    # ArrayDeclType

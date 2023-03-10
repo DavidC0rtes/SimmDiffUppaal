@@ -26,8 +26,20 @@ public class ExtendedNTA extends NTA {
         this.pathToFile = pathToFile;
     }
 
+    @Override
+    public Automaton getAutomaton(String name) {
+        for (Automaton ta : this.getAutomata()) {
+            if (ta.getName().getName().equals(name)) {
+                return ta;
+            }
+        }
+
+        throw new IllegalArgumentException("Can't find Automaton "+ name + " in this system");
+    }
+
     public void compareNTA(NTA model) {
         for (Automaton taio : model.getAutomata()) {
+            System.out.println(this.getAutomata().get(0).getName());
             Automaton mutant = this.getAutomaton(taio.getName().getName());
 
             Set<ExtendedLocation> locationSetMutant = getExtendedLocations(new ArrayList<>(mutant.getLocations()));
@@ -39,6 +51,7 @@ public class ExtendedNTA extends NTA {
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()));
 
             diffTransitions.putAll(taio.getName().getName(), difference(transitionSetMutant, transitionSetModel));
+            //System.out.println(difference(locationSetMutant, locationSetModel));
         }
     }
 
@@ -83,10 +96,22 @@ public class ExtendedNTA extends NTA {
 
     public String getProcessName(String template) {
         for(String decl : this.getSystemDeclaration().getDeclarations()) {
-            if (decl.contains(template)) {
-                return decl.split("=")[0].trim();
+            if (decl.contains(template) && decl.contains("=")) {
+                String[] parts = decl.trim().split("=");
+                return parts[0].trim();
             }
         }
-        return null;
+        return template;
+    }
+
+    public void makeBroadcast() {
+        int idx = 0;
+        for (String decl : this.getDeclarations().getStrings()) {
+            boolean notBroadcast = decl.matches("^(urgent)?\\s+chan.*");
+            if (notBroadcast) {
+                this.getDeclarations().getStrings().set(idx, "broadcast " + decl);
+            }
+            idx++;
+        }
     }
 }

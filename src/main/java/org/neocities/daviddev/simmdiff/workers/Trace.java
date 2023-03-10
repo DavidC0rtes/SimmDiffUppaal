@@ -17,6 +17,7 @@ public class Trace implements Callable<String> {
     private final String symbolicTrace;
 
     private Set<String> channels;
+    private float timeout;
 
     public Trace(String symbolicTrace) {
         this.symbolicTrace = symbolicTrace;
@@ -33,11 +34,12 @@ public class Trace implements Callable<String> {
 
         String translatedTrace = eval.visit(tree);
         channels = eval.getChannels();
+        timeout = eval.getTimeout();
         return translatedTrace;
     }
 
     public Set<String> getChannels() {
         return channels;
     }
-
+    public float getTimeout() { return timeout; }
 }

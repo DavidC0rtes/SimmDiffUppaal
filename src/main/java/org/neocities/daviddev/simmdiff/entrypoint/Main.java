@@ -31,6 +31,8 @@ public class Main implements Runnable {
         try (FileWriter writer = new FileWriter("diff.xml")){
             Runner runner = new Runner(model, mutant);
             runner.parseModels();
+            runner.parseTraces();
+            runner.simulateTraces();
             /*FileLoader flModel = new FileLoader(model);
             FileLoader flMutant = new FileLoader(mutant);
 

@@ -56,7 +56,7 @@ public class SymTracesLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'State'", "'delay'", "'Transitions'", "'tau'", null, null, 
+			null, null, "'State'", "'Delay'", "'Transitions'", "'tau'", null, null, 
 			null, "'->'", "'{'", "'}'", "'('", "')'", "'.'", "':'", "';'", "','", 
 			"'?'", "'!'", "'forall'", "'exists'", "'sum'", "'true'", "'false'", "'int'", 
 			"'double'", "'clock'", "'chan'", "'bool'", "'['", "']'", "'scalar'", 
@@ -275,7 +275,7 @@ public class SymTracesLexer extends Lexer {
 		"\u0000\u0095\u0096\u0006\u0000\u0000\u0000\u0096\u0002\u0001\u0000\u0000"+
 		"\u0000\u0097\u0098\u0005S\u0000\u0000\u0098\u0099\u0005t\u0000\u0000\u0099"+
 		"\u009a\u0005a\u0000\u0000\u009a\u009b\u0005t\u0000\u0000\u009b\u009c\u0005"+
-		"e\u0000\u0000\u009c\u0004\u0001\u0000\u0000\u0000\u009d\u009e\u0005d\u0000"+
+		"e\u0000\u0000\u009c\u0004\u0001\u0000\u0000\u0000\u009d\u009e\u0005D\u0000"+
 		"\u0000\u009e\u009f\u0005e\u0000\u0000\u009f\u00a0\u0005l\u0000\u0000\u00a0"+
 		"\u00a1\u0005a\u0000\u0000\u00a1\u00a2\u0005y\u0000\u0000\u00a2\u0006\u0001"+
 		"\u0000\u0000\u0000\u00a3\u00a4\u0005T\u0000\u0000\u00a4\u00a5\u0005r\u0000"+

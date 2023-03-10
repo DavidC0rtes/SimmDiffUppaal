@@ -10,12 +10,12 @@ import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.ExtendedTransition;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 
 public class Engine {
-    private ExtendedNTA model, mutant;
+    private final ExtendedNTA model;
+    private final ExtendedNTA mutant;
     private ListMultimap<String, ExtendedLocation> diffLocations;
     private ListMultimap<String, ExtendedTransition> diffTransitions;
     public Engine(ExtendedNTA model, ExtendedNTA mutant) {
@@ -25,17 +25,12 @@ public class Engine {
     }
 
     public void start() {
-        /*
-        todo:
-        extend NTA class
-        add method to compare it against another NTA
-        save elements which are different
-        add method to generate XML only with different elements in each TA(?)
-         */
         mutant.compareNTA(model);
         diffTransitions = mutant.getDiffTransitions();
         diffLocations = mutant.getDiffLocations();
     }
+
+
 
     /*
     Compute the shortest path for every TAIO to diff loc. (A*) -> create new automata at the same time
@@ -51,6 +46,11 @@ public class Engine {
                 System.out.println(search.search(new ExtendedLocation(ta.getInit()),iter.next()));
             }
         }
+    }
+
+    private void prepareModels() {
+        mutant.makeBroadcast();
+        model.makeBroadcast();
     }
     public ListMultimap<String, String> getPaths() {
         ListMultimap<String, String> traces = ArrayListMultimap.create();
