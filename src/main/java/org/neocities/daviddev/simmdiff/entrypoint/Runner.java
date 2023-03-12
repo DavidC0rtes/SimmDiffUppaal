@@ -30,7 +30,6 @@ public class Runner {
         this.model=model;
         this.mutant=mutant;
         modelExecutor = Executors.newCachedThreadPool();
-        System.out.println(mutant.getName());
         tracesDir += mutant.getName().replace((".xml"),"" ).concat("/");
         tracesMap = new HashMap<>();
         tracesResult = new HashMap<>();
@@ -98,7 +97,7 @@ public class Runner {
     }
 
     public void simulateTraces() {
-        // Find out Tron path
+        //@todo: Find out Tron path
         String tronPath = System.getProperty("user.home") + "/.local/etc/uppaal-tron-1.5-linux/tron";
         for (var entry : tracesMap.entrySet()) {
             System.out.println(entry.getValue()[0] + " " + entry.getValue()[1]);

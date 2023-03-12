@@ -36,26 +36,26 @@ clock time;		// Global time
 		<transition>
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="guard" x="72" y="176">y &gt;= delay</label>
+			<label kind="guard" x="72" y="176">y&gt;=10</label>
 			<label kind="synchronisation" x="72" y="120">release!</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="guard" x="208" y="224">L == 1</label>
+			<label kind="guard" x="208" y="224">L==1</label>
 			<label kind="synchronisation" x="216" y="192">take !</label>
-			<label kind="assignment" x="104" y="224">y = 0</label>
+			<label kind="assignment" x="104" y="224">y=0</label>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="guard" x="296" y="112">y &gt;= delay</label>
+			<label kind="guard" x="296" y="112">y&gt;=10</label>
 			<label kind="synchronisation" x="296" y="160">release!</label>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id0"/>
-			<label kind="guard" x="120" y="56">L == 0</label>
+			<label kind="guard" x="120" y="56">L==0</label>
 			<label kind="synchronisation" x="120" y="88">take !</label>
 			<label kind="assignment" x="216" y="56">y = 0</label>
 		</transition>

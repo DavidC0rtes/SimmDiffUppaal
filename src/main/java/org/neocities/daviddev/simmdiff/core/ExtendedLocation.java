@@ -21,6 +21,8 @@ public class ExtendedLocation extends Location {
 
     public ExtendedLocation(Automaton automaton, Name name, LocationType type, int x, int y, List<Transition> outgoingTransitions, List<Transition> incomingTransitions) {
         super(automaton, name, type, x, y);
+        if (name == null)
+            this.setName(new  Name(String.valueOf(this.hashCode())));
 
         for (Transition transition : outgoingTransitions) {
             this.addOutgoingTransition(transition);
@@ -34,11 +36,15 @@ public class ExtendedLocation extends Location {
     public ExtendedLocation(Location location) {
         super(location.getAutomaton(), location.getName(), location.getType(), location.getPosX(), location.getPosY());
 
+        if (location.getName() == null)
+            this.setName(new  Name(String.valueOf(this.hashCode())));
+
         for (Transition transition : location.getOutgoingTransitions()) {
             this.addOutgoingTransition(transition);
         }
 
         for (Transition transition : location.getIncommingTransitions()) {
+            assert transition != null;
             this.addIncomingTransition(transition);
         }
     }
