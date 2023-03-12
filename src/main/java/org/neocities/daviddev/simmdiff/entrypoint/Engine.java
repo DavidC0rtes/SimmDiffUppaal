@@ -49,14 +49,20 @@ public class Engine {
     }
 
     private void prepareModels() {
-        mutant.makeBroadcast();
-        model.makeBroadcast();
+       /* mutant.makeBroadcast();
+        model.makeBroadcast();*/
+        model.getAutomata().forEach(automaton -> {
+            System.out.printf("%d locations in automaton %s\n", automaton.getLocations().size(), automaton.getName().getName());
+        });
+        model.writeModelToFile(model.getPathToFile()+"test.xml");
     }
     public ListMultimap<String, String> getPaths() {
+        //prepareModels();
         ListMultimap<String, String> traces = ArrayListMultimap.create();
         ProcessBuilder verifyPb = new ProcessBuilder();
         Random rand = new Random();
         for (var entry : diffLocations.entries()) {
+            System.out.printf("Got entry %s %s\n", entry.getKey(), entry.getValue());
             String reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
             System.out.printf("Formula: %s", reachFormula);
 

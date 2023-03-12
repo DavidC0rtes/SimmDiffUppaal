@@ -32,7 +32,7 @@ public class Main implements Runnable {
             Runner runner = new Runner(model, mutant);
             runner.parseModels();
             runner.parseTraces();
-            runner.simulateTraces();
+            //runner.simulateTraces();
             /*FileLoader flModel = new FileLoader(model);
             FileLoader flMutant = new FileLoader(mutant);
 

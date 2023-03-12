@@ -54,9 +54,12 @@ public class ExtendedLocation extends Location {
         }
         ExtendedLocation loc = (ExtendedLocation) o;
         //System.out.printf("%s != %s ", loc.getName().getName(), this.getName().getName());
-        if (!loc.getName().getName().equals(this.getName().getName()))
+        if (!loc.getUniqueIdString().equals(this.getUniqueIdString()))
             return false;
 
+        if (this.getName() != loc.getName()) {
+            return false;
+        }
         //System.out.printf("%d != %d ", loc.getIncommingTransitions().size(), this.getIncommingTransitions().size());
         if (loc.getIncommingTransitions().size() != this.getIncommingTransitions().size()) {
             return false;
@@ -81,7 +84,7 @@ public class ExtendedLocation extends Location {
     @Override
     public int hashCode() {
         int result = this.getAutomaton().getName().getName().hashCode();
-
+        result = 31*result+this.getUniqueIdString().hashCode();
         result = 31 * result + LocationType.NORMAL.hashCode();
         result = 31 * result + Integer.hashCode(this.getIncommingTransitions().size());
         result = 31 * result + Integer.hashCode(this.getOutgoingTransitions().size());
@@ -89,11 +92,10 @@ public class ExtendedLocation extends Location {
             result = 31 * result + this.getName().getName().hashCode();
         }
 
-        if (this.getInvariant() == null) {
-            result *= 31;
-        } else {
+        if (this.getInvariant() != null) {
             result = 31 * result + this.getInvariantAsString().hashCode();
         }
+
         return result;
     }
 

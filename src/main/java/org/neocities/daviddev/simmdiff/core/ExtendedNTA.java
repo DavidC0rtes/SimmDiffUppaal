@@ -3,7 +3,7 @@ package org.neocities.daviddev.simmdiff.core;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
-import com.google.common.collect.Multimap;
+
 import de.tudarmstadt.es.juppaal.*;
 import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Transition;
@@ -24,6 +24,9 @@ public class ExtendedNTA extends NTA {
         diffLocations = ArrayListMultimap.create();
         diffTransitions = ArrayListMultimap.create();
         this.pathToFile = pathToFile;
+        this.getAutomata().forEach(automaton -> {
+            System.out.printf(">> %d locations in automaton %s\n", automaton.getLocations().size(), automaton.getName().getName());
+        });
     }
 
     @Override
@@ -47,6 +50,7 @@ public class ExtendedNTA extends NTA {
 
             diffLocations.putAll(taio.getName().getName(),difference(locationSetMutant, locationSetModel));
 
+            System.out.printf("%d different locations\n", diffLocations.size());
             Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()));
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()));
 
@@ -64,6 +68,11 @@ public class ExtendedNTA extends NTA {
     }
 
     private Set<ExtendedLocation> getExtendedLocations(List<Location> locations) {
+        locations.forEach(location -> {
+            if (location.getName() == null)
+                location.setName(location.getUniqueIdString());
+        });
+
         return ImmutableSet.copyOf(
                 locations.stream()
                         .map(loc -> new ExtendedLocation(

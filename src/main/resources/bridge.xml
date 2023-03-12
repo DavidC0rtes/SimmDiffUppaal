@@ -21,13 +21,11 @@ clock time;		// Global time
 		<parameter>const int delay</parameter>
 		<declaration>clock y;</declaration>
 		<location id="id0" x="288" y="80">
-			<name x="278" y="46">anon</name>
 		</location>
 		<location id="id1" x="288" y="216">
 			<name x="272" y="232">safe</name>
 		</location>
 		<location id="id2" x="64" y="216">
-			<name x="54" y="182">anon2</name>
 		</location>
 		<location id="id3" x="64" y="80">
 			<name x="56" y="48">unsafe</name>
