@@ -12,7 +12,7 @@
  * within 60 minutes?
  */
 
-chan take, release, tau;		// Take and release torch
+chan take, release;		// Take and release torch
 int[0,1] L;		// The side the torch is on
 clock time;		// Global time
 </declaration>
@@ -34,26 +34,26 @@ clock time;		// Global time
 		<transition>
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="guard" x="72" y="176">y&gt;=10</label>
+			<label kind="guard" x="72" y="176">y &gt;= delay</label>
 			<label kind="synchronisation" x="72" y="120">release!</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="guard" x="208" y="224">L==1</label>
+			<label kind="guard" x="208" y="224">L == 1</label>
 			<label kind="synchronisation" x="216" y="192">take !</label>
-			<label kind="assignment" x="104" y="224">y=0</label>
+			<label kind="assignment" x="104" y="224">y = 0</label>
 		</transition>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="guard" x="296" y="112">y&gt;=10</label>
+			<label kind="guard" x="296" y="112">y &gt;= delay</label>
 			<label kind="synchronisation" x="296" y="160">release!</label>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id0"/>
-			<label kind="guard" x="120" y="56">L==0</label>
+			<label kind="guard" x="120" y="56">L == 0</label>
 			<label kind="synchronisation" x="120" y="88">take !</label>
 			<label kind="assignment" x="216" y="56">y = 0</label>
 		</transition>
@@ -64,7 +64,6 @@ clock time;		// Global time
 			<name x="192" y="200">one</name>
 		</location>
 		<location id="id5" x="200" y="48">
-			<name x="190" y="14">anon</name>
 			<urgent/>
 		</location>
 		<location id="id6" x="64" y="120">

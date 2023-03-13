@@ -99,7 +99,7 @@ STRING      :   '"' ~[<"]* '"'
             |   '\'' ~[<']* '\''
             ;
 Name        :   NameStartChar NameChar* ;
-S           :   [ \t\r\n]                ;
+S           :   [ \t\r\n]     -> skip           ;
 
 fragment
 HEXDIGIT    :   [a-fA-F0-9] ;
@@ -145,7 +145,7 @@ CLOSE_DECLARATION   :   '</' [ \t\r\n]* 'declaration' [ \t\r\n]* '>'  -> popMode
 
 CLOSE_PARAMETER     :   '</' [ \t\r\n]* 'parameter' [ \t\r\n]* '>'  -> popMode ;
 
-GUARD_S             :   [ \t\r\n]               ;
+GUARD_S             :   [ \t\r\n]               -> skip;
 
 
 NAT                 :   [0-9]+ ;

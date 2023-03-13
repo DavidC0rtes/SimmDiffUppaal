@@ -3,6 +3,7 @@ package org.neocities.daviddev.simmdiff.entrypoint;
 import com.google.common.collect.ListMultimap;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.Preamble;
+import org.neocities.daviddev.simmdiff.grammars.uppaal.FileLoader;
 import org.neocities.daviddev.simmdiff.workers.Model;
 import org.neocities.daviddev.simmdiff.workers.Trace;
 import org.neocities.daviddev.simmdiff.workers.Tron;
@@ -22,17 +23,23 @@ public class Runner {
     private final ExecutorService modelExecutor;
     private ExecutorService diffExecutor;
     private final HashMap<String, String[]> tracesMap;
-    private final HashMap<String, Boolean> tracesResult;
+
+    public HashMap<String, String[]> getTracesResult() {
+        return tracesResult;
+    }
+
+    private final HashMap<String, String[]> tracesResult;
     private ListMultimap<String, String> symTraces;
-    private String tracesDir = "src/main/resources/traces/";
+    private String tracesDir = "src/main/resources/mutations/";
 
     public Runner(File model, File mutant) {
         this.model=model;
         this.mutant=mutant;
         modelExecutor = Executors.newCachedThreadPool();
-        tracesDir += mutant.getName().replace((".xml"),"" ).concat("/");
+        tracesDir += model.getName().replace(".xml", "") +"/" + mutant.getName().replace((".xml"),"" ).concat("/traces/");
+        System.out.println("Traces dir :"+tracesDir);
         tracesMap = new HashMap<>();
-        tracesResult = new HashMap<>();
+        tracesResult = new HashMap<String, String[]>();
     }
 
     public void parseModels() {
@@ -109,7 +116,7 @@ public class Runner {
             ));
 
             try {
-                tracesResult.put(entry.getKey(), result.get());
+                tracesResult.put(entry.getKey(), new String[]{model.getAbsolutePath(), String.valueOf(result.get())});
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }

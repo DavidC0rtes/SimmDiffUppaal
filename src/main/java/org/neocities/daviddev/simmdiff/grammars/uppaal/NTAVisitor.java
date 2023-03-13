@@ -12,7 +12,7 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
     @Override
     public String visitModel(UppaalParser.ModelContext ctx) {
         String model = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-                "<!DOCTYPE workers PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\n";
+                "<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>\n";
 
         model = model.concat(visit(ctx.nta()));
         return model;
@@ -55,7 +55,7 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
 
     @Override
     public String visitNta(UppaalParser.NtaContext ctx) {
-        String nta = "<workers>\n";
+        String nta = "<nta>\n";
         nta = nta.concat(visit(ctx.declaration()).concat("\n"));
 
         List<UppaalParser.TemplateContext> templates = ctx.template();
@@ -70,7 +70,7 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
             nta = nta.concat(visit(ctx.queries())).concat("\n");
         }
 
-        nta = nta.concat("</workers>");
+        nta = nta.concat("</nta>");
         return nta;
     }
 
@@ -722,6 +722,8 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
         location = location.concat(">").concat("\n");
         if(ctx.name()!=null){
             location = location.concat(visit(ctx.name())).concat("\n");
+        } else {
+            location = location.concat("<name>"+ctx.STRING().getText().replaceAll("\"", "")+"</name>\n");
         }
 
         if (ctx.labelLoc() != null) {

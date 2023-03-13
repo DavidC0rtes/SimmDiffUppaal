@@ -28,11 +28,10 @@ public class Main implements Runnable {
     @Override
     public void run() {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        try (FileWriter writer = new FileWriter("diff.xml")){
-            Runner runner = new Runner(model, mutant);
-            runner.parseModels();
-            runner.parseTraces();
-            //runner.simulateTraces();
+        Runner runner = new Runner(model, mutant);
+        runner.parseModels();
+        runner.parseTraces();
+        runner.simulateTraces();
             /*FileLoader flModel = new FileLoader(model);
             FileLoader flMutant = new FileLoader(mutant);
 
@@ -76,9 +75,6 @@ public class Main implements Runnable {
                     "</workers>");
 
             writer.write(content);*/
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static void main(String[] args) {

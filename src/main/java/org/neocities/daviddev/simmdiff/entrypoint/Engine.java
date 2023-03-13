@@ -57,7 +57,6 @@ public class Engine {
         model.writeModelToFile(model.getPathToFile()+"test.xml");
     }
     public ListMultimap<String, String> getPaths() {
-        //prepareModels();
         ListMultimap<String, String> traces = ArrayListMultimap.create();
         ProcessBuilder verifyPb = new ProcessBuilder();
         Random rand = new Random();
@@ -81,7 +80,8 @@ public class Engine {
                         "src/main/resources/prop.q"
                 );
                 Process p = verifyPb.start();
-                traces.put(entry.getKey(), new String(p.getErrorStream().readAllBytes()));
+                String trace = new String(p.getErrorStream().readAllBytes());
+                traces.put(entry.getKey(), trace);
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);

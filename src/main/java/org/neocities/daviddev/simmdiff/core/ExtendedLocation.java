@@ -59,13 +59,19 @@ public class ExtendedLocation extends Location {
             return false;
         }
         ExtendedLocation loc = (ExtendedLocation) o;
-        //System.out.printf("%s != %s ", loc.getName().getName(), this.getName().getName());
-        if (!loc.getUniqueIdString().equals(this.getUniqueIdString()))
-            return false;
+        //System.out.printf("%s != %s |", loc.getName().getName(), this.getName().getName());
 
-        if (this.getName() != loc.getName()) {
-            return false;
+        boolean namesAreEqual;
+        if (this.getName() == null ^ loc.getName() == null) {
+            namesAreEqual = false;
+        } else if (this.getName() != null && loc.getName() != null) {
+            namesAreEqual = this.getName().getName().equals(loc.getName().getName());
+        } else {
+            namesAreEqual = true;
         }
+
+        if (!namesAreEqual) return false;
+
         //System.out.printf("%d != %d ", loc.getIncommingTransitions().size(), this.getIncommingTransitions().size());
         if (loc.getIncommingTransitions().size() != this.getIncommingTransitions().size()) {
             return false;
@@ -84,14 +90,21 @@ public class ExtendedLocation extends Location {
             return false;
 
         //System.out.printf("%s == %s \n", loc.getInvariantAsString(), this.getInvariantAsString());
-        return loc.getInvariantAsString().equals(this.getInvariantAsString());
+        boolean areEqual = loc.getInvariantAsString().equals(this.getInvariantAsString());
+        //System.out.println(areEqual);
+        return areEqual;
     }
 
     @Override
     public int hashCode() {
         int result = this.getAutomaton().getName().getName().hashCode();
-        result = 31*result+this.getUniqueIdString().hashCode();
-        result = 31 * result + LocationType.NORMAL.hashCode();
+
+        if (this.getType() != null) {
+            result = 31 * result + this.getType().hashCode();
+        } else {
+            result = 31 * result + LocationType.NORMAL.hashCode();
+        }
+
         result = 31 * result + Integer.hashCode(this.getIncommingTransitions().size());
         result = 31 * result + Integer.hashCode(this.getOutgoingTransitions().size());
         if (this.getName() != null) {

@@ -80,7 +80,7 @@ expr        :   IDENTIFIER  # IdentifierExpr
 
 arguments   :   (expr  (',' expr)*)? ;
 
-variableDecl:   (type GUARD_S* variableID (',' variableID)* ';') ;
+variableDecl:   (type GUARD_S* variableID (',' GUARD_S? variableID)* ';') ;
 
 type        :   (prefix GUARD_S* )? typeId ;
 
@@ -124,7 +124,7 @@ function    :   type IDENTIFIER '(' funcParameters ')' block
 funcParameters: (funcParameter (',' funcParameter)*)? ;
 
 //funcParameter:  type ('&amp;')? IDENTIFIER arrayDecl* ;
-funcParameter:  type ('&amp;')? varFieldDecl ;
+funcParameter:  type ('&amp;')? GUARD_S? varFieldDecl ;
 
 block       :   '{' declContent statement* '}' ;
 

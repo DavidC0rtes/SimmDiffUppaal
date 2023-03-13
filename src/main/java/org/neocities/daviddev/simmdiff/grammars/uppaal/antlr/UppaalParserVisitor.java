@@ -1,4 +1,4 @@
-// Generated from /home/david/eclipse-workspace/SimmDiffUppaal/engine/src/main/java/org.neocities.davidev.simmdiff.grammars/uppaal/antlr/UppaalParser.g4 by ANTLR 4.10.1
+// Generated from /home/david/Documents/SimmDiffUppaal/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.g4 by ANTLR 4.10.1
 package org.neocities.daviddev.simmdiff.grammars.uppaal.antlr;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 

@@ -10,14 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.interp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.interp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/antlr/UppaalParserVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Tron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Tron.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bridge.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bridge.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bridge.xmltest.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/prop.q" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test2.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +55,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/Automaton.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/NTA.class" root0="SKIP_INSPECTION" />
+    <setting file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/util/concurrent/AbstractExecutorService.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,7 +85,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/usr/lib/jvm/java-11-openjdk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/david/Documents/SimmDiffUppaal/src/main/resources/bridge.xml&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -75,7 +94,7 @@
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -107,7 +126,7 @@
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.neocities.daviddev.simmdiff.entrypoint.Main" />
       <module name="SimmDiffUppaal" />
-      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/bridge.xml --mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/bridge/tadid4id4.xml" />
+      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/bridge.xml --mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/bridge/tadid0id2.xml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -225,6 +244,11 @@
       <workItem from="1678615591703" duration="19000" />
       <workItem from="1678621320712" duration="2716000" />
       <workItem from="1678636207616" duration="427000" />
+      <workItem from="1678666375113" duration="738000" />
+      <workItem from="1678700811654" duration="383000" />
+      <workItem from="1678702921436" duration="2046000" />
+      <workItem from="1678712846835" duration="15811000" />
+      <workItem from="1678739829447" duration="3728000" />
     </task>
     <servers />
   </component>

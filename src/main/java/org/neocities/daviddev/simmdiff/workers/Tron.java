@@ -31,7 +31,6 @@ public class Tron implements Callable<Boolean> {
         Process p = pb.start();
 
         String result = new String(p.getInputStream().readAllBytes());
-
         return !result.contains("FAILED");
     }
 }
