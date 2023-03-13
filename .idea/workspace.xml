@@ -13,10 +13,11 @@
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/Runner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bridge-mut.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bridge-mut.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bridge.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bridge.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/prop.q" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +72,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor.code.editing&quot;,
@@ -106,7 +107,7 @@
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.neocities.daviddev.simmdiff.entrypoint.Main" />
       <module name="SimmDiffUppaal" />
-      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/bridge.xml --mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/bridge/tadRandomSyncid7id7.xml" />
+      <option name="PROGRAM_PARAMETERS" value="--model=src/main/resources/bridge.xml --mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/bridge/tadid4id4.xml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "flat-1_1.dtd">
+
+<nta>
+  <declaration>/*
+ * Four vikings are about to cross a damaged bridge in the middle of the
+ * night. The bridge can only carry two of the vikings at the time and to
+ * find the way over the bridge the vikings need to bring a torch.  The
+ * vikings need 5, 10, 20 and 25 minutes (one-way) respectively to cross
+ * the bridge.
+
+ * Does a schedule exist which gets all four vikings over the bridge
+ * within 60 minutes?
+ */
+
+chan take, release;		// Take and release torch
+int[0,1] L;		// The side the torch is on
+clock time;		// Global time</declaration>
+  <template>
+    <name x="0" y="0">Soldier</name>
+    <parameter>const int delay</parameter>
+    <declaration>clock y;</declaration>
+    <location x="288" y="80" id="id0" />
+    <location x="288" y="216" id="id1">
+      <name x="272" y="232">safe</name>
+    </location>
+    <location x="64" y="216" id="id2" />
+    <location x="64" y="80" id="id3">
+      <name x="56" y="48">unsafe</name>
+    </location>
+    <location x="0" y="0" id="id20">
+      <name x="0" y="0">id20</name>
+    </location>
+    <location x="0" y="0" id="id21">
+      <name x="272" y="232">safe</name>
+    </location>
+    <location x="0" y="0" id="id22">
+      <name x="0" y="0">id22</name>
+    </location>
+    <location x="0" y="0" id="id23">
+      <name x="56" y="48">unsafe</name>
+    </location>
+    <location x="0" y="0" id="id32">
+      <name x="0" y="0">id32</name>
+    </location>
+    <location x="0" y="0" id="id33">
+      <name x="56" y="48">unsafe</name>
+    </location>
+    <location x="0" y="0" id="id34">
+      <name x="272" y="232">safe</name>
+    </location>
+    <location x="0" y="0" id="id35">
+      <name x="0" y="0">id35</name>
+    </location>
+    <location x="0" y="0" id="id36">
+      <name x="0" y="0">id36</name>
+    </location>
+    <location x="0" y="0" id="id37">
+      <name x="272" y="232">safe</name>
+    </location>
+    <location x="0" y="0" id="id38">
+      <name x="56" y="48">unsafe</name>
+    </location>
+    <location x="0" y="0" id="id39">
+      <name x="0" y="0">id39</name>
+    </location>
+    <init ref="id3" />
+    <transition>
+      <source ref="id2" />
+      <target ref="id3" />
+      <label x="72" y="176" kind="guard">y &gt;= delay</label>
+      <label x="72" y="120" kind="synchronisation">release!</label>
+    </transition>
+    <transition>
+      <source ref="id1" />
+      <target ref="id2" />
+      <label x="208" y="224" kind="guard">L == 1</label>
+      <label x="216" y="192" kind="synchronisation">take !</label>
+      <label x="104" y="224" kind="assignment">y = 0</label>
+    </transition>
+    <transition>
+      <source ref="id0" />
+      <target ref="id1" />
+      <label x="296" y="112" kind="guard">y &gt;= delay</label>
+      <label x="296" y="160" kind="synchronisation">release!</label>
+    </transition>
+    <transition>
+      <source ref="id3" />
+      <target ref="id0" />
+      <label x="120" y="56" kind="guard">L == 0</label>
+      <label x="120" y="88" kind="synchronisation">take !</label>
+      <label x="216" y="56" kind="assignment">y = 0</label>
+    </transition>
+    <transition>
+      <source ref="id32" />
+      <target ref="id33" />
+    </transition>
+    <transition>
+      <source ref="id34" />
+      <target ref="id35" />
+    </transition>
+    <transition>
+      <source ref="id36" />
+      <target ref="id37" />
+    </transition>
+    <transition>
+      <source ref="id38" />
+      <target ref="id39" />
+    </transition>
+  </template>
+  <template>
+    <name x="0" y="0">Torch</name>
+    <declaration />
+    <location x="200" y="192" id="id4">
+      <name x="192" y="200">one</name>
+    </location>
+    <location x="200" y="48" id="id5">
+      <urgent />
+    </location>
+    <location x="64" y="120" id="id6">
+      <name x="48" y="88">free</name>
+    </location>
+    <location x="336" y="120" id="id7">
+      <name x="328" y="88">two</name>
+    </location>
+    <location x="0" y="0" id="id44">
+      <name x="192" y="200">one</name>
+    </location>
+    <location x="0" y="0" id="id45">
+      <name x="0" y="0">id45</name>
+    </location>
+    <location x="0" y="0" id="id46">
+      <name x="48" y="88">free</name>
+    </location>
+    <location x="0" y="0" id="id47">
+      <name x="328" y="88">two</name>
+    </location>
+    <location x="0" y="0" id="id58">
+      <name x="48" y="88">free</name>
+    </location>
+    <location x="0" y="0" id="id59">
+      <name x="0" y="0">id59</name>
+    </location>
+    <location x="0" y="0" id="id60">
+      <name x="0" y="0">id60</name>
+    </location>
+    <location x="0" y="0" id="id61">
+      <name x="192" y="200">one</name>
+    </location>
+    <location x="0" y="0" id="id62">
+      <name x="0" y="0">id62</name>
+    </location>
+    <location x="0" y="0" id="id63">
+      <name x="328" y="88">two</name>
+    </location>
+    <location x="0" y="0" id="id64">
+      <name x="192" y="200">one</name>
+    </location>
+    <location x="0" y="0" id="id65">
+      <name x="48" y="88">free</name>
+    </location>
+    <location x="0" y="0" id="id66">
+      <name x="328" y="88">two</name>
+    </location>
+    <location x="0" y="0" id="id67">
+      <name x="192" y="200">one</name>
+    </location>
+    <init ref="id6" />
+    <transition>
+      <source ref="id6" />
+      <target ref="id5" />
+      <label x="104" y="56" kind="synchronisation">take?</label>
+    </transition>
+    <transition>
+      <source ref="id5" />
+      <target ref="id4" />
+    </transition>
+    <transition>
+      <source ref="id5" />
+      <target ref="id7" />
+      <label x="264" y="56" kind="synchronisation">take?</label>
+    </transition>
+    <transition>
+      <source ref="id4" />
+      <target ref="id6" />
+      <label x="96" y="176" kind="synchronisation">release?</label>
+      <label x="32" y="144" kind="assignment">L = 1 - L</label>
+    </transition>
+    <transition>
+      <source ref="id7" />
+      <target ref="id4" />
+      <label x="256" y="176" kind="synchronisation">release?</label>
+    </transition>
+    <transition>
+      <source ref="id58" />
+      <target ref="id59" />
+    </transition>
+    <transition>
+      <source ref="id60" />
+      <target ref="id61" />
+    </transition>
+    <transition>
+      <source ref="id62" />
+      <target ref="id63" />
+    </transition>
+    <transition>
+      <source ref="id64" />
+      <target ref="id65" />
+    </transition>
+    <transition>
+      <source ref="id66" />
+      <target ref="id67" />
+    </transition>
+  </template>
+  <system>const int fastest = 5;
+const int fast    = 10;
+const int slow    = 20;
+const int slowest = 25;
+
+Viking1 = Soldier(fastest);
+Viking2 = Soldier(fast);
+Viking3 = Soldier(slow);
+Viking4 = Soldier(slowest);
+
+system Viking1, Viking2, Viking3, Viking4, Torch;</system>
+</nta>
+
