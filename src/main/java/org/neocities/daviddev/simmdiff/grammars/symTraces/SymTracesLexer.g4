@@ -1,7 +1,7 @@
 lexer grammar SymTracesLexer;
 
 WS          :   [ \t\r\n]               -> skip ;
-
+START       :   'Verifying formula ' [0-9] ' at src/main/resources/prop.q:1' -> skip;
 STATE       :   'State';
 DELAY       :   'Delay';
 TRANSITION  :   'Transitions' ;

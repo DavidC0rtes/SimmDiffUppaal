@@ -1,5 +1,6 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.ListMultimap;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.Preamble;
@@ -104,10 +105,10 @@ public class Runner {
     }
 
     public void simulateTraces() {
-        //@todo: Find out Tron path
         String tronPath = System.getProperty("user.home") + "/.local/etc/uppaal-tron-1.5-linux/tron";
         for (var entry : tracesMap.entrySet()) {
             System.out.println(entry.getValue()[0] + " " + entry.getValue()[1]);
+            Stopwatch stopwatch = Stopwatch.createStarted();
             Future<Boolean> result = diffExecutor.submit(new Tron(
                     tronPath,
                     model.getAbsolutePath(),
@@ -116,7 +117,15 @@ public class Runner {
             ));
 
             try {
-                tracesResult.put(entry.getKey(), new String[]{model.getAbsolutePath(), String.valueOf(result.get())});
+                boolean testPassed = result.get();
+                stopwatch.stop();
+                tracesResult.put(
+                        entry.getKey(),
+                        new String[]{
+                                model.getAbsolutePath(),
+                                String.valueOf(testPassed),
+                                String.valueOf(stopwatch.elapsed(TimeUnit.MILLISECONDS))
+                        });
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }

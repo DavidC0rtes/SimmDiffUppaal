@@ -191,7 +191,7 @@ branchpoint :   '<' 'branchpoint' 'id' EQUALS STRING
 
 location    :   '<' 'location' S*
                     'id' EQUALS STRING coordinate?  color? '>' misc* (name misc*)?
-                    (labelLoc misc*)?
+                    (labelLoc misc*)*
                     ('<' (URGENT_LOC | 'committed') '/>' misc*)?
 
                     '</' 'location' '>' ;

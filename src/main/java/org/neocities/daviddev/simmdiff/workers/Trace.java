@@ -4,6 +4,9 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesLexer;
+import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesParser;
+import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesTranslator;
 import org.neocities.daviddev.simmdiff.grammars.symTraces.SymTracesLexer;
 import org.neocities.daviddev.simmdiff.grammars.symTraces.SymTracesParser;
 import org.neocities.daviddev.simmdiff.grammars.symTraces.TracesTranslator;
@@ -21,6 +24,7 @@ public class Trace implements Callable<String> {
 
     public Trace(String symbolicTrace) {
         this.symbolicTrace = symbolicTrace;
+        //System.out.printf("SYM TRACE %s\n",symbolicTrace);
     }
     @Override
     public String call() throws Exception {
@@ -30,12 +34,25 @@ public class Trace implements Callable<String> {
         SymTracesParser parser = new SymTracesParser(tokens);
         ParseTree tree = parser.trace();
 
-        TracesTranslator eval = new TracesTranslator(new HashSet<>());
+        TracesTranslator eval2 = new TracesTranslator(new HashSet<>());
 
-        String translatedTrace = eval.visit(tree);
-        channels = eval.getChannels();
-        timeout = eval.getTimeout();
+        String translatedTrace = eval2.visit(tree);
+        channels = eval2.getChannels();
+        timeout = eval2.getTimeout();
         return translatedTrace;
+
+ /*       CharStream input = CharStreams.fromString(symbolicTrace);
+        SMCTracesLexer lexer = new SMCTracesLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        SMCTracesParser parser = new SMCTracesParser(tokens);
+        ParseTree tree = parser.trace();
+
+        SMCTracesTranslator eval2 = new SMCTracesTranslator(new HashSet<>());
+
+        String translatedTrace = eval2.visit(tree);
+        channels = eval2.getChannels();
+        timeout = eval2.getTimeout();
+        return translatedTrace;*/
     }
 
     public Set<String> getChannels() {

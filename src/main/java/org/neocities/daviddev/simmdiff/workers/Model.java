@@ -1,28 +1,33 @@
 package org.neocities.daviddev.simmdiff.workers;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Files;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.FileLoader;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.concurrent.Callable;
 
 public class Model implements Callable<ExtendedNTA> {
 
     private File modelFile;
     public Model(File model) throws IOException {
-        String cleanedFileName = model.getAbsolutePath()
-                .concat("_cleaned.xml");
+        //modelFile = new File(cleanedFileName);
+        modelFile = model;
+        writeCleanedFile(modelFile);
+    }
 
-        try (FileWriter writer = new FileWriter(cleanedFileName)) {
-            FileLoader fileLoader = new FileLoader(model);
+    private synchronized void writeCleanedFile(File file) throws IOException {
+        FileLoader fileLoader = new FileLoader(file);
+
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write(fileLoader.getParsedContent());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        modelFile = new File(cleanedFileName);
     }
     @Override
     public ExtendedNTA call() {

@@ -727,7 +727,8 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
         }
 
         if (ctx.labelLoc() != null) {
-            location = location.concat(visit(ctx.labelLoc())).concat("\n");
+            for (UppaalParser.LabelLocContext loc : ctx.labelLoc())
+                location = location.concat(visit(loc).concat("\n"));
         }
 
 
@@ -743,14 +744,10 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
 
     @Override
     public String visitLabelLoc(UppaalParser.LabelLocContext ctx) {
-        String labelLoc = "<label kind=";
-        labelLoc = labelLoc.concat(ctx.OPEN_INV().getText());
-
-
-        labelLoc = labelLoc.concat(">");
+        String labelLoc = ctx.OPEN_INV().getText();
 
         labelLoc = labelLoc.concat(visit(ctx.expr()));
-        labelLoc = labelLoc.concat("</label>");
+        labelLoc = labelLoc.concat(ctx.CLOSE_LABEL().getText());
         return labelLoc;
     }
 
@@ -932,6 +929,8 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
         guard = guard.concat(visit(ctx.guardExpr())).concat(")");
         return guard;
     }
+
+
 
     @Override
     public String visitGuardIncrement(UppaalParser.GuardIncrementContext ctx) {
@@ -1127,7 +1126,8 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
     @Override
     public String visitBinaryGuard(UppaalParser.BinaryGuardContext ctx) {
         String guard = visit(ctx.guardExpr(0));
-        guard = guard.concat(" ").concat(ctx.binary.getText()).concat(" ");
+        String sep = ctx.binary.getText().equals(",") ? "&amp;&amp;" : ctx.binary.getText();
+        guard = guard.concat(" ").concat(sep).concat(" ");
         guard = guard.concat(visit(ctx.guardExpr(1)));
         return guard;
     }

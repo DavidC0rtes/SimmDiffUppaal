@@ -1,5 +1,6 @@
 package org.neocities.daviddev.simmdiff.workers;
 
+
 import java.util.concurrent.Callable;
 
 public class Tron implements Callable<Boolean> {
@@ -11,8 +12,6 @@ public class Tron implements Callable<Boolean> {
         this.preamble = preamble;
         this.trace = trace;
     }
-
-
     /**
      * Calls UPPAAL TRON to check if the given model can perform the given trace.
      * @return true if tron outputs anything other than TEST FAILED, i.e, if the model can simulate
