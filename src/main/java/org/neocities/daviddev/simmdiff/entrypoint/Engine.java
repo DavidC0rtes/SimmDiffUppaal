@@ -12,6 +12,11 @@ import java.util.Random;
 public class Engine {
     private final ExtendedNTA model;
     private final ExtendedNTA mutant;
+
+    public ListMultimap<String, ExtendedLocation> getDiffLocations() {
+        return diffLocations;
+    }
+
     private ListMultimap<String, ExtendedLocation> diffLocations;
     private ListMultimap<String, ExtendedTransition> diffTransitions;
     public Engine(ExtendedNTA model, ExtendedNTA mutant) {

@@ -1,1 +1,1 @@
-E<> Process.ReqTorqueC
+E<> Process.CheckClutchClosed

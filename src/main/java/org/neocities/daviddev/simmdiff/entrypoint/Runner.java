@@ -4,7 +4,6 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.ListMultimap;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.Preamble;
-import org.neocities.daviddev.simmdiff.grammars.uppaal.FileLoader;
 import org.neocities.daviddev.simmdiff.workers.Model;
 import org.neocities.daviddev.simmdiff.workers.Trace;
 import org.neocities.daviddev.simmdiff.workers.Tron;
@@ -31,13 +30,15 @@ public class Runner {
 
     private final HashMap<String, String[]> tracesResult;
     private ListMultimap<String, String> symTraces;
-    private String tracesDir = "src/main/resources/mutations/";
+    private String tracesDir = "src/main/resources/traces/";
+
+    private ExtendedNTA mutantNTA;
 
     public Runner(File model, File mutant) {
         this.model=model;
         this.mutant=mutant;
         modelExecutor = Executors.newCachedThreadPool();
-        tracesDir += model.getName().replace(".xml", "") +"/" + mutant.getName().replace((".xml"),"" ).concat("/traces/");
+        tracesDir += model.getName().replace(".xml", "") +"/" + mutant.getName().replace((".xml"),"" ).concat("/");
         System.out.println("Traces dir :"+tracesDir);
         tracesMap = new HashMap<>();
         tracesResult = new HashMap<String, String[]>();
@@ -47,7 +48,8 @@ public class Runner {
         try {
             Future<ExtendedNTA> modelObj = modelExecutor.submit(new Model(model));
             Future<ExtendedNTA> mutantObj = modelExecutor.submit(new Model(mutant));
-            Engine engine = new Engine(modelObj.get(), mutantObj.get());
+            mutantNTA = mutantObj.get();
+            Engine engine = new Engine(modelObj.get(), mutantNTA);
             modelExecutor.shutdown();
 
             engine.start();
@@ -106,7 +108,10 @@ public class Runner {
 
     public void simulateTraces() {
         String tronPath = System.getProperty("user.home") + "/.local/etc/uppaal-tron-1.5-linux/tron";
+        int traceIdx = 1;
         for (var entry : tracesMap.entrySet()) {
+            int cap = mutantNTA.getDiffLocations().size();
+            String templateName = entry.getKey().split("/")[6];
             System.out.println(entry.getValue()[0] + " " + entry.getValue()[1]);
             Stopwatch stopwatch = Stopwatch.createStarted();
             Future<Boolean> result = diffExecutor.submit(new Tron(
@@ -119,16 +124,24 @@ public class Runner {
             try {
                 boolean testPassed = result.get();
                 stopwatch.stop();
-                tracesResult.put(
-                        entry.getKey(),
-                        new String[]{
-                                model.getAbsolutePath(),
-                                String.valueOf(testPassed),
-                                String.valueOf(stopwatch.elapsed(TimeUnit.MILLISECONDS))
-                        });
+                if (!testPassed || traceIdx == cap) {
+                    tracesResult.put(
+                            model.getName(),
+                            new String[] {
+                                    mutant.getName(),
+                                    templateName,
+                                    String.valueOf(testPassed),
+                                    String.valueOf(cap),
+                                    String.valueOf(traceIdx),
+                                    String.valueOf(stopwatch.elapsed(TimeUnit.MILLISECONDS))
+                            });
+                    break;
+                }
+
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
+            traceIdx++;
         }
         diffExecutor.shutdown();
     }
