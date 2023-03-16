@@ -1,14 +1,18 @@
 package org.neocities.daviddev.simmdiff.grammars.uppaal;
 
+import org.neocities.daviddev.simmdiff.core.types.Channel;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.antlr.UppaalParser;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.antlr.UppaalParserBaseVisitor;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.helper.VisitorHelper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class NTAVisitor extends UppaalParserBaseVisitor<String> implements VisitorHelper {
 
+
+    private HashMap<String, Channel> chanDict = new HashMap<>();
     @Override
     public String visitModel(UppaalParser.ModelContext ctx) {
         String model = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -227,6 +231,10 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
         return visit(ctx.variableDecl());
     }
 
+    public HashMap<String, Channel> getChanDict() {
+        return chanDict;
+    }
+
     @Override
     public String visitVariableDecl(UppaalParser.VariableDeclContext ctx) {
         StringBuilder varDecl = new StringBuilder("");
@@ -234,6 +242,22 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
         List<UppaalParser.VariableIDContext> variablesId = ctx.variableID();
 
         String type = visit(ctx.type());
+
+        if (type.contains("chan")) {
+           for (UppaalParser.VariableIDContext id : variablesId) {
+               String[] parts = type.split(" ");
+               Channel.ChanType ctype;
+               if (parts[0].equals("broadcast")) {
+                   ctype = Channel.ChanType.BROADCAST;
+               } else if (parts[0].equals("urgent")) {
+                   ctype = Channel.ChanType.URGENT;
+               } else {
+                   ctype = Channel.ChanType.BINARY;
+               }
+               
+               chanDict.put(id.getText(), new Channel(id.getText(), ctx.depth() <= 6 ? "global" : "local", ctype));
+           }
+        }
 
         if (variablesId.size() > 0) {
             varDecl.append(type)

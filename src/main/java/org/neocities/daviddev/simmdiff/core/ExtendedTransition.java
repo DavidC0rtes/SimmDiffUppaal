@@ -3,14 +3,21 @@ package org.neocities.daviddev.simmdiff.core;
 import de.tudarmstadt.es.juppaal.Automaton;
 import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Transition;
-import org.jdom.Element;
+import de.tudarmstadt.es.juppaal.labels.Label;
+
+import org.neocities.daviddev.simmdiff.core.types.Channel;
+
 
 public class ExtendedTransition extends Transition {
 
-    public ExtendedTransition(Automaton automaton, Location source, Location destination) {
+    private Channel channel;
+    private ExtendedLocation extSource, extTarget;
+    private Automaton automaton;
+
+    public ExtendedTransition(Automaton automaton, Location source, Location destination, Channel channel) {
         super(automaton, source, destination);
-        if (source != null){
-            super.setSource(new ExtendedLocation(automaton, source.getName(),
+        if (source != null) {
+            this.setSource(new ExtendedLocation(automaton, source.getName(),
                     source.getType(),
                     0, 0,
                     source.getOutgoingTransitions(),
@@ -18,22 +25,16 @@ public class ExtendedTransition extends Transition {
         }
 
         if (destination != null){
-            super.setTarget(new ExtendedLocation(automaton, destination.getName(),
+            this.setTarget(new ExtendedLocation(automaton, destination.getName(),
                     destination.getType(),
                     0, 0,
                     destination.getOutgoingTransitions(),
                     destination.getIncommingTransitions()));
         }
-    }
+        this.automaton = automaton;
+        this.channel = channel;
 
-    public ExtendedTransition(Automaton automaton, Location source) {
-        super(automaton, source);
     }
-
-    public ExtendedTransition(Automaton automaton, Element transitionElement) {
-        super(automaton, transitionElement);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -48,7 +49,7 @@ public class ExtendedTransition extends Transition {
 
         ExtendedTransition tran = (ExtendedTransition) o;
 
-        if ( tran.getSource() != this.getSource() || tran.getTarget() != this.getTarget() ) {
+        if ( !tran.getSource().equals( this.getSource()) || !tran.getTarget().equals(this.getTarget()) ) {
             return false;
         }
 
@@ -56,15 +57,17 @@ public class ExtendedTransition extends Transition {
             return false;
         }
 
-        if (!this.getUpdate().toString().equals(tran.getUpdate().toString())) {
+        if (!areLabelsEqual(this.getUpdate(), tran.getUpdate())) {
+            return false;
+        }
+        if (!areLabelsEqual(this.getSelect(), tran.getSelect())) {
+            return false;
+        }
+        if (!areLabelsEqual(this.getSync(), tran.getSync())) {
             return false;
         }
 
-        if (!this.getSync().toString().equals(tran.getSync().toString())) {
-            return false;
-        }
-
-        return this.getSelect().toString().equals(tran.getSelect().toString());
+        return this.channel.equals(tran.getChannel());
     }
 
     @Override
@@ -81,14 +84,31 @@ public class ExtendedTransition extends Transition {
         if (this.getUpdate() != null)
             result = 31 * result + this.getUpdate().hashCode();
 
-        if (this.getSync() != null)
+        if (this.getSync() != null) {
             result = 31 * result + this.getSync().hashCode();
+            result = 31 * result + this.getChannel().hashCode();
+        }
 
         return result;
+    }
+
+    private boolean areLabelsEqual(Label label1, Label label2) {
+
+        if (label1 == null ^ label2 == null ) {
+            return false;
+        } else if (label1 != null && label2 != null) {
+            return label1.toString().equals(label2.toString());
+        }
+
+        return true;
     }
 
     @Override
     public String toString() {
         return String.format("%s -> %s", this.getSource(), this.getTarget());
+    }
+
+    public Channel getChannel() {
+        return channel;
     }
 }

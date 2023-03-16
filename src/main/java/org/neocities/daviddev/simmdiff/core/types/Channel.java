@@ -17,7 +17,6 @@ public class Channel {
     public static enum ChanType {
         BROADCAST,
         URGENT,
-        URGENT_BROADCAST,
         BINARY
     }
 

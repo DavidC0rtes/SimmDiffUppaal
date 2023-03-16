@@ -36,7 +36,7 @@ public class Engine {
         ProcessBuilder verifyPb = new ProcessBuilder();
         Random rand = new Random();
         for (var entry : diffLocations.entries()) {
-            System.out.printf("Got entry %s %s\n", entry.getKey(), entry.getValue());
+            //System.out.printf("Got entry %s %s\n", entry.getKey(), entry.getValue());
             String reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
             //String reachFormula = String.format("simulate [<= 5; 1] {%s.%s}\n", mutant.getProcessName(entry.getKey()), entry.getValue());
             System.out.printf("Formula: %s", reachFormula);

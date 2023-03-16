@@ -11,10 +11,12 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/prop.q" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/types/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/types/Channel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/FileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/grammars/uppaal/NTAVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +236,9 @@
       <workItem from="1678801705299" duration="2695000" />
       <workItem from="1678804410033" duration="146000" />
       <workItem from="1678804561592" duration="5310000" />
-      <workItem from="1678877070498" duration="7555000" />
+      <workItem from="1678877070498" duration="12805000" />
+      <workItem from="1678958268945" duration="5363000" />
+      <workItem from="1678988586684" duration="6501000" />
     </task>
     <servers />
   </component>

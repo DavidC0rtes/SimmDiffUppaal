@@ -14,6 +14,7 @@ import java.util.concurrent.Callable;
 public class Model implements Callable<ExtendedNTA> {
 
     private File modelFile;
+    private FileLoader fileLoader;
     public Model(File model) throws IOException {
         //modelFile = new File(cleanedFileName);
         modelFile = model;
@@ -21,7 +22,7 @@ public class Model implements Callable<ExtendedNTA> {
     }
 
     private synchronized void writeCleanedFile(File file) throws IOException {
-        FileLoader fileLoader = new FileLoader(file);
+        fileLoader = new FileLoader(file);
 
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(fileLoader.getParsedContent());
@@ -31,6 +32,6 @@ public class Model implements Callable<ExtendedNTA> {
     }
     @Override
     public ExtendedNTA call() {
-        return new ExtendedNTA(modelFile.getPath());
+        return new ExtendedNTA(modelFile.getPath(), fileLoader.getChanDict());
     }
 }

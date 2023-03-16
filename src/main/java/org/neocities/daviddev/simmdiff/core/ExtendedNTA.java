@@ -7,6 +7,7 @@ import com.google.common.collect.ListMultimap;
 import de.tudarmstadt.es.juppaal.*;
 import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Transition;
+import org.neocities.daviddev.simmdiff.core.types.Channel;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,16 +19,29 @@ public class ExtendedNTA extends NTA {
     private ListMultimap<String, ExtendedLocation> diffLocations;
     private ListMultimap<String, ExtendedTransition> diffTransitions;
     private String pathToFile;
+    private HashMap<String, Channel> chanDict;
 
-    public ExtendedNTA(String pathToFile) {
+    public ExtendedNTA(String pathToFile, HashMap<String, Channel> chanDict) {
         super(pathToFile);
         diffLocations = ArrayListMultimap.create();
         diffTransitions = ArrayListMultimap.create();
         this.pathToFile = pathToFile;
+        this.chanDict = chanDict;
         this.getAutomata().forEach(automaton -> {
             System.out.printf(">> %d locations in automaton %s\n", automaton.getLocations().size(), automaton.getName().getName());
         });
+
     }
+
+   /* private void setupChanDict() {
+        for (String decl : this.getDeclarations().getStrings()) {
+            String[] parts = decl.split(",");
+
+            for (String part : parts) {
+
+            }
+        }
+    }*/
 
     @Override
     public Automaton getAutomaton(String name) {
@@ -50,12 +64,27 @@ public class ExtendedNTA extends NTA {
 
             diffLocations.putAll(taio.getName().getName(),difference(locationSetMutant, locationSetModel));
 
-            System.out.printf("%d different locations\n", diffLocations.size());
+            System.out.printf("%d/%d different locations\n", diffLocations.size(), locationSetMutant.size());
             Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()));
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()));
 
             diffTransitions.putAll(taio.getName().getName(), difference(transitionSetMutant, transitionSetModel));
-            //System.out.println(difference(locationSetMutant, locationSetModel));
+            System.out.printf("%d/%d different transitions \n", diffTransitions.size(), transitionSetMutant.size());
+            expandDiffs();
+
+            System.out.printf("%d different locations after expanding\n", diffLocations.size());
+        }
+    }
+
+    private void expandDiffs() {
+        for (var entry : diffTransitions.entries()) {
+            if (!diffLocations.containsValue( new ExtendedLocation( entry.getValue().getSource()))) {
+                diffLocations.put(entry.getKey(), new ExtendedLocation(entry.getValue().getSource()));
+            }
+
+            if (!diffLocations.containsValue( new ExtendedLocation( entry.getValue().getTarget()))) {
+                diffLocations.put(entry.getKey(), new ExtendedLocation(entry.getValue().getTarget()));
+            }
         }
     }
 
@@ -93,7 +122,8 @@ public class ExtendedNTA extends NTA {
                         .map(transition -> new ExtendedTransition(
                                 automaton,
                                 transition.getSource(),
-                                transition.getTarget()
+                                transition.getTarget(),
+                                transition.getSync() != null ? chanDict.get(transition.getSync().getChannelName()) : null
                         ))
                         .collect(Collectors.toSet())
         );
