@@ -1,0 +1,7 @@
+input (empty);
+output _from_medium_slave();
+precision 1000;
+timeout 1100;
+delay  @414;
+output _from_medium_slave();
+delay  @1100130;

@@ -1,6 +1,5 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
-import com.google.common.base.Stopwatch;
 import com.google.common.collect.ListMultimap;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.Preamble;
@@ -30,21 +29,21 @@ public class Runner {
 
     private final HashMap<String, String[]> tracesResult;
     private ListMultimap<String, String> symTraces;
-    private String tracesDir = "src/main/resources/traces/";
+    private String tracesDir = "traces/";
 
     private ExtendedNTA mutantNTA;
 
     public Runner(File model, File mutant) {
         this.model=model;
         this.mutant=mutant;
-        modelExecutor = Executors.newCachedThreadPool();
+        modelExecutor = Executors.newFixedThreadPool(2);
         tracesDir += model.getName().replace(".xml", "") +"/" + mutant.getName().replace((".xml"),"" ).concat("/");
         System.out.println("Traces dir :"+tracesDir);
         tracesMap = new HashMap<>();
         tracesResult = new HashMap<String, String[]>();
     }
 
-    public void parseModels() {
+    public void parseModels(String propDir) {
         try {
             Future<ExtendedNTA> modelObj = modelExecutor.submit(new Model(model));
             Future<ExtendedNTA> mutantObj = modelExecutor.submit(new Model(mutant));
@@ -53,7 +52,7 @@ public class Runner {
             modelExecutor.shutdown();
 
             engine.start();
-            symTraces = engine.getPaths();
+            symTraces = engine.getPaths(propDir);
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
@@ -72,12 +71,18 @@ public class Runner {
         float timeout = 0;
         int i = 1;
         for (var trace : symTraces.entries()) {
+            if (trace.getValue().length() == 0) {
+                throw new RuntimeException("Empty symbolic trace");
+            }
             Trace traceWorker = new Trace(trace.getValue());
             Future<String> translatedTrace =  diffExecutor.submit(traceWorker);
 
             String traceFileName = trace.getKey() + i+".trn";
             try (FileWriter writer = new FileWriter(tracesDir.concat(traceFileName))){
-                writer.write(translatedTrace.get());
+                String tronTrace = translatedTrace.get();
+                if (tronTrace.equals(""))
+                    throw new RuntimeException("Empty tron trace " + tracesDir.concat(traceFileName));
+                writer.write(tronTrace);
             } catch (IOException | InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
@@ -89,9 +94,11 @@ public class Runner {
 
             // Create preamble
             String preambleFilename = "Preamble_" +  trace.getKey() + i + ".trn";
-            Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", Integer.toString(Math.round(timeout) + 1));
+            Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", Integer.toString(Math.round(timeout) + 1000));
 
             try (FileWriter pWriter = new FileWriter(tracesDir.concat(preambleFilename))){
+                String preambletxt = preamble.getPreamble();
+                if (preambletxt.length()==0) throw new RuntimeException("Empty preamble");
                 pWriter.write(preamble.getPreamble());
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -101,7 +108,6 @@ public class Runner {
             tracesMap.put(tracesDir + trace.getKey() + i,
                     new String[]{tracesDir.concat(preambleFilename), tracesDir.concat(traceFileName)}
             );
-            System.out.println("Translated trace for " + trace.getKey());
             i++;
         }
     }
@@ -111,10 +117,10 @@ public class Runner {
         int traceIdx = 1;
         for (var entry : tracesMap.entrySet()) {
             int cap = mutantNTA.getDiffLocations().size();
-            String templateName = entry.getKey().split("/")[6];
-            System.out.println(entry.getValue()[0] + " " + entry.getValue()[1]);
-            Stopwatch stopwatch = Stopwatch.createStarted();
-            Future<Boolean> result = diffExecutor.submit(new Tron(
+            String[]dirParts =  entry.getKey().split("/");
+            String templateName = dirParts[dirParts.length-1];
+            long start = System.currentTimeMillis();
+            Future<String> result = diffExecutor.submit(new Tron(
                     tronPath,
                     model.getAbsolutePath(),
                     entry.getValue()[0],
@@ -122,18 +128,17 @@ public class Runner {
             ));
 
             try {
-                boolean testPassed = result.get();
-                stopwatch.stop();
-                if (!testPassed || traceIdx == cap) {
+                String testPassed = result.get();
+                if (testPassed.equals("FAILED") || traceIdx == cap) {
                     tracesResult.put(
                             model.getName(),
                             new String[] {
                                     mutant.getName(),
                                     templateName,
-                                    String.valueOf(testPassed),
+                                    testPassed,
                                     String.valueOf(cap),
                                     String.valueOf(traceIdx),
-                                    String.valueOf(stopwatch.elapsed(TimeUnit.MILLISECONDS))
+                                    String.valueOf(System.currentTimeMillis() - start)
                             });
                     break;
                 }

@@ -72,7 +72,6 @@ MAXIMUM=71
 OR=72
 AND=73
 IMPLY=74
-'Verifying formula'=2
 'state'=3
 'delay'=4
 'transition'=5

@@ -4,6 +4,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+
 import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesLexer;
 import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesParser;
 import org.neocities.daviddev.simmdiff.grammars.smctraces.SMCTracesTranslator;
@@ -24,10 +25,11 @@ public class Trace implements Callable<String> {
 
     public Trace(String symbolicTrace) {
         this.symbolicTrace = symbolicTrace;
-        //System.out.printf("SYM TRACE %s\n",symbolicTrace);
+        System.out.printf("Trace class got symtrace of %d chars\n", symbolicTrace.length());
     }
     @Override
     public String call() throws Exception {
+        System.out.printf("call method got symtrace of %d chars\n", symbolicTrace.length());
         CharStream input = CharStreams.fromString(symbolicTrace);
         SymTracesLexer lexer = new SymTracesLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -40,8 +42,7 @@ public class Trace implements Callable<String> {
         channels = eval2.getChannels();
         timeout = eval2.getTimeout();
         return translatedTrace;
-
- /*       CharStream input = CharStreams.fromString(symbolicTrace);
+/*        CharStream input = CharStreams.fromString(symbolicTrace);
         SMCTracesLexer lexer = new SMCTracesLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         SMCTracesParser parser = new SMCTracesParser(tokens);

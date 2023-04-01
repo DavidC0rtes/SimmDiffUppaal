@@ -4,9 +4,11 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 
+import com.google.gson.Gson;
 import de.tudarmstadt.es.juppaal.*;
 import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Transition;
+import org.checkerframework.checker.units.qual.A;
 import org.neocities.daviddev.simmdiff.core.types.Channel;
 
 import java.util.*;
@@ -33,16 +35,6 @@ public class ExtendedNTA extends NTA {
 
     }
 
-   /* private void setupChanDict() {
-        for (String decl : this.getDeclarations().getStrings()) {
-            String[] parts = decl.split(",");
-
-            for (String part : parts) {
-
-            }
-        }
-    }*/
-
     @Override
     public Automaton getAutomaton(String name) {
         for (Automaton ta : this.getAutomata()) {
@@ -51,41 +43,109 @@ public class ExtendedNTA extends NTA {
             }
         }
 
-        throw new IllegalArgumentException("Can't find Automaton "+ name + " in this system");
+        throw new IllegalArgumentException("Can't find Automaton "+ name + " in this system "+ this.pathToFile);
     }
 
     public void compareNTA(NTA model) {
+        int mutantMaxLocId = 0;
+        int modelMaxLocId = 0;
         for (Automaton taio : model.getAutomata()) {
-            System.out.println(this.getAutomata().get(0).getName());
             Automaton mutant = this.getAutomaton(taio.getName().getName());
+            ArrayList<Location> mutantLocsCopy = new ArrayList<>(mutant.getLocations());
+            mutantMaxLocId += mutantLocsCopy.size();
+            Set<ExtendedLocation> locationSetMutant = getExtendedLocations(mutant ,mutantLocsCopy);
+            HashMap<String, ExtendedLocation> mutantLocsMap = new HashMap<>();
 
-            Set<ExtendedLocation> locationSetMutant = getExtendedLocations(new ArrayList<>(mutant.getLocations()));
-            Set<ExtendedLocation> locationSetModel = getExtendedLocations(new ArrayList<>(taio.getLocations()));
+            for (ExtendedLocation l : locationSetMutant) {
+                mutantLocsMap.put(l.toString(), l);
+/*                if (l.toString().equals(mutant.getInit().toString())) {
+                    mutant.setInit(l);
+                }*/
+            }
 
-            diffLocations.putAll(taio.getName().getName(),difference(locationSetMutant, locationSetModel));
+            ArrayList<Location> modelLocsCopy = new ArrayList<>(taio.getLocations());
+            Set<ExtendedLocation> locationSetModel = getExtendedLocations(taio, new ArrayList<>(taio.getLocations()));
+            HashMap<String, ExtendedLocation> modelLocsMap = new HashMap<>();
 
-            System.out.printf("%d/%d different locations\n", diffLocations.size(), locationSetMutant.size());
-            Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()));
-            Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()));
+            for (ExtendedLocation l : locationSetModel) {
+                modelLocsMap.put(l.toString(), l);
+/*                if (l.toString().equals(taio.getInit().toString())) {
+                    taio.setInit(l);
+                }*/
+            }
+            modelMaxLocId += modelLocsCopy.size();
 
-            diffTransitions.putAll(taio.getName().getName(), difference(transitionSetMutant, transitionSetModel));
-            System.out.printf("%d/%d different transitions \n", diffTransitions.size(), transitionSetMutant.size());
-            expandDiffs();
+            String bar = mutant.getInit().toString();
+            Set<ExtendedLocation> diffLoc = difference(locationSetMutant, locationSetModel);
+            diffLocations.putAll(taio.getName().getName(),diffLoc.stream().filter(location -> !location.getName().getName().equals(bar)).collect(Collectors.toSet()));
+            System.out.printf("different locations : %s\n", diffLoc);
 
-            System.out.printf("%d different locations after expanding\n", diffLocations.size());
+            // Fix mutant
+            /*List<Location> foo = new ArrayList<>(mutant.getLocations());
+            for (int i = locationSetMutant.size(); i<foo.size(); i++) {
+                mutant.removeLocation(foo.get(i));
+            }*/
+
+            Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()), mutantLocsMap);
+            Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()), modelLocsMap);
+            // Fix model
+          /*  List<Location> foo2 = new ArrayList<>(taio.getLocations());
+            for (int i = locationSetModel.size(); i<foo2.size(); i++) {
+                taio.removeLocation(foo2.get(i));
+            }*/
+
+            Set<ExtendedTransition> differentT = difference(transitionSetMutant, transitionSetModel);
+            diffTransitions.putAll(taio.getName().getName(), differentT);
+            System.out.printf("different transitions : %s\n", differentT);
+
+            ArrayList<String> locs = expandDiffs();
+            locs.forEach(l -> {
+                if (!l.equals(bar) && !diffLocations.containsValue(mutantLocsMap.get(l))) {
+                    diffLocations.put(
+                            mutant.getName().getName(),
+                            mutantLocsMap.get(l));
+                }
+            });
+
+            System.out.printf("After expanding : %s\n", diffLocations);
+            System.out.println("Cleaning up "+ mutant.getName().getName());
+            cleanUpLocations(mutant, mutantMaxLocId);
+            cleanUpLocations(taio, modelMaxLocId);
         }
     }
 
-    private void expandDiffs() {
+    private ArrayList<String> expandDiffs() {
+        ArrayList<String> locationsToAdd = new ArrayList<>();
+
         for (var entry : diffTransitions.entries()) {
-            if (!diffLocations.containsValue( new ExtendedLocation( entry.getValue().getSource()))) {
-                diffLocations.put(entry.getKey(), new ExtendedLocation(entry.getValue().getSource()));
+            Collection<ExtendedLocation> locations = diffLocations.asMap().get(entry.getKey());
+
+            String sourceName = entry.getValue().getSource().getName().getName();
+            String targetName = entry.getValue().getTarget().getName().getName();
+
+            if (locations == null) {
+                locationsToAdd.add(sourceName);
+                locationsToAdd.add(targetName);
+                continue;
             }
 
-            if (!diffLocations.containsValue( new ExtendedLocation( entry.getValue().getTarget()))) {
-                diffLocations.put(entry.getKey(), new ExtendedLocation(entry.getValue().getTarget()));
+
+            List<String> locNames = locations.stream()
+                    .map(Location::toString)
+                    .collect(Collectors.toList());
+
+
+            if (!locNames.contains(sourceName)) {
+                //System.out.println(sourceName + " is not in "+ locNames.toString());
+                locationsToAdd.add(sourceName);
+            }
+
+            if (!locNames.contains(targetName)) {
+                //System.out.println(targetName + " is not in "+ locNames.toString());
+                locationsToAdd.add(targetName);
             }
         }
+        return locationsToAdd;
     }
 
     public ListMultimap<String, ExtendedLocation> getDiffLocations() {
@@ -96,16 +156,16 @@ public class ExtendedNTA extends NTA {
         return diffTransitions;
     }
 
-    private Set<ExtendedLocation> getExtendedLocations(List<Location> locations) {
+    private Set<ExtendedLocation> getExtendedLocations(Automaton automaton, List<Location> locations) {
         locations.forEach(location -> {
             if (location.getName() == null)
                 location.setName(location.getUniqueIdString());
         });
 
-        return ImmutableSet.copyOf(
+        Set<ExtendedLocation> set = ImmutableSet.copyOf(
                 locations.stream()
                         .map(loc -> new ExtendedLocation(
-                                loc.getAutomaton(),
+                                automaton,
                                 loc.getName(),
                                 loc.getType(),
                                 0, 0,
@@ -114,19 +174,24 @@ public class ExtendedNTA extends NTA {
                         ))
                         .collect(Collectors.toSet())
         );
+
+        //locations.forEach(automaton::removeLocation);
+        return set;
     }
 
-    private Set<ExtendedTransition> getExtendedTransitions(Automaton automaton, List<Transition> transitions) {
-        return ImmutableSet.copyOf(
+    private Set<ExtendedTransition> getExtendedTransitions(Automaton automaton, List<Transition> transitions, HashMap<String, ExtendedLocation> locsMap) {
+        Set<ExtendedTransition> set = ImmutableSet.copyOf(
                 transitions.stream()
                         .map(transition -> new ExtendedTransition(
                                 automaton,
-                                transition.getSource(),
-                                transition.getTarget(),
+                                locsMap.get(transition.getSource().getName().getName()),
+                                locsMap.get(transition.getTarget().getName().getName()),
                                 transition.getSync() != null ? chanDict.get(transition.getSync().getChannelName()) : null
                         ))
                         .collect(Collectors.toSet())
         );
+
+        return set;
     }
 
     public String getPathToFile() {
@@ -142,6 +207,18 @@ public class ExtendedNTA extends NTA {
         }
         return template;
     }
+
+    private void cleanUpLocations(Automaton automaton, int cap) {
+        ArrayList<Location> copy = new ArrayList<>(automaton.getLocations());
+
+        automaton.getLocations().clear();
+        for (Location loc : copy) {
+            if (loc.getId() < cap) {
+                automaton.addLocation(loc);
+            }
+        }
+    }
+
 
     public void makeBroadcast() {
         int idx = 0;

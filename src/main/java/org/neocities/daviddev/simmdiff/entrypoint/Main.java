@@ -1,8 +1,5 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
-import org.neocities.daviddev.simmdiff.workers.Model;
-import org.neocities.daviddev.simmdiff.entrypoint.Runner;
-import org.neocities.daviddev.simmdiff.grammars.uppaal.FileLoader;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -10,11 +7,6 @@ import picocli.CommandLine.Option;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Command(name = "NTASimmDiff", version = "NTASimmDiff 0.1", mixinStandardHelpOptions = true)
 public class Main implements Runnable {
@@ -25,11 +17,17 @@ public class Main implements Runnable {
     @Option(names = {"--mutant"}, description = "Path to mutant file", required = true)
     File mutant;
 
+    @Option(names = {"-d", "--dir"}, description = "Working dir")
+    String dir;
+
     @Override
     public void run() {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        if (dir == null) {
+            dir = System.getProperty("user.dir");
+        }
+        System.out.println("Working Directory = " + dir);
         Runner runner = new Runner(model, mutant);
-        runner.parseModels();
+        runner.parseModels(dir);
         runner.parseTraces();
         runner.simulateTraces();
             /*FileLoader flModel = new FileLoader(model);

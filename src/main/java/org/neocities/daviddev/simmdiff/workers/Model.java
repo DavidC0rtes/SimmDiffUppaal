@@ -1,14 +1,11 @@
 package org.neocities.daviddev.simmdiff.workers;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.grammars.uppaal.FileLoader;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.concurrent.Callable;
 
 public class Model implements Callable<ExtendedNTA> {
@@ -16,7 +13,6 @@ public class Model implements Callable<ExtendedNTA> {
     private File modelFile;
     private FileLoader fileLoader;
     public Model(File model) throws IOException {
-        //modelFile = new File(cleanedFileName);
         modelFile = model;
         writeCleanedFile(modelFile);
     }

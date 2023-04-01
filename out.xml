@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.1//EN" "flat-1_1.dtd">
+
+<nta>
+  <declaration>clock clock_c3;
+broadcast chan hello, _empty_slave, _data0, _data1, _data2, _data3, _to_medium_slave, _from_medium_slave, _in_2, _out_2;</declaration>
+  <template>
+    <name x="0" y="0">Template</name>
+    <declaration />
+    <location x="0" y="0" id="id24">
+      <name x="216" y="384">s2_3</name>
+    </location>
+    <location x="0" y="0" id="id25">
+      <name x="-112" y="352">s2_4</name>
+    </location>
+    <location x="0" y="0" id="id26">
+      <name x="528" y="-24">s2_2</name>
+    </location>
+    <location x="0" y="0" id="id27">
+      <name x="-138" y="-62">s2_5</name>
+    </location>
+    <location x="0" y="0" id="id28">
+      <name x="200" y="264">s2_1</name>
+    </location>
+    <location x="0" y="0" id="id29">
+      <name x="182" y="-62">s2_0</name>
+    </location>
+    <init ref="id5" />
+    <transition>
+      <source ref="id25" />
+      <target ref="id25" />
+    </transition>
+    <transition>
+      <source ref="id27" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id25" />
+      <target ref="id27" />
+    </transition>
+    <transition>
+      <source ref="id24" />
+      <target ref="id25" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id24" />
+    </transition>
+    <transition>
+      <source ref="id26" />
+      <target ref="id26" />
+    </transition>
+    <transition>
+      <source ref="id26" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id26" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id28" />
+      <target ref="id29" />
+    </transition>
+    <transition>
+      <source ref="id29" />
+      <target ref="id28" />
+    </transition>
+  </template>
+  <template>
+    <name x="0" y="0">Template0</name>
+    <declaration />
+    <location x="0" y="0" id="id36">
+      <name x="216" y="384">s2_3</name>
+    </location>
+    <location x="0" y="0" id="id37">
+      <name x="-112" y="352">s2_4</name>
+    </location>
+    <location x="0" y="0" id="id38">
+      <name x="528" y="-24">s2_2</name>
+    </location>
+    <location x="0" y="0" id="id39">
+      <name x="-138" y="-62">s2_5</name>
+    </location>
+    <location x="0" y="0" id="id40">
+      <name x="200" y="264">s2_1</name>
+    </location>
+    <location x="0" y="0" id="id41">
+      <name x="182" y="-62">s2_0</name>
+    </location>
+    <init ref="id11" />
+    <transition>
+      <source ref="id37" />
+      <target ref="id37" />
+    </transition>
+    <transition>
+      <source ref="id39" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id37" />
+      <target ref="id39" />
+    </transition>
+    <transition>
+      <source ref="id36" />
+      <target ref="id37" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id36" />
+    </transition>
+    <transition>
+      <source ref="id38" />
+      <target ref="id38" />
+    </transition>
+    <transition>
+      <source ref="id38" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id38" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id40" />
+      <target ref="id41" />
+    </transition>
+    <transition>
+      <source ref="id41" />
+      <target ref="id40" />
+    </transition>
+  </template>
+  <system>// Place template instantiations here.
+Process = Template();
+
+// List one or more processes to be composed into a system.
+system Process, Template0;</system>
+</nta>
+

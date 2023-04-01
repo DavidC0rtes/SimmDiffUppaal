@@ -3,7 +3,7 @@ lexer grammar SMCTracesLexer;
 WS          :   [ \t\r\n]               -> skip ;
 
 
-START       :   'Verifying formula ' [0-9] ' at prop.q:1' -> skip;
+START       :   'Verifying formula ' [0-9] ' at ' ~('\r'|'\n')+ -> skip;
 STATE       :   'state';
 DELAY       :   'delay';
 TRANSITION  :   'transition' ;

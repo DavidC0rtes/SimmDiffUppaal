@@ -16,7 +16,7 @@ public class ExtendedTransition extends Transition {
 
     public ExtendedTransition(Automaton automaton, Location source, Location destination, Channel channel) {
         super(automaton, source, destination);
-        if (source != null) {
+       /* if (source != null) {
             this.setSource(new ExtendedLocation(automaton, source.getName(),
                     source.getType(),
                     0, 0,
@@ -30,7 +30,7 @@ public class ExtendedTransition extends Transition {
                     0, 0,
                     destination.getOutgoingTransitions(),
                     destination.getIncommingTransitions()));
-        }
+        }*/
         this.automaton = automaton;
         this.channel = channel;
 
@@ -38,69 +38,82 @@ public class ExtendedTransition extends Transition {
     @Override
     public boolean equals(Object o) {
         if (o == this) {
-            System.out.println("TRUE");
             return true;
         }
 
         if (!(o instanceof Transition)) {
-            System.out.println("DANGER!!!");
             return false;
         }
 
         ExtendedTransition tran = (ExtendedTransition) o;
 
-        if ( !tran.getSource().equals( this.getSource()) || !tran.getTarget().equals(this.getTarget()) ) {
-            return false;
-        }
-
         if (!this.getGuardAsString().equals(tran.getGuardAsString())) {
             return false;
         }
 
-        if (!areLabelsEqual(this.getUpdate(), tran.getUpdate())) {
+        if (labelsAreDifferent(this.getUpdate(), tran.getUpdate())) {
             return false;
         }
-        if (!areLabelsEqual(this.getSelect(), tran.getSelect())) {
+        if (labelsAreDifferent(this.getSelect(), tran.getSelect())) {
             return false;
         }
-        if (!areLabelsEqual(this.getSync(), tran.getSync())) {
+        if (labelsAreDifferent(this.getSync(), tran.getSync())) {
             return false;
         }
 
-        return this.channel.equals(tran.getChannel());
+        if (this.channel != null ^ tran.channel != null) {
+            return false;
+        }
+
+        if (this.channel != null ) {
+            return this.channel.equals(tran.getChannel());
+        }
+
+        if (tran.channel != null ) {
+            return tran.channel.equals(tran.getChannel());
+        }
+
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = this.getGuardAsString().hashCode();
 
-        if (this.getSource() != null)
+/*
+        if (this.getSource() != null) {
+            //ExtendedLocation extSource = new ExtendedLocation(this.getSource());
             result = 31 * result + this.getSource().hashCode();
-
+        }
         if (this.getTarget() != null) {
+            //ExtendedLocation extTarget = new ExtendedLocation(this.getTarget());
             result = 31 * result + this.getTarget().hashCode();
+        }
+*/
+
+        if (this.getSelect() != null) {
+            result = 31 * result + this.getSelect().toString().hashCode();
         }
 
         if (this.getUpdate() != null)
-            result = 31 * result + this.getUpdate().hashCode();
+            result = 31 * result + this.getUpdate().toString().hashCode();
 
         if (this.getSync() != null) {
-            result = 31 * result + this.getSync().hashCode();
+            result = 31 * result + this.getSync().toString().hashCode();
             result = 31 * result + this.getChannel().hashCode();
         }
 
         return result;
     }
 
-    private boolean areLabelsEqual(Label label1, Label label2) {
-
+    private boolean labelsAreDifferent(Label label1, Label label2) {
+        //System.out.println(label1 + " " + label2);
         if (label1 == null ^ label2 == null ) {
-            return false;
+            return true;
         } else if (label1 != null && label2 != null) {
-            return label1.toString().equals(label2.toString());
+            return !label1.toString().equals(label2.toString());
         }
-
-        return true;
+        return false;
     }
 
     @Override
