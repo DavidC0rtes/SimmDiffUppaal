@@ -51,6 +51,8 @@ public class ExtendedNTA extends NTA {
         int modelMaxLocId = 0;
         for (Automaton taio : model.getAutomata()) {
             Automaton mutant = this.getAutomaton(taio.getName().getName());
+            int nTransitionsMut = mutant.getTransitions().size();
+            int nTransitionsMod = taio.getTransitions().size();
             ArrayList<Location> mutantLocsCopy = new ArrayList<>(mutant.getLocations());
             mutantMaxLocId += mutantLocsCopy.size();
             Set<ExtendedLocation> locationSetMutant = getExtendedLocations(mutant ,mutantLocsCopy);
@@ -58,9 +60,6 @@ public class ExtendedNTA extends NTA {
 
             for (ExtendedLocation l : locationSetMutant) {
                 mutantLocsMap.put(l.toString(), l);
-/*                if (l.toString().equals(mutant.getInit().toString())) {
-                    mutant.setInit(l);
-                }*/
             }
 
             ArrayList<Location> modelLocsCopy = new ArrayList<>(taio.getLocations());
@@ -69,9 +68,7 @@ public class ExtendedNTA extends NTA {
 
             for (ExtendedLocation l : locationSetModel) {
                 modelLocsMap.put(l.toString(), l);
-/*                if (l.toString().equals(taio.getInit().toString())) {
-                    taio.setInit(l);
-                }*/
+
             }
             modelMaxLocId += modelLocsCopy.size();
 
@@ -80,19 +77,10 @@ public class ExtendedNTA extends NTA {
             diffLocations.putAll(taio.getName().getName(),diffLoc.stream().filter(location -> !location.getName().getName().equals(bar)).collect(Collectors.toSet()));
             System.out.printf("different locations : %s\n", diffLoc);
 
-            // Fix mutant
-            /*List<Location> foo = new ArrayList<>(mutant.getLocations());
-            for (int i = locationSetMutant.size(); i<foo.size(); i++) {
-                mutant.removeLocation(foo.get(i));
-            }*/
 
             Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()), mutantLocsMap);
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()), modelLocsMap);
-            // Fix model
-          /*  List<Location> foo2 = new ArrayList<>(taio.getLocations());
-            for (int i = locationSetModel.size(); i<foo2.size(); i++) {
-                taio.removeLocation(foo2.get(i));
-            }*/
+
 
             Set<ExtendedTransition> differentT = difference(transitionSetMutant, transitionSetModel);
             diffTransitions.putAll(taio.getName().getName(), differentT);
@@ -111,6 +99,14 @@ public class ExtendedNTA extends NTA {
             System.out.println("Cleaning up "+ mutant.getName().getName());
             cleanUpLocations(mutant, mutantMaxLocId);
             cleanUpLocations(taio, modelMaxLocId);
+
+            if (taio.getTransitions().size() > nTransitionsMod) {
+                taio.getTransitions().subList(nTransitionsMod, taio.getTransitions().size()).clear();
+            }
+
+            if (mutant.getTransitions().size() > nTransitionsMut) {
+                mutant.getTransitions().subList(nTransitionsMut, mutant.getTransitions().size()).clear();
+            }
         }
     }
 

@@ -22,38 +22,47 @@ public class Trace implements Callable<String> {
 
     private Set<String> channels;
     private float timeout;
+    private final boolean useSMC;
 
     public Trace(String symbolicTrace) {
         this.symbolicTrace = symbolicTrace;
-        System.out.printf("Trace class got symtrace of %d chars\n", symbolicTrace.length());
+        this.useSMC = false;
+    }
+    public Trace(String symbolicTrace, boolean smc) {
+        this.symbolicTrace = symbolicTrace;
+        this.useSMC = smc;
     }
     @Override
     public String call() throws Exception {
-        System.out.printf("call method got symtrace of %d chars\n", symbolicTrace.length());
-        CharStream input = CharStreams.fromString(symbolicTrace);
-        SymTracesLexer lexer = new SymTracesLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        SymTracesParser parser = new SymTracesParser(tokens);
-        ParseTree tree = parser.trace();
+        //System.out.println(symbolicTrace);
+        String translatedTrace;
+        if (useSMC) {
+            CharStream input = CharStreams.fromString(symbolicTrace);
+            SMCTracesLexer lexer = new SMCTracesLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            SMCTracesParser parser = new SMCTracesParser(tokens);
+            ParseTree tree = parser.trace();
 
-        TracesTranslator eval2 = new TracesTranslator(new HashSet<>());
+            SMCTracesTranslator eval2 = new SMCTracesTranslator(new HashSet<>());
 
-        String translatedTrace = eval2.visit(tree);
-        channels = eval2.getChannels();
-        timeout = eval2.getTimeout();
+            translatedTrace = eval2.visit(tree);
+            channels = eval2.getChannels();
+            timeout = eval2.getTimeout();
+        } else {
+            CharStream input = CharStreams.fromString(symbolicTrace);
+            SymTracesLexer lexer = new SymTracesLexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            SymTracesParser parser = new SymTracesParser(tokens);
+            ParseTree tree = parser.trace();
+
+            TracesTranslator eval2 = new TracesTranslator(new HashSet<>());
+
+            translatedTrace = eval2.visit(tree);
+            channels = eval2.getChannels();
+            timeout = eval2.getTimeout();
+        }
+
         return translatedTrace;
-/*        CharStream input = CharStreams.fromString(symbolicTrace);
-        SMCTracesLexer lexer = new SMCTracesLexer(input);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        SMCTracesParser parser = new SMCTracesParser(tokens);
-        ParseTree tree = parser.trace();
-
-        SMCTracesTranslator eval2 = new SMCTracesTranslator(new HashSet<>());
-
-        String translatedTrace = eval2.visit(tree);
-        channels = eval2.getChannels();
-        timeout = eval2.getTimeout();
-        return translatedTrace;*/
     }
 
     public Set<String> getChannels() {
