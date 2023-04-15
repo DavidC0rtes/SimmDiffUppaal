@@ -1,1 +1,1 @@
-E<> Process.s2_1
+E<> Process.reachSource && Process.reachTran && Process.G

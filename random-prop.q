@@ -1,1 +1,1 @@
-simulate [<=10;1] {1}
+simulate [<=5;1] {1}

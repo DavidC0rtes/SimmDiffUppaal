@@ -74,7 +74,7 @@ public class Runner {
         int i = 1;
         for (var trace : symTraces.entries()) {
             if (trace.getValue().length() == 0) {
-                throw new RuntimeException("Empty symbolic trace");
+                throw new RuntimeException("Empty symbolic trace "+trace.getKey());
             }
             Trace traceWorker = new Trace(trace.getValue());
             Future<String> translatedTrace =  diffExecutor.submit(traceWorker);
@@ -96,7 +96,7 @@ public class Runner {
 
             // Create preamble
             String preambleFilename = "Preamble_" +  trace.getKey() + i + ".trn";
-            Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", Integer.toString(Math.round(timeout) + 1000));
+            Preamble preamble = new Preamble(traceWorker.getChannels(), "1000", Integer.toString(Math.round(timeout) + 10));
 
             try (FileWriter pWriter = new FileWriter(tracesDir.concat(preambleFilename))){
                 String preambletxt = preamble.getPreamble();
@@ -118,7 +118,7 @@ public class Runner {
         String tronPath = System.getProperty("user.home") + "/.local/etc/uppaal-tron-1.5-linux/tron";
         int traceIdx = 1;
         for (var entry : tracesMap.entrySet()) {
-            int cap = mutantNTA.getDiffLocations().size();
+            int cap = tracesMap.size();
             String[]dirParts =  entry.getKey().split("/");
             String templateName = dirParts[dirParts.length-1];
             long start = System.currentTimeMillis();
@@ -130,8 +130,8 @@ public class Runner {
             ));
 
             try {
-                String testPassed = result.get();
-                if (testPassed.equals("FAILED")) {
+                String testPassed = result.get(60, TimeUnit.SECONDS);
+                if (testPassed.equals("FAILED") || traceIdx == cap) {
                     tracesResult.put(
                             model.getName(),
                             new String[] {
@@ -143,9 +143,9 @@ public class Runner {
                                     String.valueOf(System.currentTimeMillis() - start)
                             });
                     break;
-                } else if (traceIdx == cap) {
+                } /*else if (traceIdx == cap) {
                     System.out.println("Generating random traces");
-                    for (int i = 0; i < 40; i++) {
+                    for (int i = 0; i < 10; i++) {
                         // Generate random trace
                         String randomTrace = engine.getRandomTrace(mutant, "simulate [<=5;1] {1}");
                         // Translate to TRON format
@@ -158,7 +158,7 @@ public class Runner {
                                 tronMap.get("trn").getAbsolutePath()
                         );
                         //System.out.printf("Test result is %s\n", testResult);
-                        if (testResult.equals("FAILED") || i == 19) {
+                        if (testResult.equals("FAILED") || i == 9) {
                             tracesResult.put(
                                     model.getName(),
                                     new String[] {
@@ -173,10 +173,12 @@ public class Runner {
 
                     }
 
-                }
+                }*/
 
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
+            } catch (TimeoutException e) {
+                System.out.println("Timed out, skipping...");
             }
             traceIdx++;
         }

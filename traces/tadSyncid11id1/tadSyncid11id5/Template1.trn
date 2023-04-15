@@ -1,0 +1,3 @@
+output new();
+output syncTime();
+output hello();

@@ -5,6 +5,7 @@ import de.tudarmstadt.es.juppaal.Location;
 import de.tudarmstadt.es.juppaal.Transition;
 import de.tudarmstadt.es.juppaal.labels.Label;
 
+import de.tudarmstadt.es.juppaal.labels.Synchronization;
 import org.neocities.daviddev.simmdiff.core.types.Channel;
 
 
@@ -12,9 +13,8 @@ public class ExtendedTransition extends Transition {
 
     private Channel channel;
     private ExtendedLocation extSource, extTarget;
-    private Automaton automaton;
 
-    public ExtendedTransition(Automaton automaton, Location source, Location destination, Channel channel) {
+    public ExtendedTransition(Automaton automaton, Location source, Location destination, Channel channel, Synchronization sync) {
         super(automaton, source, destination);
        /* if (source != null) {
             this.setSource(new ExtendedLocation(automaton, source.getName(),
@@ -31,8 +31,8 @@ public class ExtendedTransition extends Transition {
                     destination.getOutgoingTransitions(),
                     destination.getIncommingTransitions()));
         }*/
-        this.automaton = automaton;
         this.channel = channel;
+        this.setSync(sync);
 
     }
     @Override
@@ -44,9 +44,9 @@ public class ExtendedTransition extends Transition {
         if (!(o instanceof Transition)) {
             return false;
         }
-
+        
         ExtendedTransition tran = (ExtendedTransition) o;
-
+        
         if (!this.getGuardAsString().equals(tran.getGuardAsString())) {
             return false;
         }
@@ -69,10 +69,6 @@ public class ExtendedTransition extends Transition {
             return this.channel.equals(tran.getChannel());
         }
 
-        if (tran.channel != null ) {
-            return tran.channel.equals(tran.getChannel());
-        }
-
         return true;
     }
 
@@ -80,16 +76,14 @@ public class ExtendedTransition extends Transition {
     public int hashCode() {
         int result = this.getGuardAsString().hashCode();
 
-/*
         if (this.getSource() != null) {
             //ExtendedLocation extSource = new ExtendedLocation(this.getSource());
-            result = 31 * result + this.getSource().hashCode();
+            result = 31 * result + this.getSource().toString().hashCode();
         }
         if (this.getTarget() != null) {
             //ExtendedLocation extTarget = new ExtendedLocation(this.getTarget());
-            result = 31 * result + this.getTarget().hashCode();
+            result = 31 * result + this.getTarget().toString().hashCode();
         }
-*/
 
         if (this.getSelect() != null) {
             result = 31 * result + this.getSelect().toString().hashCode();
@@ -124,4 +118,6 @@ public class ExtendedTransition extends Transition {
     public Channel getChannel() {
         return channel;
     }
+
+    public void setChannel(Channel channel) { this.channel = channel; }
 }

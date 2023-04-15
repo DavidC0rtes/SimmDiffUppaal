@@ -31,8 +31,9 @@ public class Tron implements Callable<String> {
                 model + " -v 8 -Q log " +
                 "-I TraceAdapter " +
                 "-- -m " + preamble
-                + " < " + trace
         );
+
+        pb.redirectInput(new File(trace));
 
         System.out.println("Calling tron with trace "+ command);
         Process p = pb.start();
@@ -42,14 +43,13 @@ public class Tron implements Callable<String> {
         if (result.contains("FAILED")) {
             System.out.println("fail");
             return "FAILED";
-        } else if (result.contains("Time out for testing")) {
-            System.out.println("timeout");
-            return "TIMEOUT";
         } else if (result.contains("PASSED")) {
-            System.out.println("pass");
+            System.out.println("timeout/passed");
             return "PASSED";
+        } else if (result.contains("INCONCLUSIVE")) {
+            System.out.println("inconclusive");
+            return "TIMEOUT";
         }
-        System.out.println("Error probably");
-        return "INCONCLUSIVE";
+        throw new RuntimeException("Error "+ command + "\n"+  new String(p.getErrorStream().readAllBytes()));
     }
 }

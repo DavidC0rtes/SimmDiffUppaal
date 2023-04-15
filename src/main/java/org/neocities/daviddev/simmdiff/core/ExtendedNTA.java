@@ -11,6 +11,11 @@ import de.tudarmstadt.es.juppaal.Transition;
 import org.checkerframework.checker.units.qual.A;
 import org.neocities.daviddev.simmdiff.core.types.Channel;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,14 +86,14 @@ public class ExtendedNTA extends NTA {
             Set<ExtendedTransition> transitionSetMutant = getExtendedTransitions(mutant,  new ArrayList<>(mutant.getTransitions()), mutantLocsMap);
             Set<ExtendedTransition> transitionSetModel = getExtendedTransitions(taio, new ArrayList<>(taio.getTransitions()), modelLocsMap);
 
-
             Set<ExtendedTransition> differentT = difference(transitionSetMutant, transitionSetModel);
             diffTransitions.putAll(taio.getName().getName(), differentT);
             System.out.printf("different transitions : %s\n", differentT);
 
             ArrayList<String> locs = expandDiffs();
             locs.forEach(l -> {
-                if (!l.equals(bar) && !diffLocations.containsValue(mutantLocsMap.get(l))) {
+                if (!l.equals(bar) && mutant.getLocation(l)!= null && !diffLocations.containsValue(mutantLocsMap.get(l))) {
+                    System.out.printf("Putting location %s\n", l);
                     diffLocations.put(
                             mutant.getName().getName(),
                             mutantLocsMap.get(l));
@@ -182,7 +187,8 @@ public class ExtendedNTA extends NTA {
                                 automaton,
                                 locsMap.get(transition.getSource().getName().getName()),
                                 locsMap.get(transition.getTarget().getName().getName()),
-                                transition.getSync() != null ? chanDict.get(transition.getSync().getChannelName()) : null
+                                transition.getSync() != null ? chanDict.get(transition.getSync().getChannelName()) : null,
+                                transition.getSync()
                         ))
                         .collect(Collectors.toSet())
         );
@@ -215,6 +221,10 @@ public class ExtendedNTA extends NTA {
         }
     }
 
+    @Override
+    public ExtendedNTA clone() {
+        return new ExtendedNTA(this.pathToFile, new HashMap<>(chanDict));
+    }
 
     public void makeBroadcast() {
         int idx = 0;
