@@ -11,7 +11,8 @@
 const int N =  5;         // # trains + 1
 int[0,N]   el;
 chan       appr, stop, go, leave;
-chan       empty, notempty, hd, add, rem;</declaration>
+chan       empty, notempty, hd, add, rem;
+broadcast chan tau;</declaration>
 	<template>
 		<name x="40" y="16">Train</name>
 		<parameter>int[0,N] &amp;e, const int[0,N] id</parameter>
@@ -245,9 +246,7 @@ Train2:=Train(el, 2);
 Train3:=Train(el, 3);
 Train4:=Train(el, 4);
 Queue:=IntQueue(el);
-system 
-       Train1, Train2, Train3, Train4,
-       Gate, Queue;</system>
+system Train1, Train2, Train3, Train4, Gate, Queue;</system>
 	<queries>
 		<query>
 			<formula>

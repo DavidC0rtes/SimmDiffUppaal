@@ -1,5 +1,0 @@
-output new();
-output syncTime();
-output hello();
-output lower();
-output old();

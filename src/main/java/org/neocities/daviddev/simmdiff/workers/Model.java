@@ -25,6 +25,7 @@ public class Model implements Callable<ExtendedNTA> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("wrote cleaned file " + file.getPath());
     }
     @Override
     public ExtendedNTA call() {

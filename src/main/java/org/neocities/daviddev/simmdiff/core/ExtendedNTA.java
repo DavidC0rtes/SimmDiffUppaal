@@ -203,7 +203,7 @@ public class ExtendedNTA extends NTA {
     public String getProcessName(String template) {
         for(String decl : this.getSystemDeclaration().getDeclarations()) {
             if (decl.contains(template) && decl.contains("=")) {
-                String[] parts = decl.trim().split("=");
+                String[] parts = decl.trim().split(":?=");
                 return parts[0].trim();
             }
         }

@@ -89,8 +89,14 @@ public class Engine {
                                 null,
                                 transition.getSync());
 
-                        if (transition.getSync() != null && transition.getSync().getChannelName().equals(tran2.getChannel().getName())) {
-                            tran1.setChannel(tran2.getChannel());
+                        String tran2ChannelName = tran2.getChannel() != null ? tran2.getChannel().getName() : null ;
+                        try {
+                            if (transition.getSync() != null && transition.getSync().getChannelName().equals(tran2ChannelName)) {
+                                tran1.setChannel(tran2.getChannel());
+                            }
+                        } catch (Exception e) {
+                            System.err.println(tran2.getChannel());
+                            throw new RuntimeException(e);
                         }
 
                         if (tran1.equals(tran2)) {
@@ -150,7 +156,6 @@ public class Engine {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-
         return trace;
     }
 

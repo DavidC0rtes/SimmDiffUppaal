@@ -13,12 +13,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/prop.q" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-prop.q" beforeDir="false" afterPath="$PROJECT_DIR$/random-prop.q" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Tron.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Tron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/train-gate-orig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/train-gate-orig.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,7 @@
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.neocities.daviddev.simmdiff.entrypoint.Main" />
       <module name="SimmDiffUppaal" />
-      <option name="PROGRAM_PARAMETERS" value="--model=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/Train-Gate/tadSyncid11id1.xml --mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/Train-Gate/tadSyncid11id7.xml" />
+      <option name="PROGRAM_PARAMETERS" value="--mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/parSeq__data01.xml --model=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/mutations/parSeq__in_231.xml" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -275,6 +275,12 @@
       <workItem from="1680701043336" duration="3110000" />
       <workItem from="1680727072269" duration="338000" />
       <workItem from="1680784744653" duration="1128000" />
+      <workItem from="1681720492937" duration="4865000" />
+      <workItem from="1681735918356" duration="160000" />
+      <workItem from="1681736816302" duration="196000" />
+      <workItem from="1681737411588" duration="189000" />
+      <workItem from="1681737639091" duration="1900000" />
+      <workItem from="1681744923284" duration="3576000" />
     </task>
     <servers />
   </component>
@@ -297,28 +303,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>146</line>
+          <line>152</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>142</line>
+          <line>148</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>141</line>
+          <line>147</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>140</line>
+          <line>146</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java</url>
@@ -327,32 +328,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>105</line>
+          <line>111</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>114</line>
+          <line>120</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java</url>
-          <line>123</line>
+          <line>129</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>

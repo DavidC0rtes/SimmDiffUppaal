@@ -83,7 +83,7 @@ public class Runner {
             try (FileWriter writer = new FileWriter(tracesDir.concat(traceFileName))){
                 String tronTrace = translatedTrace.get();
                 if (tronTrace.equals(""))
-                    throw new RuntimeException("Empty tron trace " + tracesDir.concat(traceFileName));
+                    throw new RuntimeException("Empty tron trace " + tracesDir.concat(traceFileName) + "\n"+ trace.getValue());
                 writer.write(tronTrace);
             } catch (IOException | InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);

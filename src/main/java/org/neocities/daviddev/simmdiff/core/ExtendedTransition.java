@@ -94,6 +94,7 @@ public class ExtendedTransition extends Transition {
 
         if (this.getSync() != null) {
             result = 31 * result + this.getSync().toString().hashCode();
+            if (this.getChannel() == null) System.out.printf("null chan with sync %s\n", this.getSync().toString());
             result = 31 * result + this.getChannel().hashCode();
         }
 
