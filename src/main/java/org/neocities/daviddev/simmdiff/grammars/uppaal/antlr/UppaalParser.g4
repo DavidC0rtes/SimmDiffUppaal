@@ -12,7 +12,7 @@ content     :   chardata?
                 ((element | reference | CDATA | PI | COMMENT) chardata?)* ;
 
 element     :   '<' Name attribute* '>' content '</' Name '>'
-            |   '<' Name attribute* '/>'
+            |   '<' Name attribute* SLASH_CLOSE
             ;
 
 reference   :   EntityRef | CharRef ;
@@ -35,7 +35,7 @@ nta         :   '<' 'nta' '>' misc*
 
 //declaration :   '<' 'declaration' '>' anything '</' 'declaration' '>' ;
 
-declaration :   OPEN_DECLARATION GUARD_S* declContent GUARD_S* CLOSE_DECLARATION;
+declaration :   OPEN_DECLARATION GUARD_S* declContent GUARD_S* (CLOSE_DECLARATION | CLOSE_EMPTY_LABEL);
 
 declContent:   (declarations GUARD_S*)* ;
 
@@ -183,16 +183,16 @@ parameter   :   OPEN_PARAMETER funcParameters CLOSE_PARAMETER ;
 
 coordinate  :   ('x'|'y') EQUALS STRING ('x'|'y') EQUALS STRING ;
 
-initLoc    :   '<' 'init' S? 'ref' EQUALS STRING '/>' ;
+initLoc    :   '<' 'init' S? 'ref' EQUALS STRING SLASH_CLOSE ;
 
 branchpoint :   '<' 'branchpoint' 'id' EQUALS STRING
                     coordinate? '>' misc*
                     '</' 'branchpoint' '>';
 
 location    :   '<' 'location' S*
-                    'id' EQUALS STRING coordinate?  color? '>' misc* (name misc*)?
+                    ((('id' EQUALS STRING) coordinate?)|(coordinate? ('id' EQUALS STRING)))  color? '>' misc* (name misc*)?
                     (labelLoc misc*)*
-                    ('<' (URGENT_LOC | 'committed') '/>' misc*)?
+                    ('<' (URGENT_LOC | 'committed') SLASH_CLOSE misc*)?
 
                     '</' 'location' '>' ;
 name        :   '<' 'name' S*
@@ -213,21 +213,19 @@ transition  :   '<' 'transition' color? '>'
 
                 ;
 
-labelTransGuard: OPEN_GUARD guardExpr? CLOSE_LABEL ;
-labelTransSyncInput : (OPEN_SYNC (expr '?')? CLOSE_LABEL)   ;
-labelTransSyncOutput: (OPEN_SYNC (expr '!')? CLOSE_LABEL)
-
-                     ;
+labelTransGuard: OPEN_GUARD guardExpr? (CLOSE_LABEL|CLOSE_EMPTY_LABEL)          ;
+labelTransSyncInput : (OPEN_SYNC (expr '?')? (CLOSE_LABEL|CLOSE_EMPTY_LABEL))   ;
+labelTransSyncOutput: (OPEN_SYNC (expr '!')? (CLOSE_LABEL|CLOSE_EMPTY_LABEL))   ;
 labelTrans: (labelSelect misc* | labelUpdate misc* | labelComments misc* ) ;
-labelUpdate :	OPEN_LBLTR misc* expr (',' expr)* CLOSE_LABEL ;
+labelUpdate :	OPEN_LBLTR misc* (expr (',' expr)*)? (CLOSE_LABEL|CLOSE_EMPTY_LABEL) ;
 
-labelSelect :   OPEN_SELECT misc* selectList CLOSE_LABEL ;
+labelSelect :   OPEN_SELECT misc* selectList? (CLOSE_LABEL|CLOSE_EMPTY_LABEL) ;
 
 selectList  :   IDENTIFIER ':' type
             |   selectList ',' IDENTIFIER ':' type
             ;
 
-labelComments : OPEN_LBLCOM  anything CLOSE_LABEL ;
+labelComments : OPEN_LBLCOM  anything (CLOSE_LABEL|CLOSE_EMPTY_LABEL) ;
 guardExpr
 //locals[boolean isClockId = false, boolean isClockIdAux= false]
             :   IDENTIFIER  # IdentifierGuard
@@ -272,14 +270,12 @@ guardTypeId
             |   'scalar' '[' guardExpr ']'                 # GuardTypeScalar
             ;
 
-source      :   ('<' 'source' S? 'ref' EQUALS STRING '/>')
+source      :   ('<' 'source' S? 'ref' EQUALS STRING SLASH_CLOSE)
                 ;
 
-target      :   '<' 'target' S? 'ref' EQUALS STRING '/>'
+target      :   OPEN 'target' S? 'ref' EQUALS STRING SLASH_CLOSE;
 
-                ;
-
-nail        :   '<' 'nail' coordinate? '/>' ;
+nail        :   '<' 'nail' coordinate? SLASH_CLOSE ;
 
 system      :   '<' 'system' '>' anything '</' 'system' '>' ;
 

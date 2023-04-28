@@ -14,22 +14,18 @@ CharRef     :   '&#' DIGIT+ ';'
             ;
 SEA_WS      :   (' '|'\t'|'\r'? '\n')+ ;
 
-OPEN_GUARD  :   '<' [ \t\r\n]*'label' [ \t\r\n]+ 'kind' [ \t\r\n]* '=' [ \t\r\n]*
-                '"guard"' ( [ \t\r\n]* 'x' [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"' [ \t\r\n]* Y [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"')?
-                [ \t\r\n]* '>'          -> pushMode(EXPRESSIONS);
+OPEN_GUARD  :   '<' [ \t\r\n]*'label'( (LBLKIND '"guard"' LBLCOORD) | (LBLCOORD LBLKIND '"guard"' )) [ \t\r\n]* '>'?          -> pushMode(EXPRESSIONS);
 
-OPEN_SYNC  :   '<' [ \t\r\n]*'label' [ \t\r\n]+ 'kind' [ \t\r\n]* '=' [ \t\r\n]*
-                '"synchronisation"' ( [ \t\r\n]* 'x' [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"' [ \t\r\n]* Y [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"')?
-                [ \t\r\n]* '>'          -> pushMode(EXPRESSIONS);
+OPEN_SYNC  :   '<' [ \t\r\n]*'label' ( (LBLKIND '"synchronisation"' LBLCOORD) | (LBLCOORD LBLKIND '"synchronisation"' )) [ \t\r\n]* '>'?          -> pushMode(EXPRESSIONS);
 
-OPEN_LBLTR      :   LBLSTART ASSIGNMENT LBLCOORD [ \t\r\n]* '>' -> pushMode(EXPRESSIONS) ;
-OPEN_SELECT     :   LBLSTART SELECT LBLCOORD [ \t\r\n]* '>'     -> pushMode(EXPRESSIONS) ;
-OPEN_INV        :   LBLSTART (INVARIANT|EXPRATE) LBLCOORD [ \t\r\n]* '>'  -> pushMode(EXPRESSIONS) ;
+OPEN_LBLTR      :   '<' [ \t\r\n]*'label' ((LBLKIND ASSIGNMENT LBLCOORD) | (LBLCOORD LBLKIND ASSIGNMENT)) [ \t\r\n]* '>'?                     -> pushMode(EXPRESSIONS) ;
+OPEN_SELECT     :   '<' [ \t\r\n]*'label' ((LBLKIND SELECT LBLCOORD) | (LBLCOORD LBLKIND SELECT) ) [ \t\r\n]* '>'?                            -> pushMode(EXPRESSIONS) ;
+OPEN_INV        :   '<' [ \t\r\n]*'label' ((LBLKIND (INVARIANT|EXPRATE) LBLCOORD) | (LBLCOORD LBLKIND (INVARIANT|EXPRATE)) ) [ \t\r\n]* '>'  -> pushMode(EXPRESSIONS) ;
 
 
-OPEN_LBLCOM     :   LBLSTART QUERY_COMMENT LBLCOORD [ \t\r\n]* '>' -> pushMode(EXPRESSIONS) ;
+OPEN_LBLCOM     :   '<' [ \t\r\n]*'label' ((LBLKIND QUERY_COMMENT LBLCOORD)|(LBLCOORD LBLKIND QUERY_COMMENT)) [ \t\r\n]* '>'? -> pushMode(EXPRESSIONS) ;
 
-OPEN_DECLARATION    :   '<' [ \t\r\n]* 'declaration' [ \t\r\n]* '>'
+OPEN_DECLARATION    :   '<' [ \t\r\n]* 'declaration' [ \t\r\n]* '>'?
                                         -> pushMode(EXPRESSIONS);
 
 OPEN_PARAMETER      :   '<' [ \t\r\n]* 'parameter' [ \t\r\n]* '>'
@@ -40,13 +36,15 @@ OPEN_SLASH  :   '</'                    -> pushMode(INSIDE) ;
 XMLDeclOpen :   '<?xml' S               -> pushMode(INSIDE) ;
 SPECIAL_OPEN:   '<?' Name               -> more, pushMode(PROC_INSTR) ;
 
-//IDENTIFIER  :   [a-zA-Z_] [a-zA-Z0-9_]* ;
-TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
-fragment
-LBLSTART        :   '<' [ \t\r\n]*'label' [ \t\r\n]+ 'kind' [ \t\r\n]* '=' [ \t\r\n]* ;
 fragment
 LBLCOORD        :   ( [ \t\r\n]* 'x' [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"' [ \t\r\n]* Y [ \t\r\n]* '=' [ \t\r\n]* '"' ('-')? DIGIT+ '"')?
                 ;
+fragment
+LBLKIND         : [ \t\r\n]+ 'kind' [ \t\r\n]* '=' [ \t\r\n]*
+                ;
+
+//IDENTIFIER  :   [a-zA-Z_] [a-zA-Z0-9_]* ;
+TEXT        :   ~[<&]+ ;        // match any 16 bit char other than < and &
 
 // ----------------- Everything INSIDE of a tag ---------------------
 mode INSIDE;
@@ -142,6 +140,7 @@ SLASH_COMMENT       :   '/*' .*? '*/'           -> skip ;
 LINE_COMMENT        :   '//' ~( '<'|'\n' )*         -> skip ;
 
 CLOSE_LABEL         :   '</' [ \t\r\n]* 'label' [ \t\r\n]* '>'      -> popMode ;
+CLOSE_EMPTY_LABEL   :   '/>'                                        -> popMode ;
 
 CLOSE_DECLARATION   :   '</' [ \t\r\n]* 'declaration' [ \t\r\n]* '>'  -> popMode ;
 
