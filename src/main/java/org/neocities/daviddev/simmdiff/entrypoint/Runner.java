@@ -45,7 +45,7 @@ public class Runner {
         tracesResult = new HashMap<String, String[]>();
     }
 
-    public void parseModels(String propDir) {
+    public void parseModels() {
         try {
             Future<ExtendedNTA> modelObj = modelExecutor.submit(new Model(model));
             Future<ExtendedNTA> mutantObj = modelExecutor.submit(new Model(mutant));
@@ -85,7 +85,6 @@ public class Runner {
         float timeout = 0;
         int i = 1;
         for (var trace : symTraces.entries()) {
-            System.out.println(trace.getValue());
             if (trace.getValue().length() == 0) {
                 throw new RuntimeException("Empty symbolic trace "+trace.getKey());
             }

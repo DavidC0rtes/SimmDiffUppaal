@@ -1,13 +1,10 @@
 package org.neocities.daviddev.simmdiff.entrypoint;
 
-import com.google.common.base.Function;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 @Command(name = "NTASimmDiff", version = "NTASimmDiff 0.1", mixinStandardHelpOptions = true)
 public class Main implements Runnable {
@@ -34,7 +31,7 @@ public class Main implements Runnable {
         }
         System.out.println("Working Directory = " + dir);
         Runner runner = new Runner(model, mutant);
-        runner.parseModels(dir);
+        runner.parseModels();
         runner.computeTraces(dir, strategy.toString());
         runner.parseTraces(strategy.toString());
         runner.simulateTraces();
