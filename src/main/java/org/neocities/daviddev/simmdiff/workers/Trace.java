@@ -34,7 +34,6 @@ public class Trace implements Callable<String> {
     }
     @Override
     public String call() throws Exception {
-        //System.out.println(symbolicTrace);
         String translatedTrace;
         if (useSMC) {
             CharStream input = CharStreams.fromString(symbolicTrace);

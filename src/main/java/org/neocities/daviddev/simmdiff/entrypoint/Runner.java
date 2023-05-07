@@ -8,6 +8,7 @@ import org.neocities.daviddev.simmdiff.workers.Trace;
 import org.neocities.daviddev.simmdiff.workers.Tron;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +33,6 @@ public class Runner {
     private ListMultimap<String, String> symTraces;
     private String tracesDir = "traces/";
     private Engine engine;
-
     private ExtendedNTA mutantNTA;
 
     public Runner(File model, File mutant) {
@@ -52,18 +52,30 @@ public class Runner {
             mutantNTA = mutantObj.get();
             engine = new Engine(modelObj.get(), mutantNTA);
             modelExecutor.shutdown();
-
             engine.start();
-            symTraces = engine.getPaths(propDir);
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void computeTraces(String propDir, String strategy)  {
+        try {
+            symTraces = engine.getPaths(propDir, strategy);
+            if (symTraces.isEmpty()) {
+                System.err.print("Zero traces generated, please check and run again\n");
+                System.exit(-1);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(-1);
         }
     }
 
     /**
      * Parses symbolic UPPAAL traces and translates them to TRON format.
      */
-    public void parseTraces()  {
+    public void parseTraces(String strategy)  {
+        boolean useSMC = strategy.equals("random");
         try {
             Files.createDirectories(Paths.get(tracesDir));
         } catch (IOException e) {
@@ -73,10 +85,11 @@ public class Runner {
         float timeout = 0;
         int i = 1;
         for (var trace : symTraces.entries()) {
+            System.out.println(trace.getValue());
             if (trace.getValue().length() == 0) {
                 throw new RuntimeException("Empty symbolic trace "+trace.getKey());
             }
-            Trace traceWorker = new Trace(trace.getValue());
+            Trace traceWorker = new Trace(trace.getValue(), useSMC);
             Future<String> translatedTrace =  diffExecutor.submit(traceWorker);
 
             String traceFileName = trace.getKey() + i+".trn";

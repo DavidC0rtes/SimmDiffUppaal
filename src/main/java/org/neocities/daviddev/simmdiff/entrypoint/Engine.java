@@ -36,13 +36,19 @@ public class Engine {
         diffLocations = mutant.getDiffLocations();
     }
 
-    public ListMultimap<String, String> getPaths(String propDir) throws FileNotFoundException {
+    public ListMultimap<String, String> getPaths(String propDir, String how) throws FileNotFoundException {
         ListMultimap<String, String> traces = ArrayListMultimap.create();
 
         for (var entry : diffLocations.entries()) {
-            //String reachFormula = String.format("simulate [<= 100; 10] {%s.%s}\n", mutant.getProcessName(entry.getKey()), entry.getValue());
-            String reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
-            System.out.printf("Formula: %s", reachFormula);
+            final String reachFormula;
+            if (how.equals("random")) {
+                reachFormula = String.format("simulate [<= 100; 10] {%s.%s}\n", mutant.getProcessName(entry.getKey()), entry.getValue());
+            } else if (how.equals("biased")){
+                reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
+            } else {
+                throw new RuntimeException("Uknown strategy "+ how + " for trace generation.");
+            }
+
             try  (FileWriter writer = new FileWriter(propDir + "/prop.q")) {
                 writer.write(reachFormula);
             } catch (IOException e) {
@@ -54,6 +60,9 @@ public class Engine {
             if (trace.length() > 0)
                 traces.put(entry.getKey(), trace);
         }
+
+        if (!how.equals("biased"))
+            return traces;
 
 /*      Compute reachability formula for each identified diff transition.
         For that, we need to add a boolean variable to the model
@@ -158,46 +167,4 @@ public class Engine {
         }
         return trace;
     }
-
-    private File createProp(String filename, String formula) {
-        File propFile = new File(filename);
-        try (FileWriter writer = new FileWriter(propFile)) {
-            writer.write(formula);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        return propFile;
-    }
-
-    public String getRandomTrace(File model, String formula) {
-        File prop = createProp("random-prop.q", formula);
-        Random rand = new Random();
-        try {
-            ProcessBuilder verifyPb = new ProcessBuilder();
-            verifyPb.command(
-                    "/home/david/.local/etc/uppaal64-4.1.26-2/bin-Linux/verifyta",
-                    "-t" , "0",
-                    "-r", Integer.toString(rand.nextInt()),
-                    "-q",
-                    model.getAbsolutePath(),
-                    prop.getAbsolutePath()
-            );
-            //verifyPb.redirectErrorStream(true);
-            Process p = verifyPb.start();
-            p.waitFor();
-            String trace = new String(p.getInputStream().readAllBytes());
-            if (trace.length() == 0)
-                throw new RuntimeException("Generated empty trace, please check " + model.getPath() + " formula " + formula);
-
-            return trace.substring(5).replace("", "");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }
