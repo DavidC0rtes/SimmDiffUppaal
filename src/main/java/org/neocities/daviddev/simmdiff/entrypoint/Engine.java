@@ -2,15 +2,16 @@ package org.neocities.daviddev.simmdiff.entrypoint;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
-import de.tudarmstadt.es.juppaal.Automaton;
-import de.tudarmstadt.es.juppaal.Location;
-import de.tudarmstadt.es.juppaal.Transition;
-import de.tudarmstadt.es.juppaal.labels.Update;
+import be.unamur.uppaal.juppaal.Automaton;
+import be.unamur.uppaal.juppaal.Location;
+import be.unamur.uppaal.juppaal.Transition;
+import be.unamur.uppaal.juppaal.labels.Update;
 import org.neocities.daviddev.simmdiff.core.ExtendedLocation;
 import org.neocities.daviddev.simmdiff.core.ExtendedNTA;
 import org.neocities.daviddev.simmdiff.core.ExtendedTransition;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -42,7 +43,7 @@ public class Engine {
         for (var entry : diffLocations.entries()) {
             final String reachFormula;
             if (how.equals("random")) {
-                reachFormula = String.format("simulate [<= 100; 10] {%s.%s}\n", mutant.getProcessName(entry.getKey()), entry.getValue());
+                reachFormula = String.format("simulate [<= 100; 1] {%s.%s}\n", mutant.getProcessName(entry.getKey()), entry.getValue());
             } else if (how.equals("biased")){
                 reachFormula = String.format("E<> %s.%s\n", mutant.getProcessName(entry.getKey()), entry.getValue());
             } else {
@@ -56,7 +57,7 @@ public class Engine {
             }
             System.out.println("wrote prop to " + propDir+ "/prop.q");
 
-            String trace = execVerifyTA(mutant.getPathToFile(), propDir);
+            String trace = execVerifyTA(mutant.getPathToFile(), propDir, how);
             if (trace.length() > 0)
                 traces.put(entry.getKey(), trace);
         }
@@ -128,7 +129,7 @@ public class Engine {
                     e.printStackTrace();
                 }
                 System.out.println("wrote transition prop to " + propDir + "/prop.q with formula " + formula);
-                String traceStr = execVerifyTA(cloneFile.getAbsolutePath(), propDir);
+                String traceStr = execVerifyTA(cloneFile.getAbsolutePath(), propDir, how);
                 if (traceStr.length() > 0)
                     traces.put(trace.getKey(), traceStr);
 
@@ -139,7 +140,7 @@ public class Engine {
         return traces;
     }
 
-    private String execVerifyTA(String model, String propDir) {
+    private String execVerifyTA(String model, String propDir, String how) {
         String trace;
         Random rand = new Random();
         try {
@@ -155,9 +156,9 @@ public class Engine {
             //verifyPb.redirectErrorStream(true);
             Process p = verifyPb.start();
             p.waitFor();
-            trace = new String(p.getErrorStream().readAllBytes());
-
-            if (trace.length() > 0 && !trace.contains("NOT satisfied")) {
+            trace = how.equals("biased") ? new String(p.getErrorStream().readAllBytes()) : new String(p.getInputStream().readAllBytes());
+            System.out.println(trace);
+            if (trace.length() > 0 ) {
                 trace = trace.replace("", "");
             } else {
                 System.out.println(">>>>>>>>> " + model + " " + propDir+ "/prop.q");

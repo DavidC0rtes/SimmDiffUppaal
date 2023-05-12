@@ -1,9 +1,9 @@
 package org.neocities.daviddev.simmdiff.core;
 
-import de.tudarmstadt.es.juppaal.Automaton;
-import de.tudarmstadt.es.juppaal.Location;
-import de.tudarmstadt.es.juppaal.Name;
-import de.tudarmstadt.es.juppaal.Transition;
+import be.unamur.uppaal.juppaal.Automaton;
+import be.unamur.uppaal.juppaal.Location;
+import be.unamur.uppaal.juppaal.Name;
+import be.unamur.uppaal.juppaal.Transition;
 import org.jdom.Element;
 
 import java.util.HashSet;
@@ -90,7 +90,7 @@ public class ExtendedLocation extends Location {
             return false;
 
         //System.out.printf("%s == %s \n", loc.getInvariantAsString(), this.getInvariantAsString());
-        boolean areEqual = loc.getInvariantAsString().equals(this.getInvariantAsString());
+        boolean areEqual = loc.toString().equals(this.toString());
         //System.out.println(areEqual);
         return areEqual;
     }
@@ -112,7 +112,7 @@ public class ExtendedLocation extends Location {
         }
 
         if (this.getInvariant() != null) {
-            result = 31 * result + this.getInvariantAsString().hashCode();
+            result = 31 * result + this.toString().hashCode();
         }
 
         return result;

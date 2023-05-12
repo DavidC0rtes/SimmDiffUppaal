@@ -36,7 +36,8 @@ public class Trace implements Callable<String> {
     public String call() throws Exception {
         String translatedTrace;
         if (useSMC) {
-            CharStream input = CharStreams.fromString(symbolicTrace);
+           // System.out.println( symbolicTrace.replaceAll("\\[2K", ""));
+            CharStream input = CharStreams.fromString(symbolicTrace.replaceAll("\\[2K", ""));
             SMCTracesLexer lexer = new SMCTracesLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             SMCTracesParser parser = new SMCTracesParser(tokens);

@@ -8,10 +8,7 @@ import java.io.File;
 
 @Command(name = "NTASimmDiff", version = "NTASimmDiff 0.1", mixinStandardHelpOptions = true)
 public class Main implements Runnable {
-    enum Strategies {
-        random,
-        biased
-    }
+    enum Strategies { random, biased }
 
     @Option(names = {"--model"}, description = "Path to model file", required = true)
     File model;
@@ -41,7 +38,7 @@ public class Main implements Runnable {
         CommandLine commandLine = new CommandLine(new Main());
         commandLine.setCaseInsensitiveEnumValuesAllowed(true);
 
-        int exitCode =commandLine.execute(args);
+        int exitCode = commandLine.execute(args);
         System.exit(exitCode);
     }
 }

@@ -4,18 +4,12 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ListMultimap;
 
-import com.google.gson.Gson;
-import de.tudarmstadt.es.juppaal.*;
-import de.tudarmstadt.es.juppaal.Location;
-import de.tudarmstadt.es.juppaal.Transition;
-import org.checkerframework.checker.units.qual.A;
+import be.unamur.uppaal.juppaal.*;
+import be.unamur.uppaal.juppaal.Location;
+import be.unamur.uppaal.juppaal.Transition;
+
 import org.neocities.daviddev.simmdiff.core.types.Channel;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,7 +52,7 @@ public class ExtendedNTA extends NTA {
             Automaton mutant = this.getAutomaton(taio.getName().getName());
             int nTransitionsMut = mutant.getTransitions().size();
             int nTransitionsMod = taio.getTransitions().size();
-            ArrayList<Location> mutantLocsCopy = new ArrayList<>(mutant.getLocations());
+            ArrayList<be.unamur.uppaal.juppaal.Location> mutantLocsCopy = new ArrayList<>(mutant.getLocations());
             mutantMaxLocId += mutantLocsCopy.size();
             Set<ExtendedLocation> locationSetMutant = getExtendedLocations(mutant ,mutantLocsCopy);
             HashMap<String, ExtendedLocation> mutantLocsMap = new HashMap<>();
@@ -121,8 +115,8 @@ public class ExtendedNTA extends NTA {
         for (var entry : diffTransitions.entries()) {
             Collection<ExtendedLocation> locations = diffLocations.asMap().get(entry.getKey());
 
-            String sourceName = entry.getValue().getSource().getName().getName();
-            String targetName = entry.getValue().getTarget().getName().getName();
+            String sourceName = entry.getValue().getSource().getName().toString();
+            String targetName = entry.getValue().getTarget().getName().toString();
 
             if (locations == null) {
                 locationsToAdd.add(sourceName);

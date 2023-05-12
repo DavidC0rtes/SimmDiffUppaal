@@ -11,8 +11,15 @@
   <component name="ChangeListManager">
     <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/FatSimmDiffUppaal_jar/SimmDiffUppaal.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedLocation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedNTA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/core/ExtendedTransition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Engine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/entrypoint/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Trace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/neocities/daviddev/simmdiff/workers/Trace.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +43,7 @@
     <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/Automaton.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/NTA.class" root0="SKIP_INSPECTION" />
     <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/Transition.class" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/Downloads/Packages/juppaal-1.0.2.jar!/de/tudarmstadt/es/juppaal/labels/Guard.class" root0="SKIP_INSPECTION" />
     <setting file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/util/concurrent/AbstractExecutorService.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -64,7 +72,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/david/Documents/NTAMorphosis/product.xml&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/david/Downloads/test/Model&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -114,7 +122,7 @@
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.neocities.daviddev.simmdiff.entrypoint.Main" />
       <module name="SimmDiffUppaal" />
-      <option name="PROGRAM_PARAMETERS" value="--mutant=src/main/resources/bridge.xml --model=src/main/resources/bridge-mut.xml -how=random" />
+      <option name="PROGRAM_PARAMETERS" value="--mutant=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/GC2/tadSyncid6id16.xml --model=$PROJECT_DIR$/../NTAMorphosis/src/main/resources/GC2/tadSyncid17id15.xml -how=random" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -299,7 +307,12 @@
       <workItem from="1682499688639" duration="3097000" />
       <workItem from="1682870931783" duration="2435000" />
       <workItem from="1683134888458" duration="571000" />
-      <workItem from="1683457284628" duration="6321000" />
+      <workItem from="1683457284628" duration="12865000" />
+      <workItem from="1683534443760" duration="7342000" />
+      <workItem from="1683668934205" duration="2146000" />
+      <workItem from="1683706944344" duration="1590000" />
+      <workItem from="1683726470208" duration="424000" />
+      <workItem from="1683879588014" duration="971000" />
     </task>
     <servers />
   </component>

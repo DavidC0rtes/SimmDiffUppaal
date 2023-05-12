@@ -1,11 +1,11 @@
 package org.neocities.daviddev.simmdiff.core;
 
-import de.tudarmstadt.es.juppaal.Automaton;
-import de.tudarmstadt.es.juppaal.Location;
-import de.tudarmstadt.es.juppaal.Transition;
-import de.tudarmstadt.es.juppaal.labels.Label;
+import be.unamur.uppaal.juppaal.Automaton;
+import be.unamur.uppaal.juppaal.Location;
+import be.unamur.uppaal.juppaal.Transition;
+import be.unamur.uppaal.juppaal.labels.Label;
 
-import de.tudarmstadt.es.juppaal.labels.Synchronization;
+import be.unamur.uppaal.juppaal.labels.Synchronization;
 import org.neocities.daviddev.simmdiff.core.types.Channel;
 
 

@@ -63,7 +63,7 @@ public class Runner {
             symTraces = engine.getPaths(propDir, strategy);
             if (symTraces.isEmpty()) {
                 System.err.print("Zero traces generated, please check and run again\n");
-                System.exit(-1);
+                //System.exit(-1);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -95,7 +95,7 @@ public class Runner {
             try (FileWriter writer = new FileWriter(tracesDir.concat(traceFileName))){
                 String tronTrace = translatedTrace.get();
                 if (tronTrace.equals(""))
-                    throw new RuntimeException("Empty tron trace " + tracesDir.concat(traceFileName) + "\n"+ trace.getValue());
+                    throw new RuntimeException("Empty tron trace " + tracesDir.concat(traceFileName));
                 writer.write(tronTrace);
             } catch (IOException | InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);

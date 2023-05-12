@@ -1,8 +1,7 @@
 package org.neocities.daviddev.simmdiff.core;
 
 import com.google.common.collect.Sets;
-import de.tudarmstadt.es.juppaal.Automaton;
-import de.tudarmstadt.es.juppaal.Transition;
+import be.unamur.uppaal.juppaal.Automaton;
 
 import java.util.*;
 import java.util.stream.Collectors;
