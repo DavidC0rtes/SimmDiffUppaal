@@ -23,6 +23,7 @@ public class Model implements Callable<ExtendedNTA> {
         try (FileWriter writer = new FileWriter(file)) {
             writer.write(fileLoader.getParsedContent());
         } catch (IOException e) {
+            System.err.printf("Error parsing or writing using the file %s, :%s\n", file.getName(), e.getMessage());
             throw new RuntimeException(e);
         }
         System.out.println("wrote cleaned file " + file.getPath());

@@ -264,10 +264,9 @@ guardArguments   :   (guardExpr  (',' guardExpr)*)? ;
 
 guardType        :   ('meta' | 'const')? guardTypeId ;
 
-guardTypeId
-            :   'int'                                       # GuardTypeInt
+guardTypeId :   'int'                                     # GuardTypeInt
             |   'int' '[' guardExpr ',' guardExpr ']'     # GuardTypeIntDomain
-            |   'scalar' '[' guardExpr ']'                 # GuardTypeScalar
+            |   'scalar' '[' guardExpr ']'                # GuardTypeScalar
             ;
 
 source      :   ('<' 'source' S? 'ref' EQUALS STRING SLASH_CLOSE)
