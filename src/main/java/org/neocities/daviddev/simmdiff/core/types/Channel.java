@@ -1,7 +1,5 @@
 package org.neocities.daviddev.simmdiff.core.types;
 
-import java.util.Objects;
-
 public class Channel {
 
     private final String name;
@@ -22,9 +20,9 @@ public class Channel {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
+//        if (o == this) {
+//            return true;
+//        }
 
         if (!(o instanceof Channel)) {
             return false;
@@ -45,7 +43,11 @@ public class Channel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, scope, type);
+        int result = 34;
+        result = 72 * result + name.hashCode();
+        result = 72 * result + scope.hashCode();
+        result = 72 * result + type.hashCode();
+        return result;
     }
 
     @Override

@@ -28,9 +28,6 @@ public class ExtendedNTA extends NTA {
         diffTransitions = ArrayListMultimap.create();
         this.pathToFile = pathToFile;
         this.chanDict = chanDict;
-        this.getAutomata().forEach(automaton -> {
-            System.out.printf(">> %d locations in automaton %s\n", automaton.getLocations().size(), automaton.getName().getName());
-        });
 
     }
 
@@ -82,7 +79,7 @@ public class ExtendedNTA extends NTA {
 
             Set<ExtendedTransition> differentT = difference(transitionSetMutant, transitionSetModel);
             diffTransitions.putAll(taio.getName().getName(), differentT);
-            System.out.printf("different transitions : %s\n", differentT);
+           System.out.printf("different transitions : %s\n", differentT);
 
             ArrayList<String> locs = expandDiffs();
             locs.forEach(l -> {
@@ -94,7 +91,7 @@ public class ExtendedNTA extends NTA {
                 }
             });
 
-            System.out.printf("After expanding : %s\n", diffLocations);
+            //System.out.printf("After expanding : %s\n", diffLocations);
             System.out.println("Cleaning up "+ mutant.getName().getName());
             cleanUpLocations(mutant, mutantMaxLocId);
             cleanUpLocations(taio, modelMaxLocId);

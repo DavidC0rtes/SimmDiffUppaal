@@ -89,8 +89,6 @@ public class Transition extends UppaalElement {
     public void setBias(boolean b) { this.bias = b; }
 
     public void setSynchronization(Sync synchronization) {
-        if (synchronization != null)
-            System.out.printf("Setting the sync as %s\n", synchronization.getExpr());
         this.synchronization = synchronization;
     }
 

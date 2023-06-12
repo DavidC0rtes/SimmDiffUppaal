@@ -6,9 +6,7 @@ import be.unamur.uppaal.juppaal.Name;
 import be.unamur.uppaal.juppaal.Transition;
 import org.jdom.Element;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 
 public class ExtendedLocation extends Location {
     public ExtendedLocation(Automaton automaton) {
@@ -81,8 +79,7 @@ public class ExtendedLocation extends Location {
         if (loc.getOutgoingTransitions().size() != this.getOutgoingTransitions().size()) {
             return false;
         }
-
-        if (loc.getType() != this.getType())
+        if (!loc.getType().equals(this.getType()))
             return false;
 
         //System.out.printf("%s != %s ", loc.getAutomaton().getName().getName(), this.getAutomaton().getName().getName());
@@ -117,6 +114,4 @@ public class ExtendedLocation extends Location {
 
         return result;
     }
-
-    public void magic() {System.out.println("edjdedjei");}
 }

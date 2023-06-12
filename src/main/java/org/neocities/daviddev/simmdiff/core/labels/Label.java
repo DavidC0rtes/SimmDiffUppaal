@@ -21,7 +21,6 @@ public class Label {
         BaseElement syncEl = new BaseElement("label");
         syncEl.addAttribute("kind", kind);
 
-        System.out.println("Hey");
         syncEl.addText(expr);
         return syncEl;
     }

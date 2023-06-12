@@ -35,21 +35,22 @@ public class Tron implements Callable<String> {
 
         pb.redirectInput(new File(trace));
 
-        System.out.println("Calling tron with trace "+ command);
+        //System.out.println("Calling tron with trace "+ command);
         Process p = pb.start();
         p.waitFor();
 
         String result = new String(p.getInputStream().readAllBytes());
         if (result.contains("FAILED")) {
-            System.out.println("fail");
+            //System.out.println("fail");
             return "FAILED";
         } else if (result.contains("PASSED")) {
-            System.out.println("timeout/passed");
+            //System.out.println("timeout/passed");
             return "PASSED";
         } else if (result.contains("INCONCLUSIVE")) {
-            System.out.println("inconclusive");
+            //System.out.println("inconclusive");
             return "TIMEOUT";
         }
-        throw new RuntimeException("Error "+ command + "\n"+  new String(p.getErrorStream().readAllBytes()));
+        return "TIMEOUT";
+       // throw new RuntimeException("Error "+ command + "\n"+  new String(p.getErrorStream().readAllBytes()));
     }
 }

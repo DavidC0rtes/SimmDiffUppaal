@@ -81,13 +81,10 @@ public class Automata extends UppaalElement {
 
         int depth = 0;
 
-        System.out.printf("Number of locations %d\n", locations.size());
 
             for (Location loc : A) {
-                System.out.printf("Location %s has %d outgoings\n", loc.getName(), loc.getOutgoings().size());
                 for (Transition tran : loc.getOutgoings()) {
                     if (tran.hasBias())
-                        System.out.printf("Location %s has bias\n", tran.getTarget().getName());
                         A.add(tran.getTarget());
                 }
             }
@@ -109,8 +106,6 @@ public class Automata extends UppaalElement {
         for (Location location : locations) {
             template.add(location.getXMLStr());
         }
-
-        System.out.println(initLocation);
         Element initEl = template.addElement("init");
         initEl.addAttribute("ref", initLocation.getID().replaceAll("\"", ""));
 

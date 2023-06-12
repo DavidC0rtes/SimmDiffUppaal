@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 
 public class Model implements Callable<ExtendedNTA> {
 
-    private File modelFile;
+    private final File modelFile;
     private FileLoader fileLoader;
     public Model(File model) throws IOException {
         modelFile = model;
@@ -26,7 +26,6 @@ public class Model implements Callable<ExtendedNTA> {
             System.err.printf("Error parsing or writing using the file %s, :%s\n", file.getName(), e.getMessage());
             throw new RuntimeException(e);
         }
-        System.out.println("wrote cleaned file " + file.getPath());
     }
     @Override
     public ExtendedNTA call() {

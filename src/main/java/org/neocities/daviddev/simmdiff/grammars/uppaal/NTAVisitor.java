@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class NTAVisitor extends UppaalParserBaseVisitor<String> implements VisitorHelper {
 
 
-    private HashMap<String, Channel> chanDict = new HashMap<>();
+    private final HashMap<String, Channel> chanDict = new HashMap<>();
     @Override
     public String visitModel(UppaalParser.ModelContext ctx) {
         String model = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
@@ -80,10 +80,9 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
 
     @Override
     public String visitDeclaration(UppaalParser.DeclarationContext ctx) {
-        String declaration = ctx.OPEN_DECLARATION().getText();
+        String declaration = "<declaration>\n";
         declaration = declaration.concat(visit(ctx.declContent()));
-
-        declaration = declaration.concat(ctx.CLOSE_DECLARATION().getText());
+        declaration = declaration.concat("</declaration>\n");
         return declaration;
     }
 
@@ -254,7 +253,6 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
                } else {
                    ctype = Channel.ChanType.BINARY;
                }
-               
                chanDict.put(id.getText(), new Channel(id.getText(), ctx.depth() <= 6 ? "global" : "local", ctype));
            }
         }
@@ -651,10 +649,6 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
 
     @Override
     public String visitTemplate(UppaalParser.TemplateContext ctx) {
-         /*for (ClockType c : this.clockEnv.get(this.currentEnv)) {
-             System.out.println(c.getName() + " "+  this.currentEnv);
-         }*/
-        //System.out.println(this.clockEnv.get(this.currentEnv).toArray().toString()+" "+this.currentEnv);
         String template = "<template>\n";
         template = template.concat(visit(ctx.tempContent()));
         template = template.concat("</template>");
@@ -675,7 +669,7 @@ public class NTAVisitor extends UppaalParserBaseVisitor<String> implements Visit
             //print <parameter> ~[<&]+ </parameter>
             tempContent = tempContent.concat(visit(ctx.parameter())).concat("\n");
         }
-        if(ctx.declaration() != null){
+        if(ctx.declaration() != null && ctx.declaration().declContent() != null){
             //print <declaration> ~[<&] </declaration>
             tempContent = tempContent.concat(visit(ctx.declaration())).concat("\n");
         }

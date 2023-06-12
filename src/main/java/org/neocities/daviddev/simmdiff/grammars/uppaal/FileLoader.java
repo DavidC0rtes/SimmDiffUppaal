@@ -18,7 +18,7 @@ public class FileLoader {
     private ParseTree tree;
     private UppaalParser parser;
     private String parsedContent;
-    private NTAVisitor visitor;
+    private final NTAVisitor visitor;
 
     public FileLoader(File file) throws IOException {
         CharStream input = CharStreams.fromFileName(file.getPath());

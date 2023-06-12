@@ -79,7 +79,6 @@ public class NTAListener extends UppaalParserBaseListener {
     public void enterLocation(UppaalParser.LocationContext ctx) {
         boolean hasBias = hasBias(ctx);
         Location loc = new Location(ctx.STRING().getText(), hasBias, ctx);
-        System.out.printf("location %s has bias? %s\n", ctx.STRING().getText(), hasBias);
         locationsMap.put(ctx.STRING().getText(), loc);
         nameToTemplate.get(currentAutomata).addLocation(loc);
 
@@ -110,7 +109,6 @@ public class NTAListener extends UppaalParserBaseListener {
 
         if (ctx.labelTransGuard().size() > 0) {
             tran.setGuard(new Label(ctx.labelTransGuard(0).guardExpr().getText()));
-            System.out.println(ctx.labelTransGuard(0).guardExpr().getText());
         }
         if (ctx.labelTransGuard().size() > 1) {
             System.out.println("More than 1 guard !!!!");

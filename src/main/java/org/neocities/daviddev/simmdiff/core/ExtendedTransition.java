@@ -94,9 +94,10 @@ public class ExtendedTransition extends Transition {
 
         if (this.getSync() != null) {
             result = 31 * result + this.getSync().toString().hashCode();
-            if (this.getChannel() == null) System.out.printf("null chan with sync %s\n", this.getSync().toString());
-            result = 31 * result + this.getChannel().hashCode();
         }
+
+        if (this.channel != null)
+            result = 31 * result + this.channel.hashCode();
 
         return result;
     }
@@ -105,7 +106,7 @@ public class ExtendedTransition extends Transition {
         //System.out.println(label1 + " " + label2);
         if (label1 == null ^ label2 == null ) {
             return true;
-        } else if (label1 != null && label2 != null) {
+        } else if (label1 != null) {
             return !label1.toString().equals(label2.toString());
         }
         return false;

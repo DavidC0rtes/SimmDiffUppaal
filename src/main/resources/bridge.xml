@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
 <nta>
-<declaration>chan take, release;
+<declaration>
+chan take, release;
 int [0, 1] L;
 clock time;
 </declaration>
+
 <template>
 <name x="32" y="16">Soldier</name>
 <parameter>const int delay</parameter>
-<declaration>clock y;
+<declaration>
+clock y;
 </declaration>
+
 <location id="id0" x="288" y="80">
 <name>id0</name>
 </location>

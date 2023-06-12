@@ -55,7 +55,7 @@ public class Engine {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println("wrote prop to " + propDir+ "/prop.q");
+            //System.out.println("wrote prop to " + propDir+ "/prop.q");
 
             String trace = execVerifyTA(mutant.getPathToFile(), propDir, how);
             if (trace.length() > 0)
@@ -111,7 +111,6 @@ public class Engine {
 
                         if (tran1.equals(tran2)) {
                             transition.addUpdate(varName2 + " = true");
-                            System.out.println("Added the update");
                             automaton.getTransitions().subList(nTransitionsMut, automaton.getTransitions().size()).clear();
                         }
                     });
@@ -128,7 +127,7 @@ public class Engine {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println("wrote transition prop to " + propDir + "/prop.q with formula " + formula);
+                //System.out.println("wrote transition prop to " + propDir + "/prop.q with formula " + formula);
                 String traceStr = execVerifyTA(cloneFile.getAbsolutePath(), propDir, how);
                 if (traceStr.length() > 0)
                     traces.put(trace.getKey(), traceStr);
@@ -157,7 +156,6 @@ public class Engine {
             Process p = verifyPb.start();
             p.waitFor();
             trace = how.equals("biased") ? new String(p.getErrorStream().readAllBytes()) : new String(p.getInputStream().readAllBytes());
-            System.out.println(trace);
             if (trace.length() > 0 ) {
                 trace = trace.replace("", "");
             } else {

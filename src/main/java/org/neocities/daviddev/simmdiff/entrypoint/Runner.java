@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 public class Runner {
-    private final File model;
-    private final File mutant;
+    private File model;
+    private File mutant;
 
     private final ExecutorService modelExecutor;
     private ExecutorService diffExecutor;
@@ -35,6 +35,11 @@ public class Runner {
     private Engine engine;
     private ExtendedNTA mutantNTA;
 
+    public Runner() {
+        modelExecutor = Executors.newFixedThreadPool(2);
+        tracesMap = new HashMap<>();
+        tracesResult = new HashMap<String, String[]>();
+    }
     public Runner(File model, File mutant) {
         this.model=model;
         this.mutant=mutant;
@@ -51,7 +56,6 @@ public class Runner {
             Future<ExtendedNTA> mutantObj = modelExecutor.submit(new Model(mutant));
             mutantNTA = mutantObj.get();
             engine = new Engine(modelObj.get(), mutantNTA);
-            modelExecutor.shutdown();
             engine.start();
         } catch (IOException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
@@ -155,38 +159,7 @@ public class Runner {
                                     String.valueOf(System.currentTimeMillis() - start)
                             });
                     break;
-                } /*else if (traceIdx == cap) {
-                    System.out.println("Generating random traces");
-                    for (int i = 0; i < 10; i++) {
-                        // Generate random trace
-                        String randomTrace = engine.getRandomTrace(mutant, "simulate [<=5;1] {1}");
-                        // Translate to TRON format
-                        String trnName = tracesDir+mutant.getName()+"random"+i+".trn";
-                        String preambleName = tracesDir+mutant.getName()+"randomPreamble"+i+".trn";
-                        Map<String, File> tronMap = parseSingleTrace(randomTrace, trnName, preambleName);
-                        String testResult = scheduleTron(
-                                tronPath,
-                                tronMap.get("preamble").getAbsolutePath(),
-                                tronMap.get("trn").getAbsolutePath()
-                        );
-                        //System.out.printf("Test result is %s\n", testResult);
-                        if (testResult.equals("FAILED") || i == 9) {
-                            tracesResult.put(
-                                    model.getName(),
-                                    new String[] {
-                                            mutant.getName(),
-                                            templateName,
-                                            testResult,
-                                            String.valueOf(cap),
-                                            String.valueOf(traceIdx),
-                                            String.valueOf(System.currentTimeMillis() - start)
-                                    });
-                        }
-
-                    }
-
-                }*/
-
+                }
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             } catch (TimeoutException e) {
@@ -258,5 +231,33 @@ public class Runner {
             throw new RuntimeException(e);
         }
         return path;
+    }
+    public void setFiles(File a, File b) {
+        model = a;
+        mutant = b;
+        tracesDir += model.getName().replace(".xml", "") +"/" + mutant.getName().replace((".xml"),"" ).concat("/");
+    }
+
+    public void shutdownExecutor() {
+        if (!diffExecutor.isShutdown())
+            diffExecutor.shutdown();
+
+        if (!modelExecutor.isShutdown())
+            modelExecutor.shutdown();
+    }
+
+    /**
+     * To use when only caring about the result of the computation
+     * instead of time, diff explored, filename, etc.
+     * @return true if tron can simulate the trace, false otherwise.
+     */
+    public boolean getVeredict() {
+        for (String[] values : tracesResult.values()) {
+            // bad, but fast
+            if (values[2].equals("FAILED")) {
+                return false;
+            }
+        }
+        return true;
     }
 }
