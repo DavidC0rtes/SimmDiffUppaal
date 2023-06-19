@@ -9,17 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aaaaa.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/diff.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-prop.q" beforeDir="false" />
-    </list>
+    <list default="true" id="3ea029d2-c2ca-46b4-ad39-a1e59405f7a0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -339,7 +329,7 @@
       <workItem from="1687112209162" duration="75000" />
       <workItem from="1687112292831" duration="1222000" />
       <workItem from="1687133459340" duration="5282000" />
-      <workItem from="1687190328378" duration="606000" />
+      <workItem from="1687190328378" duration="993000" />
     </task>
     <servers />
   </component>
