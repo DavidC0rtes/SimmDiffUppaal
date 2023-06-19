@@ -1,6 +1,5 @@
 # TraceMatcher
 
----
 Java CLI tool to compute traces inclusion using biased traces between two Uppaal models.
 
 ## Prerequisites
@@ -14,6 +13,7 @@ Generate traces according to interesting portions ("bias") of Uppaal Timed Autom
 `mvn clean compile && mvn package`
 
 ## Usage
+`java -jar target/TraceMatcher-1.0.0-jar-with-dependencies.jar -h`
 ```
 TraceMatcher [-hV] [-d=<dir>] --how=<strategy> --model=<model>
                     --mutant=<mutant>
