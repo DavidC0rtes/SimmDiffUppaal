@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.neocities.daviddev.simmdiff</groupId>
-    <artifactId>SimmDiffUppaal</artifactId>
+    <groupId>org.neocities.daviddev</groupId>
+    <artifactId>TraceMatcher</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
 
@@ -14,7 +14,59 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        org.neocities.daviddev.tracematcher.Main
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.13.0</version>
+                <executions>
+                    <execution>
+                        <id>uppaal</id>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                        <configuration>
+                            <libDirectory>src/main/java/org/neocities/davidddev/tracematcher/grammars/uppaal/antlr</libDirectory>
+                            <sourceDirectory>src/main/java/org/neocities/daviddev/tracematcher/grammars/uppaal/antlr</sourceDirectory>
+                            <outputDirectory>src/main/java/org/neocities/daviddev/tracematcher/grammars/uppaal/antlr</outputDirectory>
+                            <arguments>
+                                <argument>-package</argument>
+                                <argument>org.neocities.daviddev.tracematcher.grammars.uppaal.antlr</argument>
+                                <argument>-visitor</argument>
+                                <argument>-lib</argument>
+                                <argument>src/main/java/org/neocities/daviddev/tracematcher/grammars/uppaal/antlr</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>info.picocli</groupId>
