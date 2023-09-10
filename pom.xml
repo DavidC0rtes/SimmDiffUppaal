@@ -6,7 +6,7 @@
 
     <groupId>org.neocities.daviddev</groupId>
     <artifactId>TraceMatcher</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <version>1.0.0</version>
 
     <properties>
@@ -29,7 +29,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        org.neocities.daviddev.tracematcher.Main
+                                        org.neocities.daviddev.tracematcher.entrypoint.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
